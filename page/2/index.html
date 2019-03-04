@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>BatInGotham&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Recording of my current work">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BatInGotham&#39;s Blog">
+<meta property="og:url" content="batingotham.github.io/page/2/index.html">
+<meta property="og:site_name" content="BatInGotham&#39;s Blog">
+<meta property="og:description" content="Recording of my current work">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="BatInGotham&#39;s Blog">
+<meta name="twitter:description" content="Recording of my current work">
+  
+    <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BatInGotham&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coder, (Practising) Game Designer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="batingotham.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-Compiler-Chapter2-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/Compiler-Chapter2-1/" class="article-date">
+  <time datetime="2019-03-04T16:26:19.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/Compiler-Chapter2-1/">Compiler Chapter2-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-2-Scanning"><a href="#Chapter-2-Scanning" class="headerlink" title="Chapter 2 Scanning"></a>Chapter 2 Scanning</h1><p>Source code (character stream) if (b == 0) a=b;<br>[Lexical Analysis]<br>Token stream if ( b == 0 ) a = b ;</p>
+<h2 id="2-1-Scanning-Process"><a href="#2-1-Scanning-Process" class="headerlink" title="2.1 Scanning Process"></a>2.1 Scanning Process</h2><ul>
+<li>Identifier</li>
+<li>Integer</li>
+<li>Floating point</li>
+<li>String</li>
+<li>Comment</li>
+<li>Keyword</li>
+<li>Symbol</li>
+</ul>
+<h2 id="2-2-Regular-Expression"><a href="#2-2-Regular-Expression" class="headerlink" title="2.2 Regular Expression"></a>2.2 Regular Expression</h2><p>Describe programming language tokens using regular expressions<br>A Regular Expression(RE) is defined inductively:<br>…<br>自然语言-&gt;正则表达式<br>Regular expression cannot count!<br>正则表达式不能计算<br>A Regular Set: a set of strings that is the language for a regular expression is distinguished from other<br>sets.<br>R+ one or more strings from L( R ): R( R<em> )<br>R</em> optional R: (R|e)<br>[abce] one of the listed characters (a|b|c|e)<br>[a-z] one character from a-z<br>[ ^ab ] anything but one of the listed chars<br>[ ^a-z ] one character not in the range<br>Comments<br>PASCAL {xxx} {(~})<em>}</em></p>
+<p>Ambiguity(歧义), White Space and Lookahead<br>Delimiters: characters that are unambiguously part of other tokens are delimiters<br>Whitespace = (newline|blank|tab|comment)+<br>Lookahead: buffering of input characters, marking places for back-tracing.</p>
+<h2 id="2-3-Finite-Automata-有穷自动机"><a href="#2-3-Finite-Automata-有穷自动机" class="headerlink" title="2.3 Finite Automata 有穷自动机"></a>2.3 Finite Automata 有穷自动机</h2><p>A strong relationship between finite automata and regular expression<br>Identifier = letter(letter|digit)*<br>Transition: record a change from one state to another upon a match of the character or characters by<br>which they are labeled<br>Start State: …<br>DFA: automata where the next state is uniquely given by the current state and the current input</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-1/" data-id="cjsukie5x00014cl63pujvsso" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Compiler-Chapter1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/Compiler-Chapter1/" class="article-date">
+  <time datetime="2019-03-04T16:25:27.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/Compiler-Chapter1/">Compiler Chapter1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-1-Introduction"><a href="#Chapter-1-Introduction" class="headerlink" title="Chapter 1 Introduction"></a>Chapter 1 Introduction</h1><h2 id="Compiler-computer-languages"><a href="#Compiler-computer-languages" class="headerlink" title="Compiler: computer languages"></a>Compiler: computer languages</h2><ul>
+<li>Translate one language to another</li>
+<li>Source Language(input) to target language(output)</li>
+<li>Source Language: High-level language c or cpp</li>
+<li>Target Languages: object code, machine code<br>First Compiler: FORTRAN language and its compiler, developed by the team at IBM, John Backus<br>Programs related to compilers:</li>
+<li>Interpreters: A language translator. It executes the source program immediately</li>
+<li>Assemblers: A translator translates assembly language into object mode</li>
+<li>Linkers: …</li>
+<li>Loaders, Preprocessors, Editors, Debuggers.<br>Source code —-&gt; Scanner —(tokens)–&gt; Parser —(Syntax tree)–&gt; Semantic Analyzer —(Annotated<br>tree)–&gt; Source code optimizer —(Intermediate code)–&gt; Code generator —(Target code)–&gt; Target code<br>optimizer —–&gt; Target code<br>[Literal table // Symbol table // Error handler]</li>
+</ul>
+<ol>
+<li>The scanner<br>Lexical analysis: input a stream of characters, output tokens.</li>
+<li>The parser<br>Determine the structure of the program<br>  Input: the forms of tokens<br>  Output: a parse tree or a syntax tree<br>  Parse tree更复杂,更全面 Syntax tree更简洁<br>  Syntax tree (abstract syntax tree): a condensation of the information contained in the parse tree.</li>
+<li>The semantic analyzer<br>Static semantics: including declarations and type checking<br>  Dynamic semantics<br>  Attribute grammar: computed by the semantic analyzer</li>
+<li>The source code optimizer<br>Source-level optimization<br>  Intermediate code: three-address code or P code<br>  …</li>
+<li>The code generator</li>
+<li>The target code optimizer: 简化指令流程</li>
+</ol>
+<h2 id="Analysis-and-synthesis-different-angles"><a href="#Analysis-and-synthesis-different-angles" class="headerlink" title="Analysis and synthesis: different angles"></a>Analysis and synthesis: different angles</h2><p>Front and back end: Front end — the scanner, parser, semantic analyzer, intermediate code synthesis;<br>Back end — the code generator, some optimization.<br>Passes</p>
+<ul>
+<li>Process the entire source program several times</li>
+<li>A pass consist of several phases<br>Language definition and compilers</li>
+<li>Relation between the language definition and compiler<br>Compiler options and interfaces</li>
+<li>Interfaces with the operating system</li>
+<li>Provide options to the user for various purposes<br>Error handling: static error, execution error</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter1/" data-id="cjsukie5t00004cl6td2akhfr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/hello-world/" class="article-date">
+  <time datetime="2019-03-04T16:13:44.739Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/hello-world/" data-id="cjsukie6e000o4cl6swoofmnq" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/">&laquo; __('prev')</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 15px;">Software Engineering</a> <a href="/tags/研究生考试/" style="font-size: 10px;">研究生考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/05/SE-Course-Info/">SE Course Info</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/SE-Chapter4/">SE Chapter4</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/SE-Chapter3/">SE Chapter3</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/SE-Chapter2/">SE Chapter2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/OS0304Review/">OS0304Review</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Qian, Sun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

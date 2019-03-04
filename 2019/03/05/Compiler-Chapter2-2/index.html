@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Compiler Chapter2-2 | BatInGotham&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Chapter 2 (cont.)2.4 From an NFA to a DFAthe Subset Construction Compute the e-closure of the start state of M; this becomes the start state. 穷举所有转移函数 计算转移后的状态的e-closure   double-circle: circles conta">
+<meta name="keywords" content="Compiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler Chapter2-2">
+<meta property="og:url" content="batingotham.github.io/2019/03/05/Compiler-Chapter2-2/index.html">
+<meta property="og:site_name" content="BatInGotham&#39;s Blog">
+<meta property="og:description" content="Chapter 2 (cont.)2.4 From an NFA to a DFAthe Subset Construction Compute the e-closure of the start state of M; this becomes the start state. 穷举所有转移函数 计算转移后的状态的e-closure   double-circle: circles conta">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-04T16:28:01.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compiler Chapter2-2">
+<meta name="twitter:description" content="Chapter 2 (cont.)2.4 From an NFA to a DFAthe Subset Construction Compute the e-closure of the start state of M; this becomes the start state. 穷举所有转移函数 计算转移后的状态的e-closure   double-circle: circles conta">
+  
+    <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BatInGotham&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coder, (Practising) Game Designer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="batingotham.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Compiler-Chapter2-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/Compiler-Chapter2-2/" class="article-date">
+  <time datetime="2019-03-04T16:27:43.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Compiler Chapter2-2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-2-cont"><a href="#Chapter-2-cont" class="headerlink" title="Chapter 2 (cont.)"></a>Chapter 2 (cont.)</h1><h2 id="2-4-From-an-NFA-to-a-DFA"><a href="#2-4-From-an-NFA-to-a-DFA" class="headerlink" title="2.4 From an NFA to a DFA"></a>2.4 From an NFA to a DFA</h2><h3 id="the-Subset-Construction"><a href="#the-Subset-Construction" class="headerlink" title="the Subset Construction"></a>the Subset Construction</h3><ol>
+<li>Compute the e-closure of the start state of M; this becomes the <em>start state</em>.</li>
+<li>穷举所有转移函数</li>
+<li>计算转移后的状态的e-closure</li>
+</ol>
+<ul>
+<li>double-circle: circles contain finish(accepting) state of M must be double-circle(?)</li>
+<li>多种转移函数时，在此课程中可以省略L-state</li>
+</ul>
+<h3 id="Minimizing-the-number-of-states-in-DFA"><a href="#Minimizing-the-number-of-states-in-DFA" class="headerlink" title="Minimizing the number of states in DFA"></a>Minimizing the number of states in DFA</h3><p>Algorithm:</p>
+<ol>
+<li>It begins with the most optimistic assumption possible: it creates two sets<ul>
+<li>One consisting of all the accepting states</li>
+<li>The other consisting of all the non-accepting states</li>
+</ul>
+</li>
+<li>Given this partition of the states of the states of the original DFA, consider the transitions on <em>each character</em> <strong>a</strong> of the alphabet.<ul>
+<li>If all accepting states have transitions on <strong>a</strong> to accepting states</li>
+<li>If all accepting states have transitions on <strong>a</strong> to non-accepting states</li>
+<li>If there are 2 accepting states s and t that have transitions on a that land in different sets</li>
+<li>If there are 2 accepting states s and t such that s has an a-transition to another accepting state, while t has no a-transition at all (i.e., an error transition)</li>
+<li>If any further sets are split, we must return and repeat the process form the beginning.</li>
+</ul>
+</li>
+</ol>
+<p>This process continues until</p>
+<ol>
+<li>all sets contain only one element (in which case, we have shown the original DFA to be minimal)</li>
+<li>until no further splitting of sets occurs.</li>
+</ol>
+<h2 id="Ext-TINY-language"><a href="#Ext-TINY-language" class="headerlink" title="Ext. TINY language"></a>Ext. TINY language</h2><h3 id="Reserved-Words"><a href="#Reserved-Words" class="headerlink" title="Reserved Words"></a>Reserved Words</h3><p>if, then, else, end, repeat, until, read, write</p>
+<h3 id="Special-Symbols"><a href="#Special-Symbols" class="headerlink" title="Special Symbols"></a>Special Symbols</h3><p>+, -, *, /, =, &lt;, (, ), ;, :=</p>
+<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><p>numbers, identifier</p>
+<h2 id="2-5-Implementation-of-a-tiny-scanner"><a href="#2-5-Implementation-of-a-tiny-scanner" class="headerlink" title="2.5 Implementation of a tiny scanner"></a>2.5 Implementation of a tiny scanner</h2><p>see in slides Ch2</p>
+<h2 id="2-6-Use-of-Lex-to-generate-a-scanner-automatically"><a href="#2-6-Use-of-Lex-to-generate-a-scanner-automatically" class="headerlink" title="2.6 Use of Lex to generate a scanner automatically"></a>2.6 Use of Lex to generate a scanner automatically</h2><p>Input: a text file containing regular expressions, together with the actions to be taken when each expression is matched</p>
+<p>Output: contains C source code defining a procedure yylex that is a table-driven implementation of a DFA corresponding to the regular expressions of the input file, and that operates like a <strong>getToken</strong> procedure.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;definitions&#125;</span><br><span class="line">%%</span><br><span class="line">&#123;rules&#125;</span><br><span class="line">%%</span><br><span class="line">&#123;auxiliary routines&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="The-first-section-definitions"><a href="#The-first-section-definitions" class="headerlink" title="The first section: definitions"></a>The first section: definitions</h3><ul>
+<li>any C code that must be inserted external to any function should appear in this section between the delimiters %{ and %}, <strong><em>{Note the order of these characters!}</em></strong></li>
+<li>names for regular expressions must also be defined in this section</li>
+</ul>
+<h3 id="The-second-section-rules"><a href="#The-second-section-rules" class="headerlink" title="The second section: rules"></a>The second section: rules</h3><p>These consist of a sequence of regular expressions followed by the C code that is to be executed when the corresponding regular expression is matched.</p>
+<h3 id="The-third-section-auxiliary-routines"><a href="#The-third-section-auxiliary-routines" class="headerlink" title="The third section: auxiliary routines"></a>The third section: auxiliary routines</h3><p>Routines are called in the second section and not defined elsewhere.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line">/* a Lex program that changes all numbers from decimal to hexadecimal notation,</span><br><span class="line">printing a summary statistic to stdeer</span><br><span class="line">*/</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int count = 0;</span><br><span class="line">%&#125;</span><br><span class="line">digit [0-9]</span><br><span class="line">number &#123;digit&#125;+</span><br><span class="line">%%</span><br><span class="line">&#123; number &#125; &#123; int n = atoi (yytext);</span><br><span class="line">printf(“%x”, n);</span><br><span class="line">if (n &gt; 9) count ++; &#125;</span><br><span class="line">%%</span><br><span class="line">main( )</span><br><span class="line">&#123; yylex ( );</span><br><span class="line">fprintf(stdeer, “number of replacements = %d”, count);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>yytext就是和number匹配的内容</li>
+<li>如果是数字则输出Hex，不是的话原样输出</li>
+<li>应用：程序美化器</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-2/" data-id="cjsukie6000034cl6nr6hms77" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/05/Compiler-Chapter3-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Compiler Chapter3-1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/05/Compiler-Chapter2-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Compiler Chapter2-1</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 15px;">Software Engineering</a> <a href="/tags/研究生考试/" style="font-size: 10px;">研究生考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/05/SE-Course-Info/">SE Course Info</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/SE-Chapter4/">SE Chapter4</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/SE-Chapter3/">SE Chapter3</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/SE-Chapter2/">SE Chapter2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/05/OS0304Review/">OS0304Review</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Qian, Sun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
