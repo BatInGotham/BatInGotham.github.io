@@ -69,6 +69,117 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Embedded-System-Lecture2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/06/Embedded-System-Lecture2/" class="article-date">
+  <time datetime="2019-03-06T06:05:40.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/06/Embedded-System-Lecture2/">Embedded System Lecture2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Lecture-2-系统设计"><a href="#Lecture-2-系统设计" class="headerlink" title="Lecture 2: 系统设计"></a>Lecture 2: 系统设计</h1><h2 id="并行、响应式行为"><a href="#并行、响应式行为" class="headerlink" title="并行、响应式行为"></a>并行、响应式行为</h2><ul>
+<li>始终运行：上电后一直运行系统</li>
+<li>必须响应连续和混合的事件：事件种类更多（来自于各种传感器、人机交互、网络请求）</li>
+<li>实时系统对于响应有底限要求（联系到操作系统中的实时系统）</li>
+<li>通常必须并行处理多个独立的任务</li>
+</ul>
+<h2 id="嵌入式软件架构模型"><a href="#嵌入式软件架构模型" class="headerlink" title="嵌入式软件架构模型"></a>嵌入式软件架构模型</h2><ul>
+<li>桌面、BS有各自独特的架构模型</li>
+<li>嵌入式也有自己的架构模型</li>
+<li>裸机、RTOS（Real Time OS）、Linux所体现的并不仅是基础平台的不同，更重要的是架构模型的不同</li>
+<li>Linux的并行性是建立在进程/线程调度基础上</li>
+<li>嵌入式系统的并行性是硬件/软件协同实现的</li>
+</ul>
+<h2 id="支持并行的MCU硬件"><a href="#支持并行的MCU硬件" class="headerlink" title="支持并行的MCU硬件"></a>支持并行的MCU硬件</h2><p>CPU和外设并行工作，其他外设具有单独的时钟，与CPU同时运行。</p>
+<p>e.g. DMA：DMA和CPU都可以从内存中搬运数据，CPU的读入效率比DMA更快，但是CPU和DMA并行工作，可以提高系统的吞吐率，但是并不解决延迟问题。</p>
+<p>e.g. ADC：模拟数字转换，功能是给测量引脚的电压，给ADC一个读取任务，ADC需要耗时去运作，CPU将任务交给ADC有利于系统的并行工作。</p>
+<p>e.g. 串口通讯、定时器、外部事件…</p>
+<p>在嵌入式系统中，硬件并行操作需要开发者自己实现，这是因为嵌入式系统与桌面系统的<strong>架构模型</strong>的差异。</p>
+<h2 id="设计约束"><a href="#设计约束" class="headerlink" title="设计约束"></a>设计约束</h2><p>硬件：满足功能性能要求的最低硬件——更慢的CPU以省电、更少的存储器以降低成本…</p>
+<p>软件：确定的行为和容错能力——失效必须报警的系统、可以降级的系统…</p>
+<p>失效处理：系统需要处理可能的失效而不会崩溃</p>
+<p>诊断手段：需要能帮助维修人员快速判断问题的手段（嵌入式设备中诊断数据的保存很有限）（判断嵌入式设备是否还“存活”等）</p>
+<p>其他约束，比如成本、大小和重量限制、功率和能耗限制、环境</p>
+<h3 id="设计约束的影响"><a href="#设计约束的影响" class="headerlink" title="设计约束的影响"></a>设计约束的影响</h3><p>比如所用的单片机、编程语言、操作系统（通常没有，如果有则倾向于RTOS）…</p>
+<h2 id="做出够好、够快的系统"><a href="#做出够好、够快的系统" class="headerlink" title="做出够好、够快的系统"></a>做出够好、够快的系统</h2><blockquote>
+<p>联系到软件工程</p>
+</blockquote>
+<h3 id="自顶向下-or-自底向上-都不是绝对正确的"><a href="#自顶向下-or-自底向上-都不是绝对正确的" class="headerlink" title="自顶向下 or 自底向上 ? 都不是绝对正确的"></a>自顶向下 or 自底向上 ? 都不是绝对正确的</h3><ul>
+<li>体系、构建都需要利用已有的</li>
+</ul>
+<h3 id="开发模式"><a href="#开发模式" class="headerlink" title="开发模式"></a>开发模式</h3><ul>
+<li>开发风险：新的产品、例外的需求、需求变更</li>
+<li>风险选择模式</li>
+</ul>
+<h3 id="嵌入式开发过程"><a href="#嵌入式开发过程" class="headerlink" title="嵌入式开发过程"></a>嵌入式开发过程</h3><ol>
+<li>选择：资源的分配</li>
+<li>设计</li>
+<li>调试：区分硬件软件责任（软件或破坏硬件）</li>
+<li>生产：确保系统可以以较高的精度重复制造（设计PCB、自动烧入程序等场合）</li>
+<li>运行和维护</li>
+</ol>
+<h3 id="嵌入式开发手段"><a href="#嵌入式开发手段" class="headerlink" title="嵌入式开发手段"></a>嵌入式开发手段</h3><ul>
+<li>交叉编译</li>
+<li>交叉调试</li>
+<li>仿真调试</li>
+</ul>
+<h2 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h2><ul>
+<li>软件优先考虑，因为软件会提出隐含的硬件需求：CPU？RAM？ROM？</li>
+<li>GUI？通信？</li>
+<li>…</li>
+</ul>
+<h3 id="软件实现的部分"><a href="#软件实现的部分" class="headerlink" title="软件实现的部分"></a>软件实现的部分</h3><ul>
+<li>操作系统<ul>
+<li>任务调度</li>
+<li>资源管理</li>
+<li>设备驱动</li>
+</ul>
+</li>
+<li>协议栈<ul>
+<li>TCP/IP</li>
+</ul>
+</li>
+<li>应用软件框架<ul>
+<li>除基本系统、物理接口、基本逻辑电路，许多由硬件实现的功能都可以由软件实现</li>
+</ul>
+</li>
+</ul>
+<h3 id="双重性部分"><a href="#双重性部分" class="headerlink" title="双重性部分"></a>双重性部分</h3><ul>
+<li>算法</li>
+<li>按键去抖动</li>
+<li>数学运算</li>
+<li>无线电设备</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsww5ix50008hrl6dnrgsrr2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-DS0305Review" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/05/DS0305Review/" class="article-date">
@@ -145,7 +256,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsvyhrd0000584l6ywczoyjg" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsww5ixe000ohrl6mjd5qivw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -270,7 +381,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsvyhrd5000d84l6lin5ld7g" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsww5ix7000dhrl6ejn45xbv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -316,7 +427,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsvyhrdk000w84l6vlvpjxkn" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsww5ixd000mhrl6sf38uoxw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -370,7 +481,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsvyhrd7000i84l6vbb3uepi" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsww5iy50013hrl6r69o7vkk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -417,7 +528,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsvyhrdb000l84l6s0bt0vsh" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsww5ixc000jhrl62d264gnq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -476,7 +587,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsvyhrd6000f84l67gw2d5ne" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsww5ix8000fhrl6qzy8z2pe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -571,7 +682,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsvyhrd3000884l68l5z6te2" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsww5ix6000ahrl6l7v7c9xx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -693,7 +804,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsvyhrdx000z84l6bat11enc" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsww5ixx000zhrl6j3u9oir7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
@@ -734,47 +845,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Homework0311/" data-id="cjsvyhrdx000y84l659ut3j55" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Compiler-Course-Info" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/Compiler-Course-Info/" class="article-date">
-  <time datetime="2019-03-04T16:29:52.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/Compiler-Course-Info/">Compiler Course Info</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Course-Info"><a href="#Course-Info" class="headerlink" title="Course Info"></a>Course Info</h1><h2 id="Homework"><a href="#Homework" class="headerlink" title="Homework"></a>Homework</h2><p>in slides, hand-written, 2 notebooks should be prepared, in English.</p>
-<h2 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h2><p>hand-written, blank paper should be prepared</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Course-Info/" data-id="cjsvyhrcz000384l6536llcpd" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Homework0311/" data-id="cjsww5ix9000ihrl65nnjuuse" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -802,7 +873,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
     </div>
   </div>
 
@@ -812,7 +883,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 16.67px;">Software Engineering</a> <a href="/tags/研究生考试/" style="font-size: 13.33px;">研究生考试</a>
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 16.67px;">Software Engineering</a> <a href="/tags/研究生考试/" style="font-size: 13.33px;">研究生考试</a>
     </div>
   </div>
 
@@ -834,6 +905,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/06/Embedded-System-Lecture2/">Embedded System Lecture2</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/05/DS0305Review/">DS0305Review</a>
           </li>
         
@@ -847,10 +922,6 @@
         
           <li>
             <a href="/2019/03/05/SE-Chapter4/">SE Chapter4</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/05/SE-Chapter3/">SE Chapter3</a>
           </li>
         
       </ul>
