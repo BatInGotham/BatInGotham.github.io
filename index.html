@@ -91,39 +91,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/js/crypto-js.js"></script>
-<script>
-function doDecrypt (pwd, onError) {
-	console.log('in doDecrypt');
-	const txt = document.getElementById('enc_content').innerHTML;
-	let plantext;
-	try {
-		const bytes = CryptoJS.AES.decrypt(txt, pwd);
-		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-	} catch(err) {
-		if(onError) {
-			onError(err);
-		}
-		return;
-	}
-	document.getElementById('enc_content').innerHTML = plaintext;
-	document.getElementById('enc_content').style.display = 'block';
-	document.getElementById('enc_passwd').style.display = 'none';
-	if(typeof MathJax !== 'undefined') {
-		MathJax.Hub.Queue(
-			['resetEquationNumbers', MathJax.InputJax.TeX],
-			['PreProcess', MathJax.Hub],
-			['Reprocess', MathJax.Hub]
-		);
-	}
-}
-</script>
-<div id="enc_content" style="display:none">U2FsdGVkX1/RWzz0MXLRbkYZDfbP+P148HTZ2zzqOTw4nPyQyxkwBupgKJcb9nblry/D+TBLVuxqXs1J9a8j+MBWV2yDV9iYPefYrltGFDr8ihJHt1EzGIoRLLA4w/cl62dbPbv1IzjUXiHzu0DqCkPEy77QkIhirpu9EExwuaDHm9NJCx2tJDkZjgYQF4FY68KTXwbhPKGmGkARurrFKGP342HHumiv2ung8HOt1X7jwg/RUGrovNowN3Whx8MrWhUgjZPZUCDlaA+vIFT/GDH9gwAvSwWsEsxRez3hGKwf7d/r9hZ69hfQjTu3xl66FE9jzINsoNNHM8KJfF7p3mwyQ07pIFQFnIXDRiZahx8LawYKgG5/Ia+fEEy0xKAFd+A6HZtZMlBofDNE1xC4n+NZYbN29qdMjyfzuTd4AKkoiEkhWQ5sbFY1pndkquQEssxHz6UV/r6o9rfCfOalQrY537qHAjvvJYW3AnAtCUbRB8AbJqMBkIcLkjsX47Mu</div>
-<div id="enc_passwd"> <input type="text" style=" border-radius: 5px; border-style: groove; height: 30px; width: 50%; cursor: auto; font-size: 102%; color: currentColor; outline: none; text-overflow: initial; padding-left: 5px;">   <input type="submit" value="decrypt" onclick="decrypt()" style=" width: 58px; height: 34px; border-radius: 5px; background-color: white; border-style: solid; color: currentColor; ">  <div id="enc_error" style=" display: inline-block; color: #d84527; font: large; "></div> <script>  var onError = function(error) {  $("#enc_error")[0].innerHTML = "password error!";  };  function decrypt() {  var passwd = $("#enc_passwd input")[0].value;  console.log(passwd);  doDecrypt(passwd, onError);  }  </script></div>
+        <h1 id="How-to-Use-Encrypt-Plug-in-in-Hexo"><a href="#How-to-Use-Encrypt-Plug-in-in-Hexo" class="headerlink" title="How to Use Encrypt Plug-in in Hexo"></a>How to Use Encrypt Plug-in in Hexo</h1><h2 id="Plug-in-Info"><a href="#Plug-in-Info" class="headerlink" title="Plug-in Info"></a>Plug-in Info</h2><p>This plugin <figure class="highlight plain"><figcaption><span>support encrypt files for hexo users.</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## How to use</span><br><span class="line"></span><br><span class="line">- configure file is ```~/blog/_config.yml</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p>to encrypt a file, add contents at the top of the file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encrypt: true</span><br><span class="line">enc_pwd: password_here</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxedbl1000ywil630ljh99q" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxenv86000y41l60n2n7rcz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -232,7 +210,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxedbko000dwil6dgcrj4r4" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxenv7v000d41l6ln65gckv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -320,7 +298,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxedbkn000awil6k9n5f48p" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxenv7t000a41l68qpmmw44" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -445,7 +423,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxedbkt000kwil6ziclo6pg" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxenv80000k41l6yw6wmktv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -491,7 +469,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxedbkz000uwil6gq6nr5p1" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxenv84000u41l66wl6c41f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -545,7 +523,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxedbky000swil6b009dozy" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxenv83000s41l688ow300q" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -592,7 +570,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxedbkw000pwil6itfcynec" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxenv82000p41l6lmewzgul" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -651,7 +629,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxedbkv000nwil6pbw5p7l2" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxenv81000n41l63zxsmsg7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -746,7 +724,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxedbks000iwil68wn3g6be" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxenv7x000i41l6lzq08u2s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -868,7 +846,7 @@ function doDecrypt (pwd, onError) {
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxedbkp000fwil6mhw5275m" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxenv7w000f41l6r6tpkait" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
