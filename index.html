@@ -69,6 +69,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-test-password" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/07/test-password/" class="article-date">
+  <time datetime="2019-03-06T16:04:23.000Z" itemprop="datePublished">2019-03-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/07/test-password/">test-password</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <script src="/js/crypto-js.js"></script>
+<script>
+function doDecrypt (pwd, onError) {
+	console.log('in doDecrypt');
+	const txt = document.getElementById('enc_content').innerHTML;
+	let plantext;
+	try {
+		const bytes = CryptoJS.AES.decrypt(txt, pwd);
+		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+	} catch(err) {
+		if(onError) {
+			onError(err);
+		}
+		return;
+	}
+	document.getElementById('enc_content').innerHTML = plaintext;
+	document.getElementById('enc_content').style.display = 'block';
+	document.getElementById('enc_passwd').style.display = 'none';
+	if(typeof MathJax !== 'undefined') {
+		MathJax.Hub.Queue(
+			['resetEquationNumbers', MathJax.InputJax.TeX],
+			['PreProcess', MathJax.Hub],
+			['Reprocess', MathJax.Hub]
+		);
+	}
+}
+</script>
+<div id="enc_content" style="display:none">U2FsdGVkX18y8fy6Qyka9ET3Jbt0CJPQgyDxpTmtPtF5eJ4s7wQ+JM562xh5iImL9ven0VJB7gwH1fDoUmgtr7XJK39pae69UNeTAhi+cp5pcvUtbOJsAdXmvh7JQJ4q9rgdtUJGzUHJL/CMkXmuso5G7bzy5wr7Gef0R60Ljjmhim0R4cli1ltsxbEoA53x++rmcSyAXlM35SSw2Er8kZbBnWewIlWNSeSATXCn1C8EHuKqptCrPRtujo1NogUr53/vLMpNr26diAwp0RaHk20f9moWbJs9vOV9sx44+aipm3Z7riX0jr24v8NG2GOMHI/dvxxgLyczmnT7qD1bNV2XCFXIL/mts0NCjSFW+w0w8JGC3q3jlBO1H5oMVCAjkLgXl61LoyQkumGslPt28Yge4fTZsWVFHzL1Jp5znU59kGroG1iPNJuUYNqP4cly2vxJ+V++HElv1s8hfQ59WepR0m/XVVj3eEJ/+MEmi4ulQzDqyi+jGiBhH3IZdDKk</div>
+<div id="enc_passwd">user defined decrpyt ui template</div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxe9a0y000qjql6wtjvep35" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Embedded-System-Lecture2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/06/Embedded-System-Lecture2/" class="article-date">
@@ -168,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsww5ix50008hrl6dnrgsrr2" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxe9a0r000ijql6ztb8qbgq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -256,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsww5ixe000ohrl6mjd5qivw" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxe9a0m0008jql6mbnds0dr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -381,7 +445,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsww5ix7000dhrl6ejn45xbv" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxe9a150012jql6hmkb2ll2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -427,7 +491,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsww5ixd000mhrl6sf38uoxw" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxe9a1d0014jql6y1a9zaqz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -481,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsww5iy50013hrl6r69o7vkk" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxe9a0x000ojql6nxw7qh6c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -528,7 +592,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsww5ixc000jhrl62d264gnq" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxe9a0w000mjql6qyyd8htu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -587,7 +651,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsww5ix8000fhrl6qzy8z2pe" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxe9a0u000kjql6yy7cyfq5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -682,7 +746,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsww5ix6000ahrl6l7v7c9xx" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxe9a0q000fjql6hahqfcha" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -804,51 +868,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsww5ixx000zhrl6j3u9oir7" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxe9a0p000djql6nzbmb3an" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Compiler-Homework0311" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/Compiler-Homework0311/" class="article-date">
-  <time datetime="2019-03-04T16:30:31.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/Compiler-Homework0311/">Compiler Homework0311</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Homework"><a href="#Homework" class="headerlink" title="Homework"></a>Homework</h1><p>0311-Chapter2-slide</p>
-<p>0318-Chapter3-slide(next week)</p>
-<p>Lab 1: Assigned</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Homework0311/" data-id="cjsww5ix9000ihrl65nnjuuse" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
 
     </footer>
   </div>
@@ -905,6 +928,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/07/test-password/">test-password</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/06/Embedded-System-Lecture2/">Embedded System Lecture2</a>
           </li>
         
@@ -918,10 +945,6 @@
         
           <li>
             <a href="/2019/03/05/SE-Course-Info/">SE Course Info</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/05/SE-Chapter4/">SE Chapter4</a>
           </li>
         
       </ul>

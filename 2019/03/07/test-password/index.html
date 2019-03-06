@@ -3,18 +3,19 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>归档: 2019/3 | BatInGotham&#39;s Blog</title>
+  <title>test-password | BatInGotham&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recording of my current work">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BatInGotham&#39;s Blog">
-<meta property="og:url" content="batingotham.github.io/archives/2019/03/page/2/index.html">
+  <meta name="description" content="function doDecrypt (pwd, onError) { 	console.log(&apos;in doDecrypt&apos;); 	const txt = document.getElementById(&apos;enc_content&apos;).innerHTML; 	let plantext; 	try { 		const bytes = CryptoJS.AES.decrypt(txt, pwd);">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test-password">
+<meta property="og:url" content="batingotham.github.io/2019/03/07/test-password/index.html">
 <meta property="og:site_name" content="BatInGotham&#39;s Blog">
-<meta property="og:description" content="Recording of my current work">
+<meta property="og:description" content="function doDecrypt (pwd, onError) { 	console.log(&apos;in doDecrypt&apos;); 	const txt = document.getElementById(&apos;enc_content&apos;).innerHTML; 	let plantext; 	try { 		const bytes = CryptoJS.AES.decrypt(txt, pwd);">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-06T16:05:47.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BatInGotham&#39;s Blog">
-<meta name="twitter:description" content="Recording of my current work">
+<meta name="twitter:title" content="test-password">
+<meta name="twitter:description" content="function doDecrypt (pwd, onError) { 	console.log(&apos;in doDecrypt&apos;); 	const txt = document.getElementById(&apos;enc_content&apos;).innerHTML; 	let plantext; 	try { 		const bytes = CryptoJS.AES.decrypt(txt, pwd);">
   
     <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
   
@@ -67,158 +68,80 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/Compiler-Homework0311/" class="archive-article-date">
-  <time datetime="2019-03-04T16:30:31.000Z" itemprop="datePublished">3月 5</time>
+        <section id="main"><article id="post-test-password" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/07/test-password/" class="article-date">
+  <time datetime="2019-03-06T16:04:23.000Z" itemprop="datePublished">2019-03-07</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/Compiler-Homework0311/">Compiler Homework0311</a>
+    <h1 class="article-title" itemprop="name">
+      test-password
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/Compiler-Course-Info/" class="archive-article-date">
-  <time datetime="2019-03-04T16:29:52.000Z" itemprop="datePublished">3月 5</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/Compiler-Course-Info/">Compiler Course Info</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/Compiler-Chapter3-1/" class="archive-article-date">
-  <time datetime="2019-03-04T16:28:37.000Z" itemprop="datePublished">3月 5</time>
-</a>
+        <script src="/js/crypto-js.js"></script>
+<script>
+function doDecrypt (pwd, onError) {
+	console.log('in doDecrypt');
+	const txt = document.getElementById('enc_content').innerHTML;
+	let plantext;
+	try {
+		const bytes = CryptoJS.AES.decrypt(txt, pwd);
+		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
+	} catch(err) {
+		if(onError) {
+			onError(err);
+		}
+		return;
+	}
+	document.getElementById('enc_content').innerHTML = plaintext;
+	document.getElementById('enc_content').style.display = 'block';
+	document.getElementById('enc_passwd').style.display = 'none';
+	if(typeof MathJax !== 'undefined') {
+		MathJax.Hub.Queue(
+			['resetEquationNumbers', MathJax.InputJax.TeX],
+			['PreProcess', MathJax.Hub],
+			['Reprocess', MathJax.Hub]
+		);
+	}
+}
+</script>
+<div id="enc_content" style="display:none">U2FsdGVkX18y8fy6Qyka9ET3Jbt0CJPQgyDxpTmtPtF5eJ4s7wQ+JM562xh5iImL9ven0VJB7gwH1fDoUmgtr7XJK39pae69UNeTAhi+cp5pcvUtbOJsAdXmvh7JQJ4q9rgdtUJGzUHJL/CMkXmuso5G7bzy5wr7Gef0R60Ljjmhim0R4cli1ltsxbEoA53x++rmcSyAXlM35SSw2Er8kZbBnWewIlWNSeSATXCn1C8EHuKqptCrPRtujo1NogUr53/vLMpNr26diAwp0RaHk20f9moWbJs9vOV9sx44+aipm3Z7riX0jr24v8NG2GOMHI/dvxxgLyczmnT7qD1bNV2XCFXIL/mts0NCjSFW+w0w8JGC3q3jlBO1H5oMVCAjkLgXl61LoyQkumGslPt28Yge4fTZsWVFHzL1Jp5znU59kGroG1iPNJuUYNqP4cly2vxJ+V++HElv1s8hfQ59WepR0m/XVVj3eEJ/+MEmi4ulQzDqyi+jGiBhH3IZdDKk</div>
+<div id="enc_passwd">user defined decrpyt ui template</div>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/Compiler-Chapter3-1/">Compiler Chapter3-1</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/Compiler-Chapter2-2/" class="archive-article-date">
-  <time datetime="2019-03-04T16:27:43.000Z" itemprop="datePublished">3月 5</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxe9a0y000qjql6wtjvep35" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/Compiler-Chapter2-2/">Compiler Chapter2-2</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/Compiler-Chapter2-1/" class="archive-article-date">
-  <time datetime="2019-03-04T16:26:19.000Z" itemprop="datePublished">3月 5</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/Compiler-Chapter2-1/">Compiler Chapter2-1</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/06/Embedded-System-Lecture2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Embedded System Lecture2</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/Compiler-Chapter1/" class="archive-article-date">
-  <time datetime="2019-03-04T16:25:27.000Z" itemprop="datePublished">3月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/Compiler-Chapter1/">Compiler Chapter1</a>
-    </h1>
-  
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/05/hello-world/" class="archive-article-date">
-  <time datetime="2019-03-04T16:13:44.739Z" itemprop="datePublished">3月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-
-  <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/2019/03/">&laquo; __('prev')</a><a class="page-number" href="/archives/2019/03/">1</a><span class="page-number current">2</span>
-  </nav>
 </section>
         
           <aside id="sidebar">
