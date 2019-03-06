@@ -91,50 +91,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <script src="/js/crypto-js.js"></script>
-<script>
-function doDecrypt (pwd, onError) {
-	console.log('in doDecrypt');
-	const txt = document.getElementById('enc_content').innerHTML;
-	let plantext;
-	try {
-		const bytes = CryptoJS.AES.decrypt(txt, pwd);
-		var plaintext = bytes.toString(CryptoJS.enc.Utf8);
-	} catch(err) {
-		if(onError) {
-			onError(err);
-		}
-		return;
-	}
-	document.getElementById('enc_content').innerHTML = plaintext;
-	document.getElementById('enc_content').style.display = 'block';
-	document.getElementById('enc_passwd').style.display = 'none';
-	if(typeof MathJax !== 'undefined') {
-		MathJax.Hub.Queue(
-			['resetEquationNumbers', MathJax.InputJax.TeX],
-			['PreProcess', MathJax.Hub],
-			['Reprocess', MathJax.Hub]
-		);
-	}
-}
-</script>
-<div id="enc_content" style="display:none">U2FsdGVkX19QL2DrT+xryff4cFdReJcPmtPw4+Bf4r0Jx+Ny2gxfCEO8HJBxTL0JEWnqZDP6X3smtZewwwq70cmf/XTP73qcERsfM8JIdjEykVNkv1GG9bR27e+nV15rb60+xLHh6vmhkKf2LW2JYb6Pri/B4Rira1xQv3AgxinD7FWbJg4uOgztJNyD+BjO8aZ7ILSg5hT6A550ZIdqqHsTXOlJLYJwMqzjCB8HnmHfFk8jMhmj6ugSSyZiSLZib8wGtaV7B62YQogBLJq5u/R4eaSf8sE3//k571aYArsC3QHDCIkMjNwrpvj4u5fAhuytzjDdnjMUOUXN/z+qbg7MW9G1gOojBz9GQbdZ9oABnqZ+j16PlHS3DcQVYrB58HRAZNvY2CovnUIFaqAg9RXW+vdQFvDQoJ4glCWXOeKtQbLRzHKMd0hhZs3OzTTfcroiYH2jDwNOSYZT83NJnTJY7PFBbXd+CPgV21c/9s2a3iy97XEFAEhZzNvbmenHK6BcotBs82XEPJb2hLnNznoY1KLMaaRck70oGjNymZAp+iJocinHsHSFefL6Jb3XTGvsm1M6z5WI1Jli4I/xDM6LtVC8Ua89cUXFLWIY9fObfgo7HhTOEW+NVVxijgDQDOSezXbZWV/O99kaVwL9fB7RPjleZMoNTolZUFlqsGWG2nvg05ZxK4+pie46Jnl0XPUUkxGkWf/FZ+InoYpLRXEBPVPqMLZE1ngJ5QxeX4+7NF+XdlaEhxgAWv/5v+QDwEp7TEaitewJKIJvEhJzUWtE9ix0RPLQRFbTtqPVI/NaSSCY6l4FBBPfgrctnPTK1cXAt3IIpe5jHbeZcE7YyT+gc3652J1r6IJAQ6VOsiQs8HVDvd4i15+DhgBqYWyKdnV3BAoRsYmQ/UsesuJxNXgozzUdLMRZRYK5g/VoGyk1IfYJcao7EX7MissdhhXuKXQP+xRt6NBcajDGrORBzKHq0W2qzcj28zVsfF/gBEC2xxur3Bf6XARGnrixgeAMQyKza+53pEJ2NTsR6cL1UktdNj7lo9pNQ3dJQo5+sFSXvmtaeNS3oLRbODCVKnyC3Ifppmlf2G/DbNpWQVR+qrQI1k6YmWArj+oLAnA0cUtqXqdi8lgNCrze/oENwPJlmKovoJG1qWOGKUiqb5I5jngt2nd1R6KGhDlaOfqX12HF6bamyy4fDeSSZI3H9LJZ2tn2OALlp9MpdD8xcFW60vAEDxHdTzIq4M91wjBfBi5jt5tm+5qno5y6fJm0vATt</div>
-<div id="enc_passwd"> <input id="enc_pwd_input" type="password" style="border-radius: 5px;border-style: groove;height: 30px;width: 50%;cursor: auto;font-size: 102%;color: currentColor;outline: none;text-overflow: initial;padding-left: 5px;" onkeydown="if (event.keyCode == 13) { decrypt(); return false;}"> <input type="submit" value="解&nbsp;密" onclick="decrypt()" style="width: 58px;height: 34px;border-radius: 5px;background-color: white;border-style: solid;color: currentColor;"><div id="enc_error" style="display: inline-block;color: #d84527;margin-left: 10px"></div>
-<script>
-var onError = function(error) {
-	document.getElementById("enc_error").innerHTML = "password error!"
-};
-function decrypt() {
-var passwd = document.getElementById("enc_pwd_input").value;
-console.log(passwd);
-doDecrypt(passwd, onError);
-}
-</script>
-</div>
+        <h1 id="How-to-Use-Encrypt-Plug-in-in-Hexo"><a href="#How-to-Use-Encrypt-Plug-in-in-Hexo" class="headerlink" title="How to Use Encrypt Plug-in in Hexo"></a>How to Use Encrypt Plug-in in Hexo</h1><h2 id="Plug-in-Info"><a href="#Plug-in-Info" class="headerlink" title="Plug-in Info"></a>Plug-in Info</h2><p>This plugin <strong>hexo-encrypt</strong> support encrypt files for hexo users.</p>
+<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><ul>
+<li><p>configure file is <strong>~/blog/_config.yml</strong></p>
+</li>
+<li><p>to encrypt a file, add contents at the top of the file:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encrypt: true</span><br><span class="line">enc_pwd: password_here</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxeuzun000yb2l6fqbxlvj6" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxezvyc000yeul69gu49tjh" class="article-share-link">Share</a>
       
       
     </footer>
@@ -243,7 +212,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxeuzu9000db2l6elsmyzf8" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxezvxx000deul6uoedbqkp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -331,7 +300,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxeuzu8000ab2l6qcugzo3p" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxezvxw000aeul6xf75mvzj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -456,7 +425,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxeuzuf000kb2l6o2n93ycb" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxezvy3000keul6i46wyk0r" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -502,7 +471,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxeuzul000ub2l6l4vqmukm" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxezvyb000weul6xy4hgom9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -556,7 +525,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxeuzuk000sb2l6jd6ohlxs" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxezvy8000seul6mgsb36jj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -603,7 +572,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxeuzui000pb2l6li657osk" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxezvy7000peul6sas67ggg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -662,7 +631,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxeuzuh000nb2l6c7ijpd4u" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxezvy5000neul62z773gpg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -757,7 +726,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxeuzud000ib2l6jhksvozc" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxezvxz000ieul6vc8u6gml" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -879,7 +848,7 @@ doDecrypt(passwd, onError);
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxeuzub000fb2l668qo5oiu" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxezvxy000feul670obybln" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
