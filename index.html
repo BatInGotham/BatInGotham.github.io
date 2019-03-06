@@ -91,19 +91,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="How-to-Use-Encrypt-Plug-in-in-Hexo"><a href="#How-to-Use-Encrypt-Plug-in-in-Hexo" class="headerlink" title="How to Use Encrypt Plug-in in Hexo"></a>How to Use Encrypt Plug-in in Hexo</h1><h2 id="Plug-in-Info"><a href="#Plug-in-Info" class="headerlink" title="Plug-in Info"></a>Plug-in Info</h2><p>This plugin <strong>hexo-encrypt</strong> support encrypt files for hexo users.</p>
-<h2 id="How-to-use"><a href="#How-to-use" class="headerlink" title="How to use"></a>How to use</h2><ul>
-<li><p>configure file is <strong>~/blog/_config.yml</strong></p>
-</li>
-<li><p>to encrypt a file, add contents at the top of the file:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">encrypt: true</span><br><span class="line">enc_pwd: password_here</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-
+        <div id="enc_content">U2FsdGVkX19RI5krQR0yI7IESN7ZzqqJ/ldZsOCuQ69ZmqoJodCh4cnO9qQ6WpOvXv5xoRJjKX7pIXmmHpWvz7mBOAbU3kyk1Dx9YfDIHRPZYdsZb0K5XXC31IDpq2yTFng01IHCs7TVFcn18gBryByNKZfB5bd8R3Trm06vkJgbLZyeLrhhQOnnWdJNDZmBUMRxIN3WxV9t2B04+O4lkf5oFUI73Lovnli23AbA8fLZ+fdHt8xx4y1T2iA0cyH5d31NDBCOO7xpjEwcUzjznXktuTJsHJ6e3rNJhTFjvOr4VBmBfbpMY0kj0D6kkKlxgmJSHzD11muMnj2+dvRzSXe49zdgFZSb9ApVQsnyunNBeH+8NXAKpWEhukM99XmHU58AZWSFX2X493v5CrUx8kE8lG5FMsGkhFPdZkeQ2HQ6o+L59BYPMOJPJwaVeEAYNWahc0wXu8rz0i8Ybff2vAYVI4rL4mKdvRMhEKwdZ3i+3S4XtsYOn4WJfJQ5LM/ke67eIpt9N4IbCMScYvLVru1pZi3Cf7AwULIzrUHGq9v8E3AZE7FOkrR4pjjIvz6jc4LP7CELB9IBigxcNsagEPOsRtHc7HZx8KeRrCpsV5om793nCw2mrHLgY5tsQcVHbIBaVgU25Il0cF8MM+AMmbrmDq896kQSS+nfthoZZw4+eiQBsXmczALTPEMSt1x1K0GntId7P6GqjgFTg3mJ3osI2YeBz8WpZzm8apJnUq/XuWvsGd5jQKZOMEoBjibEPDZfErh++lX2i7urVXzGopgZOY2CMuJhiA7dBxesTR708AWdXzKIr4tAqNJ6hQccjGmc+OKnoITROCQR6bRL9q3b7JaxTnx5tBQokbHTlw6lW8YHGYAcApA5A11tu5oBgfIsdTHQ5LTcFWnJheiUetHUu58l3oQum2e2GzbKR6vViZxeAqj94+N1y0lf4xvY74WWpJbtAEIjdjOlUkGRVgVzNSw/NQ4DlsWzy0u9YH8WeL8CBla0a31MGV7bl6R2U6IrwP83A2gQfT5Dwhl36Io5JtaLAK8PSEyOM3Hs60m7ltP9v7t0iV54sn7JAk7NmmfRrU/tDmPt+ZN1LWGpFkbw2DzD9DbZehpDtxonLz2fWsC5YA8M5kCPXr4XangjRbtdP8HpOanDLiLBYUvGk3C+dGl4gAf02Vh6DIah/fhKevIoBjABr6XIKiK8yUqRnQQctrkQcvVNCr8vePYj0p/mlrqEHhntbzlrWfcwqG6GOsfcl72zv60SoekYI7Ftxf5xlzOubNtgX8njxWnGy98GUaiqSkj3y/OercwLHTG9T7Ak+ySfMfXLyoHEhDW16cWd3s4Gw9wYr3sHaji7NrY/+hwErL9prcD7794ENq7jy5He99M6enKQlgrahHqkSdZ9O0+RjlgZBJj45uOkcejsGqvGmpsdG+sLDMBn8YpqTjZr0tC8J/StNvd7N+59vM9/tvZg1oNWPkEEbDQs79sjGnU5CmuZygvwJDl79O1LFU39QFR4825TxwGyNALxKOv7Z1q6kmIyauZVOOho7y+yilH7pOTbBqCmdlROMcLnzjlLmobEe/lSz/044qpE8YIvdTBFgMTUeyquERivkp4fOvg/5mPCTSknCK35n9Q=</div><script src="/js/crypto-js.js"></script><script>var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes  = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext</script>
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxezvyc000yeul69gu49tjh" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxfce9p00003tl6jvxcp49k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -212,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxezvxx000deul6uoedbqkp" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxf533t000docl69ozxdmkp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -300,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxezvxw000aeul6xf75mvzj" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxf533s000aocl6yxsp74zb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -425,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxezvy3000keul6i46wyk0r" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxf533z000nocl60n6atxva" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -471,7 +463,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxezvyb000weul6xy4hgom9" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxf5341000uocl6nfs2d98o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -525,7 +517,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxezvy8000seul6mgsb36jj" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxf5341000socl6syo726pg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -572,7 +564,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxezvy7000peul6sas67ggg" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxf5340000pocl6kzpvqivt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -631,7 +623,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxezvy5000neul62z773gpg" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxf533x000kocl6gyij4os1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -726,7 +718,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxezvxz000ieul6vc8u6gml" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxf533v000iocl62vcwkks7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -848,7 +840,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxezvxy000feul670obybln" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxf533u000focl64rqacyvw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
