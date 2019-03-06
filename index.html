@@ -91,11 +91,18 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div id="enc_content">U2FsdGVkX18taQ9ptl1OPv0ifAB05nxXZ8GYlNmuS58dXyk/BUXWYju7rcDr+2+3CwvsgCMRuepFIJSss9agUjrjrfMm1wZtcT9wG/oy9EsCSQUBklygxkVRpduanrukSm3RRJ5CJ9VIwXFyMMGeYPkTFoQA/1mPjY0EZR8EQHhfcpF/8je5ODqKkNnjglGliuY4Eq45h1PgNdMrnTmjpHHJqXiFMDi3ZxeKtCUnThDEHsZVvIwHCb9WKUa3x9UZooj6WMZMc/vcQwsbbol3NRy+k9JE0I8Y+KmiRmIOHf05Km8u1SGEoJWWuHf2bFbMvVs0Y4FPDrIeJ4pBidaixysYHQd91PgILas3tPSmb4tBn7sIkDE5pAOh8QF8Zt+o3e+8dzkL4hp8Vocx/ZMmpHeLG1Gu6TVK3N40ZueziZ6KnbUVCNGjkKgakDrnEoyjfhjqd61b7WGavXvqbzDBBNpP/6H9CD7xIMkMx6kgmCTmCQ3+uQHHBjguyvuTWwcPkLk8tr/It6Z3V786HKcvk2T4pbkJws544rVZJAqWHAiH/Uxv7MjVfdgN4XSBVhBFxMrVc5mB6T6zKogFsbOyLjzGxGm11bqyjS3Jjdo5LkH7mJXt/VfsB4p+O47ELhiMIGkWOZiu7+w23a89n0XTcp0vbQSFriqAErGBJls04CZv19PppDmqjHIXZ9epHaM3Lue9mdgaSfXS8zvcssDs46IKVNdi7Y3vcmvMgQjK+NxSrTDWDHsO4tg+AeWTCvWN78Kn/f+I8+jkBuFpoR9rLZcd6ik8gRjfcasjum9mouOs8IAhL0qXNCcI7HGxUNRrE1hvn6qh6ZhI56zURzZp+DQ3h1un7Yzv8Jo+vp/bg138Mtda+gt2Zg4o/qZbVY7mdp0WUPCdEXaIffI+dsTMEVwAJcjTITBtdSYAM1yEfWL6uYVPi9+mqOzXemXaLlRdbBNCC/DJfN3MurRfOJH1FDBfStraAhL3ArYfoPK8O3bdg2pbOXc3RA/9f7xNVft5vhhY+xmmDI1IYv0beAHlTwTofCzjGP4xbTGIFCcCi/Ft+LgfLWdnY2palDSHlxPBpLtPRwgouqcnhGY0LEaBxbjGTQs+/PCt+WxuR6EtzTTaIuQZ1LBzs3ue5wc5YuTB/ei4B+UPMEnHSW9DYoyaixiGTu3sSNG0ElLjl9nM/ls7FoAKxLcr0N0dsP5lQ/FW4QS0MetDkwPgxY15GyCU51v4/J+0wHs4e3ap1C/AL6DVDUCM81qfWOBfqD2CvphdBgzN7OCwUxyZiKE5KTQO38Ju/hB9b5D5en5bPF964azV22q1KkO+ZiDnMbFKQ1pM0ovl9TM/j0Z52XCBXlHv+HFNZeC6vpUbo5IxsWuiupOtdblYLLQS/OyZxwjgvvvmtr8otw1Lm8TO4N5qak/Wk86JjQJRHDOUDRqUFysu2G63X08BoBpQ0oivDnaSfmLXwfn0w8NvrCDERsgvg4e1W7IPe3rWh8FblrKuXNeBicNk2IeDM043bEgsi1leRx/tyxRzozVFC9W6cGrqg5lRzRja/u2RWIdJ93AAqtB79J3lI5+1HJD27mR2lpkh2gBRaIPYkoQsNGFOQU2a+wqOBpat3MGzBIZVU0CCHXtWEsk=</div><script src="/js/crypto-js.js"></script><script>var pwd = window.prompt("please input password","");var txt = document.getElementById("enc_content").innerHTML;var bytes  = CryptoJS.AES.decrypt(txt, pwd);var plaintext = bytes.toString(CryptoJS.enc.Utf8);document.getElementById("enc_content").innerHTML = plaintext</script>
+        <h1 id="Hexo-Encrypt-Plug-in-Usage-Abandoned"><a href="#Hexo-Encrypt-Plug-in-Usage-Abandoned" class="headerlink" title="Hexo Encrypt Plug-in Usage (Abandoned)"></a>Hexo Encrypt Plug-in Usage (Abandoned)</h1><h2 id="How-to-Use"><a href="#How-to-Use" class="headerlink" title="How to Use"></a>How to Use</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">encrypt:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">enc_pwd:</span> <span class="string">your_password</span></span><br></pre></td></tr></table></figure>
+<p>add these 2 lines at the top of the file</p>
+<h2 id="How-to-Configure"><a href="#How-to-Configure" class="headerlink" title="How to Configure"></a>How to Configure</h2><p>in file _config.yml</p>
+<h2 id="How-to-Decrypt"><a href="#How-to-Decrypt" class="headerlink" title="How to Decrypt"></a>How to Decrypt</h2><ul>
+<li>if encrypt status is true and encrypt password is set, use this password.</li>
+<li>if encrypt status is true but encrypt password is not set, use password in the _config.yml file.</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxg9yuz000wapl6cyz8bman" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjsxgdeyf000yg7l6l8m3n56q" class="article-share-link">Share</a>
       
       
     </footer>
@@ -204,7 +211,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxg9yul000aapl63db9ym85" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjsxgdey4000dg7l68m53j476" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -292,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxg9yus000kapl6olvvxbvn" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjsxgdey2000ag7l6m51dfcis" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -417,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxg9yuo000fapl65of3k4lm" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjsxgdey6000ig7l6not1i816" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -463,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxg9yux000sapl6yjtsn6ax" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjsxgdeyd000ug7l6sofrnwld" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -517,7 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxg9yuw000qapl6xsz31jyv" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjsxgdeyc000sg7l6devuc62x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -564,7 +571,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxg9yuv000oapl6ufnip8gn" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjsxgdeyb000pg7l60zaq941v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -623,7 +630,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxg9yuu000mapl6ua85w9nf" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjsxgdeya000ng7l641w7uw5g" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -718,7 +725,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxg9yuq000iapl6ca6d5lx2" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjsxgdey9000kg7l63tb5ntjd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -840,7 +847,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxg9yun000dapl6cshe1394" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjsxgdey5000fg7l6mq60vsyr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
