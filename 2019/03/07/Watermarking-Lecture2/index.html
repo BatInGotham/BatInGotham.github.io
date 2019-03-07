@@ -5,18 +5,18 @@
   
   <title>Watermarking-Lecture2 | BatInGotham&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recording of my current work">
+  <meta name="description" content="In-Class Report: DVD Authoring and ProductionPrinciple Not mandatory Cost effective Fast  Encoding &amp;amp; WatermarkingEncryption alone does not suffice: Monitor Watermark Embeddingy = x + watermark y =">
 <meta name="keywords" content="Watermarking">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Watermarking-Lecture2">
 <meta property="og:url" content="batingotham.github.io/2019/03/07/Watermarking-Lecture2/index.html">
 <meta property="og:site_name" content="BatInGotham&#39;s Blog">
-<meta property="og:description" content="Recording of my current work">
+<meta property="og:description" content="In-Class Report: DVD Authoring and ProductionPrinciple Not mandatory Cost effective Fast  Encoding &amp;amp; WatermarkingEncryption alone does not suffice: Monitor Watermark Embeddingy = x + watermark y =">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-07T06:05:04.317Z">
+<meta property="og:updated_time" content="2019-03-07T07:31:59.814Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Watermarking-Lecture2">
-<meta name="twitter:description" content="Recording of my current work">
+<meta name="twitter:description" content="In-Class Report: DVD Authoring and ProductionPrinciple Not mandatory Cost effective Fast  Encoding &amp;amp; WatermarkingEncryption alone does not suffice: Monitor Watermark Embeddingy = x + watermark y =">
   
     <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
   
@@ -91,11 +91,133 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="In-Class-Report-DVD-Authoring-and-Production"><a href="#In-Class-Report-DVD-Authoring-and-Production" class="headerlink" title="In-Class Report: DVD Authoring and Production"></a>In-Class Report: DVD Authoring and Production</h1><h2 id="Principle"><a href="#Principle" class="headerlink" title="Principle"></a>Principle</h2><ul>
+<li>Not mandatory</li>
+<li>Cost effective</li>
+<li>Fast</li>
+</ul>
+<h2 id="Encoding-amp-Watermarking"><a href="#Encoding-amp-Watermarking" class="headerlink" title="Encoding &amp; Watermarking"></a>Encoding &amp; Watermarking</h2><p>Encryption alone does not suffice: Monitor</p>
+<h3 id="Watermark-Embedding"><a href="#Watermark-Embedding" class="headerlink" title="Watermark Embedding"></a>Watermark Embedding</h3><p>y = x + watermark</p>
+<p>y = RoundAndClip(x + scale * watermark)</p>
+<p>little activity preventer</p>
+<p>y = RoundAndClip(x + scale <em> watermark </em> lambda)</p>
+<h1 id="Lecture"><a href="#Lecture" class="headerlink" title="Lecture"></a>Lecture</h1><h2 id="Watermarking-Device-Control"><a href="#Watermarking-Device-Control" class="headerlink" title="Watermarking: Device Control"></a>Watermarking: Device Control</h2><p>Add value, rather than restrict use.</p>
+<ul>
+<li>In the radio for payed customer</li>
+<li>Automatically turn on Dolby(an audio encryption format) FM decoder</li>
+<li>Interactive TV</li>
+<li>Imperceptible bar code for mobile phone in</li>
+</ul>
+<p>AR: Locational Basic Searching</p>
+<p>Legacy Enhancement? Device Control!</p>
+<ul>
+<li>Digital watermarking in analog communication for new device</li>
+<li>Synchronizing audio and video signals</li>
+<li>Embed the lyrics directly into the songs (歌词嵌入音频)</li>
+</ul>
+<h2 id="Application-of-Steganography"><a href="#Application-of-Steganography" class="headerlink" title="Application of Steganography"></a>Application of Steganography</h2><p>Successful steganography is not detectable.</p>
+<h3 id="for-Dissidents"><a href="#for-Dissidents" class="headerlink" title="for Dissidents"></a>for Dissidents</h3><p>Public and wide surveillance: Everyone is monitored and aware of this.</p>
+<ul>
+<li>Encryption: indication of conceal</li>
+<li>Anonymous re-mailer(匿名转发)</li>
+<li>Steganography</li>
+</ul>
+<h3 id="for-Criminals"><a href="#for-Criminals" class="headerlink" title="for Criminals"></a>for Criminals</h3><p>Conceal and restricted surveillance: People is usually unaware of being monitored</p>
+<h2 id="Properties-of-Watermarking-Systems"><a href="#Properties-of-Watermarking-Systems" class="headerlink" title="Properties of Watermarking Systems"></a>Properties of Watermarking Systems</h2><h3 id="Embedding"><a href="#Embedding" class="headerlink" title="Embedding"></a>Embedding</h3><ul>
+<li>Effectiveness, fidelity and payload.</li>
+</ul>
+<h3 id="Detection"><a href="#Detection" class="headerlink" title="Detection"></a>Detection</h3><ul>
+<li>Blind or informed detection, false positive behavior, and robustness.</li>
+</ul>
+<h3 id="Security-feature"><a href="#Security-feature" class="headerlink" title="Security feature"></a>Security feature</h3><ul>
+<li>Security and the use of secret keys</li>
+</ul>
+<h2 id="Embedding-Effectiveness"><a href="#Embedding-Effectiveness" class="headerlink" title="Embedding Effectiveness"></a>Embedding Effectiveness</h2><p>Detection <strong>immediate</strong> after embedding.</p>
+<p>Why cannot 100%?</p>
+<ul>
+<li>Cannot be successfully watermarked within certain fidelity constraints</li>
+</ul>
+<p>Measurement</p>
+<ul>
+<li>Analytical</li>
+<li>Estimated empirically from samples</li>
+</ul>
+<p>Fidelity: perceptual similarity between the original and watermarked version</p>
+<p>Data Payload: Number of bits in a unit or a work</p>
+<ul>
+<li>Typical units: pixels, per second, per frame</li>
+<li>Different requirements</li>
+<li>Zero-bit watermarks: N bit -&gt; 2^N + 1 chances</li>
+</ul>
+<h2 id="Blind-or-Informed-Detection"><a href="#Blind-or-Informed-Detection" class="headerlink" title="Blind or Informed Detection"></a>Blind or Informed Detection</h2><p>Blind: No any information related to the original</p>
+<p>Informed: Requires access to the original non-watermarked work</p>
+<h2 id="False-Positive-Rate"><a href="#False-Positive-Rate" class="headerlink" title="False Positive Rate"></a>False Positive Rate</h2><blockquote>
+<p>transaction detecting</p>
+</blockquote>
+<ul>
+<li><p>False positive</p>
+<p>The detection of a watermark that does not actually exist</p>
+</li>
+<li><p>Probability</p>
+<p>Fixed work randomly selected watermarks</p>
+<p>Fixed watermark randomly selected works</p>
+</li>
+<li><p>Rate</p>
+</li>
+</ul>
+<h2 id="Robustness"><a href="#Robustness" class="headerlink" title="Robustness"></a>Robustness</h2><h3 id="Ability-to-detect-the-watermarking-after-common-signal-processing-operations"><a href="#Ability-to-detect-the-watermarking-after-common-signal-processing-operations" class="headerlink" title="Ability to detect the watermarking after common signal processing operations"></a>Ability to detect the watermarking after <em>common signal</em> processing operations</h3><ul>
+<li>Image: Filtering, compression…</li>
+<li>Audio: Mixture…</li>
+</ul>
+<h3 id="Need-only-survive-the-operations-between-embedding-and-detection"><a href="#Need-only-survive-the-operations-between-embedding-and-detection" class="headerlink" title="Need only survive the operations between embedding and detection"></a>Need only survive the operations between embedding and detection</h3><h3 id="Even-irrelevant-or-undesirable"><a href="#Even-irrelevant-or-undesirable" class="headerlink" title="Even irrelevant or undesirable"></a>Even irrelevant or undesirable</h3><h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><p>Ability to resist hostile attacks.</p>
+<ul>
+<li>Unauthorized removal</li>
+<li>Unauthorized embedding (答题纸)</li>
+<li><p>Unauthorized detection</p>
+</li>
+<li><p>Active attacks</p>
+</li>
+<li>Passive attacks</li>
+</ul>
+<p>Unauthorized removal: prevent the watermark from being detected.</p>
+<ul>
+<li>Elimination attacks: No watermark at all.</li>
+<li>Masking attacks: Still there, but undetectable EASILY</li>
+<li>Collusion attack (Common): combines several copies of a given work with different watermarks</li>
+</ul>
+<p>Unauthorized embedding</p>
+<h2 id="Modification-and-Multiple-Watermarks"><a href="#Modification-and-Multiple-Watermarks" class="headerlink" title="Modification and Multiple Watermarks"></a>Modification and Multiple Watermarks</h2><h3 id="Modify-watermarks-is-useful-in-some-applications"><a href="#Modify-watermarks-is-useful-in-some-applications" class="headerlink" title="Modify watermarks is useful in some applications"></a>Modify watermarks is useful in some applications</h3><p>Copy-once -&gt; Copy-no-more</p>
+<h3 id="Multiple-watermarks"><a href="#Multiple-watermarks" class="headerlink" title="Multiple watermarks"></a>Multiple watermarks</h3><h2 id="Evaluating-Watermarking-System"><a href="#Evaluating-Watermarking-System" class="headerlink" title="Evaluating Watermarking System"></a>Evaluating Watermarking System</h2><h2 id="Scope-of-Testing"><a href="#Scope-of-Testing" class="headerlink" title="Scope of Testing"></a>Scope of Testing</h2><p>Typicality of the test set: Photographs, X-ray images, animation frames</p>
+<p>To test false positive rates</p>
+<ul>
+<li>using millions of samples</li>
+</ul>
+<h2 id="Propertied-of-Steganographic-and-Steganalysis-Systems"><a href="#Propertied-of-Steganographic-and-Steganalysis-Systems" class="headerlink" title="Propertied of Steganographic and Steganalysis Systems"></a>Propertied of Steganographic and Steganalysis Systems</h2><p>Embedding</p>
+<p>Detection</p>
+<p>Fidelity – not that important</p>
+<p>Embedding capacity</p>
+<p>Steganographic capacity:</p>
+<ul>
+<li>Negligible probability of detection</li>
+<li>=watermark payload &lt;= embedding capacity</li>
+<li>more bits, more risk</li>
+</ul>
+<p>Embedding efficiency</p>
+<h3 id="Categories"><a href="#Categories" class="headerlink" title="Categories"></a>Categories</h3><ul>
+<li><p>Blind</p>
+<p>分为两类</p>
+</li>
+<li><p>Targeted</p>
+<p>设计特征</p>
+</li>
+<li><p>System attacks</p>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjsy88l1r0010lwl668d29gh0" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjsybchrh0010hkl6uc0piu7i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
