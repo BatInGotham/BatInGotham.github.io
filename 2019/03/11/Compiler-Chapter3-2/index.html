@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Compiler-Chapter3-2 | BatInGotham&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Chapter 3 (cont.)Ambiguity（歧义）calculate priority lead to ambiguity. 离root越远，运算优先级越高  判断歧义文法： 设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法  An ambiguous grammar: a grammar that generates a string with">
+<meta name="keywords" content="Compiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler-Chapter3-2">
+<meta property="og:url" content="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/index.html">
+<meta property="og:site_name" content="BatInGotham&#39;s Blog">
+<meta property="og:description" content="Chapter 3 (cont.)Ambiguity（歧义）calculate priority lead to ambiguity. 离root越远，运算优先级越高  判断歧义文法： 设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法  An ambiguous grammar: a grammar that generates a string with">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-11T02:48:47.351Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compiler-Chapter3-2">
+<meta name="twitter:description" content="Chapter 3 (cont.)Ambiguity（歧义）calculate priority lead to ambiguity. 离root越远，运算优先级越高  判断歧义文法： 设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法  An ambiguous grammar: a grammar that generates a string with">
+  
+    <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BatInGotham&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coder, (Practising) Game Designer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="batingotham.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Compiler-Chapter3-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/Compiler-Chapter3-2/" class="article-date">
+  <time datetime="2019-03-11T01:31:28.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Compiler-Chapter3-2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-3-cont"><a href="#Chapter-3-cont" class="headerlink" title="Chapter 3 (cont.)"></a>Chapter 3 (cont.)</h1><h2 id="Ambiguity（歧义）"><a href="#Ambiguity（歧义）" class="headerlink" title="Ambiguity（歧义）"></a>Ambiguity（歧义）</h2><p>calculate priority lead to ambiguity.</p>
+<p>离root越远，运算优先级越高</p>
+<blockquote>
+<p>判断歧义文法：</p>
+<p>设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法</p>
+</blockquote>
+<p>An ambiguous grammar: a grammar that generates a string with two distinct parse trees is called an ambiguous grammar.</p>
+<p>Such a grammar represents a serious problem for a parser. It does not specify precisely the syntactic structure of a program.</p>
+<h3 id="Two-basic-methods"><a href="#Two-basic-methods" class="headerlink" title="Two basic methods"></a>Two basic methods</h3><ol>
+<li>A rule: that specifies in each ambiguous case which of the parse trees (or syntax trees) is the correct one. Such a rule is called a disambiguating rule.<ul>
+<li>The advantage: it corrects the ambiguity without<br>changing (and possibly complicating) the grammar.</li>
+<li>The disadvantage: the syntactic structure of the<br>language is no longer given by the grammar alone.</li>
+</ul>
+</li>
+<li>Change the grammar into a form that forces the construction of the correct parse tree.<ul>
+<li>Adv. and Disadv. are converted.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Remove-the-ambiguity"><a href="#Remove-the-ambiguity" class="headerlink" title="Remove the ambiguity"></a>Remove the ambiguity</h3><ul>
+<li>State a disambiguating rule that established the relative precedences of the three operations represented.</li>
+<li>The associativity of each of the operations of addition, subtraction, and multiplication</li>
+</ul>
+<h3 id="Precedence-and-associativity"><a href="#Precedence-and-associativity" class="headerlink" title="Precedence and associativity"></a>Precedence and associativity</h3><p>both may cause ambiguity.</p>
+<p>precedence: 1+2*3</p>
+<p>ambiguity: 1-2-3</p>
+<p>The precedence cascades cause the parse trees to become much more complex. The syntax trees, however, are not affected.</p>
+<h3 id="The-dangling-else-problem"><a href="#The-dangling-else-problem" class="headerlink" title="The dangling else problem"></a>The dangling <em>else</em> problem</h3><p>An else-part should always be associated with the nearest if-statement that does not yet have an associated else-part.</p>
+<p>In C, we may use brackets.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="number">1</span>/x)</span><br><span class="line">        ok = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> z = <span class="number">1</span>/x</span><br></pre></td></tr></table></figure>
+<p>也可以改造文法</p>
+<p>To design the syntax that the dangling <em>else</em> problem does not appear.</p>
+<ol>
+<li>Require the presence of the else-part, and this method has been used in LISP and other functional languages (where a value must also be returned).</li>
+<li>Use a bracketing keyword for the if-statement languages that use this solution include Algol68 and Ada</li>
+</ol>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x /= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> y = <span class="number">1</span>/x <span class="keyword">then</span> ok := true;</span><br><span class="line">	<span class="keyword">else</span> z := <span class="number">1</span>/x;</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Inessential-ambiguity"><a href="#Inessential-ambiguity" class="headerlink" title="Inessential ambiguity"></a>Inessential ambiguity</h3><p>Sometimes a grammar may be ambiguous and yet always produce unique <em>abstract syntax trees</em>.</p>
+<p><strong>Inessential ambiguity</strong>: the associated semantics do not depend on what disambiguating rule is used.</p>
+<h2 id="Extended-Notations-EBNF-and-syntax-diagrams"><a href="#Extended-Notations-EBNF-and-syntax-diagrams" class="headerlink" title="Extended Notations: EBNF and syntax diagrams"></a>Extended Notations: EBNF and syntax diagrams</h2><p>BNF notation is sometimes extended to include special notations for repetitive and optional constructs.</p>
+<p>A -&gt; b{a}</p>
+<p>A -&gt; {a}b</p>
+<p>Optional constructs in EBNF are indicated by surrounding them with square brackets […].</p>
+<h2 id="Formal-properties-of-context-free-language"><a href="#Formal-properties-of-context-free-language" class="headerlink" title="Formal properties of context-free language"></a>Formal properties of context-free language</h2><p>Definition : A context-free grammar consists of the following:</p>
+<ol>
+<li>A set T of terminals.</li>
+<li>A set N of nonterminals (disjoint from T).</li>
+<li>A set P of productions, or grammar rules, of the form A -&gt; a, where A is an element of N and a is an element of (T union N)* (a possibly empty sequence of terminals and nonterminals).</li>
+<li>A start symbol S from the set N.</li>
+</ol>
+<p>Let G be a grammar as defined above, G = (T, N, P, S).</p>
+<ul>
+<li>A derivation step over G is of the form a A y =&gt; a b y ,<br>where a and y are elements of (T union N)* and A -&gt; y is in P.</li>
+<li>The set of symbols: The union T</li>
+<li>N of the sets of terminals and nonterminals</li>
+<li>A sentential form: a string a in (T union N)*.</li>
+<li>a =&gt; *b if and only if there is a sequence of 0 or more derivation steps (n&gt;=0)</li>
+<li>A derivation over the grammar G is of the form S =&gt;<em> w, where w belongs to T</em></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjt3te4k80005l7l6q7rcj58i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/03/11/Compiler-Chapter4-1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Compiler-Chapter4-1
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/03/11/SE-Chapter22/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SE-Chapter22</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 17.5px;">Software Engineering</a> <a href="/tags/Watermarking/" style="font-size: 12.5px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 15px;">研究生考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/SE-Chapter22/">SE-Chapter22</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/07/Watermarking-Lecture2/">Watermarking-Lecture2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/07/Watermarking-Lecture1/">Watermarking Lecture1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Qian, Sun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

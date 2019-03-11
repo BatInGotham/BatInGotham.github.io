@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Compiler-Chapter4-1 | BatInGotham&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Chapter 4 Top-Down ParsingRecursive-Descent ParsingThe idea of Recursive-Descent Parsing  The grammar rule for a non-terminal A as a definition for a procedure to recognize an A The right-hand side of">
+<meta name="keywords" content="Compiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler-Chapter4-1">
+<meta property="og:url" content="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/index.html">
+<meta property="og:site_name" content="BatInGotham&#39;s Blog">
+<meta property="og:description" content="Chapter 4 Top-Down ParsingRecursive-Descent ParsingThe idea of Recursive-Descent Parsing  The grammar rule for a non-terminal A as a definition for a procedure to recognize an A The right-hand side of">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-11T03:55:49.495Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compiler-Chapter4-1">
+<meta name="twitter:description" content="Chapter 4 Top-Down ParsingRecursive-Descent ParsingThe idea of Recursive-Descent Parsing  The grammar rule for a non-terminal A as a definition for a procedure to recognize an A The right-hand side of">
+  
+    <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BatInGotham&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coder, (Practising) Game Designer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="batingotham.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Compiler-Chapter4-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/Compiler-Chapter4-1/" class="article-date">
+  <time datetime="2019-03-11T02:50:47.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Compiler-Chapter4-1
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-4-Top-Down-Parsing"><a href="#Chapter-4-Top-Down-Parsing" class="headerlink" title="Chapter 4 Top-Down Parsing"></a>Chapter 4 Top-Down Parsing</h1><h2 id="Recursive-Descent-Parsing"><a href="#Recursive-Descent-Parsing" class="headerlink" title="Recursive-Descent Parsing"></a>Recursive-Descent Parsing</h2><p>The idea of Recursive-Descent Parsing</p>
+<ul>
+<li>The grammar rule for a non-terminal A as a definition for a procedure to recognize an A</li>
+<li>The right-hand side of the grammar for A specifies the structure of the code for this procedure</li>
+</ul>
+<h3 id="The-Basic-Method-of-Recursive-Descent"><a href="#The-Basic-Method-of-Recursive-Descent" class="headerlink" title="The Basic Method of Recursive Descent"></a>The Basic Method of Recursive Descent</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">factor</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">    <span class="title">case</span> <span class="title">token</span> <span class="title">of</span></span></span><br><span class="line"><span class="function">    <span class="params">(:	match(()</span>;</span></span><br><span class="line">        expr;</span><br><span class="line">        match());</span><br><span class="line">    number:</span><br><span class="line">        match(number);</span><br><span class="line">    <span class="keyword">else</span> error;</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line"><span class="keyword">END</span> factor</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Writing recursive-decent procedure for the remaining rules in the expression grammar is not as easy for factor.</li>
+<li>It requires the use of EBNF.</li>
+</ul>
+<h3 id="Repetition-and-Choice-Using-EBNF"><a href="#Repetition-and-Choice-Using-EBNF" class="headerlink" title="Repetition and Choice: Using EBNF"></a>Repetition and Choice: Using EBNF</h3><p>Example: <em>expr -&gt; expr addop term|term</em></p>
+<p>this would lead to an immediate <u>infinite recursive loop</u></p>
+<p>the solution is use the EBNF rule: <em>expr -&gt; term {addop term}</em></p>
+<p>The recursive-descent method is quite powerful and adequate to<br>construct a complete parse. But we need more formal methods<br>to deal with complex situation.</p>
+<h3 id="Further-Decision-Problems"><a href="#Further-Decision-Problems" class="headerlink" title="Further Decision Problems"></a>Further Decision Problems</h3><p>The recursive-descent method is quite powerful and adequate to construct a complete parse.</p>
+<p>But we need more formal methods to deal with complex situation.</p>
+<ol>
+<li>It may be difficult to convert a grammar in BNF into EBNF form.</li>
+<li>It is difficult to decide when to use the choice A -&gt; a and the choice A -&gt; b; if both a and b begin with non-terminals (<u>First Sets</u>)</li>
+<li>It may be necessary to know what token legally coming from the non-terminal A, A-&gt;e (<u>Follow Sets</u>)</li>
+<li>It requires computing the <u>First and Follow</u> sets in order to detect the errors as early as possible</li>
+</ol>
+<h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><blockquote>
+<p> Main idea: LL(1) Parsing uses an explicit stack rather than recursive calls to perform a parse.</p>
+<p>Want to decide which production to apply based on next symbol</p>
+</blockquote>
+<h3 id="The-two-actions"><a href="#The-two-actions" class="headerlink" title="The two actions:"></a>The two actions:</h3><ol>
+<li>Generate: replace a non-terminal A at the top of the stack by a string a(in reverse) using a grammar rule A -&gt; a</li>
+<li>Match: match a token on top of the stack with the next input token</li>
+</ol>
+<p>Top-Down Parsing == Generate &amp; Match Parsing</p>
+<p>Constructing a parse tree:<br>Adding node construction actions as each non-terminal or terminal is push onto the stack.</p>
+<h3 id="LL-1-Parsing-table"><a href="#LL-1-Parsing-table" class="headerlink" title="LL(1) Parsing table"></a>LL(1) Parsing table</h3><p>S -&gt; (S) S | e</p>
+<table>
+<thead>
+<tr>
+<th>M[N, T]</th>
+<th>(</th>
+<th>)</th>
+<th>$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S-&gt;(S)S</td>
+<td>S-&gt;e</td>
+<td>S-&gt;e</td>
+</tr>
+</tbody>
+</table>
+<p>The general LL(1) Parsing table definition: The table is a two-dimensional array indexed by non-terminals<br>and terminals The table contains production choices to use at the appropriate parsing step, which called M[N,T].</p>
+<ul>
+<li>N is the set of non-terminals of the grammar</li>
+<li>T is the set of terminals or tokens (including $)</li>
+<li>Any entrances remaining empty represent potential errors</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjt3te4ka0008l7l6q7defoxy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/11/Compiler-Chapter3-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Compiler-Chapter3-2</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 17.5px;">Software Engineering</a> <a href="/tags/Watermarking/" style="font-size: 12.5px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 15px;">研究生考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/SE-Chapter22/">SE-Chapter22</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/07/Watermarking-Lecture2/">Watermarking-Lecture2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/07/Watermarking-Lecture1/">Watermarking Lecture1</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Qian, Sun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

@@ -69,6 +69,304 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Compiler-Chapter4-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/Compiler-Chapter4-1/" class="article-date">
+  <time datetime="2019-03-11T02:50:47.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-4-Top-Down-Parsing"><a href="#Chapter-4-Top-Down-Parsing" class="headerlink" title="Chapter 4 Top-Down Parsing"></a>Chapter 4 Top-Down Parsing</h1><h2 id="Recursive-Descent-Parsing"><a href="#Recursive-Descent-Parsing" class="headerlink" title="Recursive-Descent Parsing"></a>Recursive-Descent Parsing</h2><p>The idea of Recursive-Descent Parsing</p>
+<ul>
+<li>The grammar rule for a non-terminal A as a definition for a procedure to recognize an A</li>
+<li>The right-hand side of the grammar for A specifies the structure of the code for this procedure</li>
+</ul>
+<h3 id="The-Basic-Method-of-Recursive-Descent"><a href="#The-Basic-Method-of-Recursive-Descent" class="headerlink" title="The Basic Method of Recursive Descent"></a>The Basic Method of Recursive Descent</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">factor</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">    <span class="title">case</span> <span class="title">token</span> <span class="title">of</span></span></span><br><span class="line"><span class="function">    <span class="params">(:	match(()</span>;</span></span><br><span class="line">        expr;</span><br><span class="line">        match());</span><br><span class="line">    number:</span><br><span class="line">        match(number);</span><br><span class="line">    <span class="keyword">else</span> error;</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line"><span class="keyword">END</span> factor</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Writing recursive-decent procedure for the remaining rules in the expression grammar is not as easy for factor.</li>
+<li>It requires the use of EBNF.</li>
+</ul>
+<h3 id="Repetition-and-Choice-Using-EBNF"><a href="#Repetition-and-Choice-Using-EBNF" class="headerlink" title="Repetition and Choice: Using EBNF"></a>Repetition and Choice: Using EBNF</h3><p>Example: <em>expr -&gt; expr addop term|term</em></p>
+<p>this would lead to an immediate <u>infinite recursive loop</u></p>
+<p>the solution is use the EBNF rule: <em>expr -&gt; term {addop term}</em></p>
+<p>The recursive-descent method is quite powerful and adequate to<br>construct a complete parse. But we need more formal methods<br>to deal with complex situation.</p>
+<h3 id="Further-Decision-Problems"><a href="#Further-Decision-Problems" class="headerlink" title="Further Decision Problems"></a>Further Decision Problems</h3><p>The recursive-descent method is quite powerful and adequate to construct a complete parse.</p>
+<p>But we need more formal methods to deal with complex situation.</p>
+<ol>
+<li>It may be difficult to convert a grammar in BNF into EBNF form.</li>
+<li>It is difficult to decide when to use the choice A -&gt; a and the choice A -&gt; b; if both a and b begin with non-terminals (<u>First Sets</u>)</li>
+<li>It may be necessary to know what token legally coming from the non-terminal A, A-&gt;e (<u>Follow Sets</u>)</li>
+<li>It requires computing the <u>First and Follow</u> sets in order to detect the errors as early as possible</li>
+</ol>
+<h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><blockquote>
+<p> Main idea: LL(1) Parsing uses an explicit stack rather than recursive calls to perform a parse.</p>
+<p>Want to decide which production to apply based on next symbol</p>
+</blockquote>
+<h3 id="The-two-actions"><a href="#The-two-actions" class="headerlink" title="The two actions:"></a>The two actions:</h3><ol>
+<li>Generate: replace a non-terminal A at the top of the stack by a string a(in reverse) using a grammar rule A -&gt; a</li>
+<li>Match: match a token on top of the stack with the next input token</li>
+</ol>
+<p>Top-Down Parsing == Generate &amp; Match Parsing</p>
+<p>Constructing a parse tree:<br>Adding node construction actions as each non-terminal or terminal is push onto the stack.</p>
+<h3 id="LL-1-Parsing-table"><a href="#LL-1-Parsing-table" class="headerlink" title="LL(1) Parsing table"></a>LL(1) Parsing table</h3><p>S -&gt; (S) S | e</p>
+<table>
+<thead>
+<tr>
+<th>M[N, T]</th>
+<th>(</th>
+<th>)</th>
+<th>$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S-&gt;(S)S</td>
+<td>S-&gt;e</td>
+<td>S-&gt;e</td>
+</tr>
+</tbody>
+</table>
+<p>The general LL(1) Parsing table definition: The table is a two-dimensional array indexed by non-terminals<br>and terminals The table contains production choices to use at the appropriate parsing step, which called M[N,T].</p>
+<ul>
+<li>N is the set of non-terminals of the grammar</li>
+<li>T is the set of terminals or tokens (including $)</li>
+<li>Any entrances remaining empty represent potential errors</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjt3te4ka0008l7l6q7defoxy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Compiler-Chapter3-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/Compiler-Chapter3-2/" class="article-date">
+  <time datetime="2019-03-11T01:31:28.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-3-cont"><a href="#Chapter-3-cont" class="headerlink" title="Chapter 3 (cont.)"></a>Chapter 3 (cont.)</h1><h2 id="Ambiguity（歧义）"><a href="#Ambiguity（歧义）" class="headerlink" title="Ambiguity（歧义）"></a>Ambiguity（歧义）</h2><p>calculate priority lead to ambiguity.</p>
+<p>离root越远，运算优先级越高</p>
+<blockquote>
+<p>判断歧义文法：</p>
+<p>设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法</p>
+</blockquote>
+<p>An ambiguous grammar: a grammar that generates a string with two distinct parse trees is called an ambiguous grammar.</p>
+<p>Such a grammar represents a serious problem for a parser. It does not specify precisely the syntactic structure of a program.</p>
+<h3 id="Two-basic-methods"><a href="#Two-basic-methods" class="headerlink" title="Two basic methods"></a>Two basic methods</h3><ol>
+<li>A rule: that specifies in each ambiguous case which of the parse trees (or syntax trees) is the correct one. Such a rule is called a disambiguating rule.<ul>
+<li>The advantage: it corrects the ambiguity without<br>changing (and possibly complicating) the grammar.</li>
+<li>The disadvantage: the syntactic structure of the<br>language is no longer given by the grammar alone.</li>
+</ul>
+</li>
+<li>Change the grammar into a form that forces the construction of the correct parse tree.<ul>
+<li>Adv. and Disadv. are converted.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Remove-the-ambiguity"><a href="#Remove-the-ambiguity" class="headerlink" title="Remove the ambiguity"></a>Remove the ambiguity</h3><ul>
+<li>State a disambiguating rule that established the relative precedences of the three operations represented.</li>
+<li>The associativity of each of the operations of addition, subtraction, and multiplication</li>
+</ul>
+<h3 id="Precedence-and-associativity"><a href="#Precedence-and-associativity" class="headerlink" title="Precedence and associativity"></a>Precedence and associativity</h3><p>both may cause ambiguity.</p>
+<p>precedence: 1+2*3</p>
+<p>ambiguity: 1-2-3</p>
+<p>The precedence cascades cause the parse trees to become much more complex. The syntax trees, however, are not affected.</p>
+<h3 id="The-dangling-else-problem"><a href="#The-dangling-else-problem" class="headerlink" title="The dangling else problem"></a>The dangling <em>else</em> problem</h3><p>An else-part should always be associated with the nearest if-statement that does not yet have an associated else-part.</p>
+<p>In C, we may use brackets.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="number">1</span>/x)</span><br><span class="line">        ok = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> z = <span class="number">1</span>/x</span><br></pre></td></tr></table></figure>
+<p>也可以改造文法</p>
+<p>To design the syntax that the dangling <em>else</em> problem does not appear.</p>
+<ol>
+<li>Require the presence of the else-part, and this method has been used in LISP and other functional languages (where a value must also be returned).</li>
+<li>Use a bracketing keyword for the if-statement languages that use this solution include Algol68 and Ada</li>
+</ol>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x /= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> y = <span class="number">1</span>/x <span class="keyword">then</span> ok := true;</span><br><span class="line">	<span class="keyword">else</span> z := <span class="number">1</span>/x;</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Inessential-ambiguity"><a href="#Inessential-ambiguity" class="headerlink" title="Inessential ambiguity"></a>Inessential ambiguity</h3><p>Sometimes a grammar may be ambiguous and yet always produce unique <em>abstract syntax trees</em>.</p>
+<p><strong>Inessential ambiguity</strong>: the associated semantics do not depend on what disambiguating rule is used.</p>
+<h2 id="Extended-Notations-EBNF-and-syntax-diagrams"><a href="#Extended-Notations-EBNF-and-syntax-diagrams" class="headerlink" title="Extended Notations: EBNF and syntax diagrams"></a>Extended Notations: EBNF and syntax diagrams</h2><p>BNF notation is sometimes extended to include special notations for repetitive and optional constructs.</p>
+<p>A -&gt; b{a}</p>
+<p>A -&gt; {a}b</p>
+<p>Optional constructs in EBNF are indicated by surrounding them with square brackets […].</p>
+<h2 id="Formal-properties-of-context-free-language"><a href="#Formal-properties-of-context-free-language" class="headerlink" title="Formal properties of context-free language"></a>Formal properties of context-free language</h2><p>Definition : A context-free grammar consists of the following:</p>
+<ol>
+<li>A set T of terminals.</li>
+<li>A set N of nonterminals (disjoint from T).</li>
+<li>A set P of productions, or grammar rules, of the form A -&gt; a, where A is an element of N and a is an element of (T union N)* (a possibly empty sequence of terminals and nonterminals).</li>
+<li>A start symbol S from the set N.</li>
+</ol>
+<p>Let G be a grammar as defined above, G = (T, N, P, S).</p>
+<ul>
+<li>A derivation step over G is of the form a A y =&gt; a b y ,<br>where a and y are elements of (T union N)* and A -&gt; y is in P.</li>
+<li>The set of symbols: The union T</li>
+<li>N of the sets of terminals and nonterminals</li>
+<li>A sentential form: a string a in (T union N)*.</li>
+<li>a =&gt; *b if and only if there is a sequence of 0 or more derivation steps (n&gt;=0)</li>
+<li>A derivation over the grammar G is of the form S =&gt;<em> w, where w belongs to T</em></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjt3te4k80005l7l6q7rcj58i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-SE-Chapter22" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/SE-Chapter22/" class="article-date">
+  <time datetime="2019-03-11T00:21:12.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/SE-Chapter22/">SE-Chapter22</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Project-Management-Principle"><a href="#Project-Management-Principle" class="headerlink" title="Project Management Principle"></a>Project Management Principle</h1><h2 id="The-4-P’s"><a href="#The-4-P’s" class="headerlink" title="The 4 P’s"></a>The 4 P’s</h2><ul>
+<li>People — The most important element of a successful project</li>
+<li>Product — The software to be built</li>
+<li>Process — The set of framework activities and software engineering tasks to get the job done</li>
+<li>Project — All work required to make the product a reality</li>
+</ul>
+<h2 id="People"><a href="#People" class="headerlink" title="People"></a>People</h2><h3 id="The-Stakeholders"><a href="#The-Stakeholders" class="headerlink" title="The Stakeholders"></a>The Stakeholders</h3><ul>
+<li>Senior managers</li>
+<li>Project technical managers</li>
+<li>Practitioners</li>
+<li>Customers</li>
+<li>End-users</li>
+</ul>
+<h3 id="Team-Leader"><a href="#Team-Leader" class="headerlink" title="Team Leader"></a>Team Leader</h3><h4 id="MOI-Model"><a href="#MOI-Model" class="headerlink" title="MOI Model:"></a>MOI Model:</h4><ul>
+<li>Motivation</li>
+<li>Organization</li>
+<li>Ideas or Innovation</li>
+</ul>
+<h3 id="Software-Teams"><a href="#Software-Teams" class="headerlink" title="Software Teams"></a>Software Teams</h3><h4 id="factors"><a href="#factors" class="headerlink" title="factors"></a>factors</h4><ul>
+<li>The difficulty of the problem to be solved</li>
+<li>The size of the programs</li>
+<li>Team lifetime</li>
+<li>The degree to which the problem can be modularized</li>
+<li>The required quality and reliability</li>
+<li>The rigidity of the delivery date</li>
+<li>The degree of sociability required for the project</li>
+</ul>
+<h4 id="Organizational-Paradigms"><a href="#Organizational-Paradigms" class="headerlink" title="Organizational Paradigms"></a>Organizational Paradigms</h4><ul>
+<li>Closed paradigm</li>
+<li>Random paradigm</li>
+<li>Open paradigm</li>
+<li>Synchronous paradigm</li>
+</ul>
+<h4 id="Avoid-Team-“Toxicty”"><a href="#Avoid-Team-“Toxicty”" class="headerlink" title="Avoid Team “Toxicty”"></a>Avoid Team “Toxicty”</h4><ul>
+<li>work atmosphere</li>
+<li>frustration that cause friction among team members</li>
+<li>fragmented or poorly coordinated procedures</li>
+<li>unclear definition of roles</li>
+<li>continuous and repeated exposure to failure</li>
+</ul>
+<h3 id="Agile-Teams"><a href="#Agile-Teams" class="headerlink" title="Agile Teams"></a>Agile Teams</h3><ul>
+<li>Team members must have trust in one anothor</li>
+<li>The distribution of skills must be appropriate to the problem</li>
+<li>Mavericks may have to be excluded from the team, if team cohesiveness is to be maintained</li>
+<li>Team is “self-organizing”<ul>
+<li>An adaptive team structure</li>
+<li>Uses elements of Constantine’s random, open, and synchronous paradigms</li>
+<li>Significant autonomy</li>
+</ul>
+</li>
+</ul>
+<h3 id="Team-Coordination-amp-Communication"><a href="#Team-Coordination-amp-Communication" class="headerlink" title="Team Coordination &amp; Communication"></a>Team Coordination &amp; Communication</h3><h2 id="Product"><a href="#Product" class="headerlink" title="Product"></a>Product</h2><h3 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h3><ul>
+<li>Cibtext</li>
+<li>Information Objectives</li>
+<li>Function and performance</li>
+</ul>
+<h3 id="Problem-Decomposition"><a href="#Problem-Decomposition" class="headerlink" title="Problem Decomposition"></a>Problem Decomposition</h3><p>Core procedure in Demand Analysis</p>
+<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><p>Combine product and process</p>
+<p>Decompose process </p>
+<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><ol>
+<li>在正确的基础上开始工作</li>
+<li>保持动力</li>
+<li>跟踪进展</li>
+<li>做出英明的决策</li>
+<li>进行事后分析</li>
+</ol>
+<h2 id="W-5HH-Principle"><a href="#W-5HH-Principle" class="headerlink" title="W^5HH Principle"></a>W^5HH Principle</h2><p>Why; What; When; Who; Where; How; How much</p>
+<p>To get to the essence of a project</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/SE-Chapter22/" data-id="cjt3te4kn000wl7l6f05qscff" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Watermarking-Lecture2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/07/Watermarking-Lecture2/" class="article-date">
@@ -217,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjt3lo35t000tvdl63zkev296" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjt3te4ku0018l7l6lca0jn0z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -293,7 +591,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture1/" data-id="cjt3lo35x0011vdl67u9tu8au" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture1/" data-id="cjt3te4kr0016l7l60mfoynjy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -428,7 +726,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Net0307Review/" data-id="cjt3lo35g000avdl6zsz1bqz4" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Net0307Review/" data-id="cjt3te4kj000ml7l6b7qnjyw6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -471,7 +769,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjt3lo36e001dvdl6qdauij3k" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjt3te4kw001dl7l66iqdsjah" class="article-share-link">Share</a>
       
       
     </footer>
@@ -580,7 +878,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjt3lo35s000rvdl6s7vfx1py" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjt3te4kg000hl7l68ogv3ooe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -668,7 +966,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjt3lo35f0008vdl66io2v5xb" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjt3te4ke000fl7l6ioetlx2p" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -793,7 +1091,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjt3lo35l000ivdl6at1ootj0" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjt3te4kl000rl7l68ejwp256" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -805,167 +1103,10 @@
 
 
   
-    <article id="post-SE-Course-Info" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/SE-Course-Info/" class="article-date">
-  <time datetime="2019-03-04T16:35:47.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/SE-Course-Info/">SE Course Info</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Course-Info"><a href="#Course-Info" class="headerlink" title="Course Info"></a>Course Info</h1><h2 id="TA"><a href="#TA" class="headerlink" title="TA"></a>TA</h2><p>QQ: 371593486</p>
-<p>Cell Phone: 188-2923-7019</p>
-<p>E-mail: <a href="mailto:371593486@qq.com" target="_blank" rel="noopener">371593486@qq.com</a></p>
-<h2 id="Course-Source"><a href="#Course-Source" class="headerlink" title="Course Source"></a>Course Source</h2><p>website: <a href="http://www.cs.zju.edu.cn/se/?switch=1" target="_blank" rel="noopener">http://www.cs.zju.edu.cn/se/?switch=1</a></p>
-<p>website includes course slides, video, schedule, tests, forum, etc.</p>
-<h2 id="Reference-Book"><a href="#Reference-Book" class="headerlink" title="Reference Book"></a>Reference Book</h2><ul>
-<li>Software Engineering - A Practitioner’s Approach (Version 8) Roger S. Pressman</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjt3lo35w000zvdl6ck1kcrkj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SE-Chapter4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/SE-Chapter4/" class="article-date">
-  <time datetime="2019-03-04T16:35:06.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/SE-Chapter4/">SE Chapter4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chapter-4"><a href="#Chapter-4" class="headerlink" title="Chapter 4"></a>Chapter 4</h1><h2 id="Process-Models-The-Waterfall-Model"><a href="#Process-Models-The-Waterfall-Model" class="headerlink" title="Process Models: The Waterfall Model"></a>Process Models: The Waterfall Model</h2><ul>
-<li>Communication (Project initiation; Requirements gathering)</li>
-<li>Planning (Estimating; Scheduling and tracking)</li>
-<li>Modeling (Analysis and design)</li>
-<li>Construction (Code and test)</li>
-<li>Deployment (Delivery; Support and feedback)</li>
-</ul>
-<p>Complete by step. From top to bottom.</p>
-<h4 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h4><ul>
-<li>checkpoints</li>
-<li>irreversible</li>
-</ul>
-<h4 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h4><ul>
-<li>adding demands</li>
-<li>cannot foresee results</li>
-</ul>
-<h3 id="Incremental-Process-Models"><a href="#Incremental-Process-Models" class="headerlink" title="Incremental Process Models"></a>Incremental Process Models</h3><p>RAD Model</p>
-<h3 id="Evolutionary-Process-Model"><a href="#Evolutionary-Process-Model" class="headerlink" title="Evolutionary Process Model"></a>Evolutionary Process Model</h3><ul>
-<li>Prototyping</li>
-<li>The Spiral Model</li>
-</ul>
-<h3 id="Concurrent-Development-Model"><a href="#Concurrent-Development-Model" class="headerlink" title="Concurrent Development Model"></a>Concurrent Development Model</h3><h2 id="Specialized-Process-Model"><a href="#Specialized-Process-Model" class="headerlink" title="Specialized Process Model"></a>Specialized Process Model</h2><ul>
-<li>Component-based development model</li>
-<li>Format methods model</li>
-<li>Aspect-oriented software development</li>
-</ul>
-<h2 id="The-Unified-Process"><a href="#The-Unified-Process" class="headerlink" title="The Unified Process"></a>The Unified Process</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjt3lo35q000pvdl603x3c5s4" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SE-Chapter3" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/SE-Chapter3/" class="article-date">
-  <time datetime="2019-03-04T16:34:42.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/SE-Chapter3/">SE Chapter3</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chapter-3"><a href="#Chapter-3" class="headerlink" title="Chapter 3"></a>Chapter 3</h1><h2 id="A-Generic-Process-Model"><a href="#A-Generic-Process-Model" class="headerlink" title="A Generic Process Model"></a>A Generic Process Model</h2><p>process flow type: Linear process flow; Iterative process flow; Evolutionary process flow; Parallel process flow.</p>
-<h2 id="Process-Assessment"><a href="#Process-Assessment" class="headerlink" title="Process Assessment"></a>Process Assessment</h2><h3 id="The-Capability-Maturity-Model-Integration"><a href="#The-Capability-Maturity-Model-Integration" class="headerlink" title="The Capability Maturity Model Integration"></a>The Capability Maturity Model Integration</h3><ul>
-<li>Level 0: Incomplete</li>
-<li>Level 1: Performed</li>
-<li>Level 2: Managed</li>
-<li>Level 3: Defined</li>
-<li>Level 4: Quantitatively Managed</li>
-<li>Level 5: Optimizing</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjt3lo35v000xvdl67m3lee1a" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -988,7 +1129,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 16.67px;">Software Engineering</a> <a href="/tags/Watermarking/" style="font-size: 13.33px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16.67px;">研究生考试</a>
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 17.5px;">Software Engineering</a> <a href="/tags/Watermarking/" style="font-size: 12.5px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 15px;">研究生考试</a>
     </div>
   </div>
 
@@ -1010,23 +1151,23 @@
       <ul>
         
           <li>
+            <a href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/11/SE-Chapter22/">SE-Chapter22</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/07/Watermarking-Lecture2/">Watermarking-Lecture2</a>
           </li>
         
           <li>
             <a href="/2019/03/07/Watermarking-Lecture1/">Watermarking Lecture1</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/07/Net0307Review/">Net0307Review</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/07/test-password/">test-password</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/06/Embedded-System-Lecture2/">Embedded System Lecture2</a>
           </li>
         
       </ul>
