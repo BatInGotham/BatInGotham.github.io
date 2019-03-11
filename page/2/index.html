@@ -69,6 +69,131 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-OS0305Review" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/OS0305Review/" class="article-date">
+  <time datetime="2019-03-05T15:11:25.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/OS0305Review/">OS0305Review</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="2019-03-05-Operating-System"><a href="#2019-03-05-Operating-System" class="headerlink" title="2019/03/05 Operating System"></a>2019/03/05 Operating System</h1><h3 id="1-下列关于批处理系统的叙述中，正确的是（-）"><a href="#1-下列关于批处理系统的叙述中，正确的是（-）" class="headerlink" title="1. 下列关于批处理系统的叙述中，正确的是（    ）"></a>1. 下列关于批处理系统的叙述中，正确的是（    ）</h3><p>A. 批处理系统允许多个用户与计算机直接交互</p>
+<p>B. 批处理系统分为单道批处理系统和多道批处理系统</p>
+<p>C. 中断技术使得多道批处理系统的I/O设备可与CPU并行工作</p>
+<blockquote>
+<p>答案选B和C</p>
+<p>批处理系统不允许用户与计算机直接交互，A错误。多道批处理系统中CPU和I/O并行工作依托于中断机制，C正确。</p>
+</blockquote>
+<h3 id="2-操作系统的基本类型有（-）"><a href="#2-操作系统的基本类型有（-）" class="headerlink" title="2. 操作系统的基本类型有（    ）"></a>2. 操作系统的基本类型有（    ）</h3><blockquote>
+<p>答案是批处理系统、分时操作系统、实时操作系统</p>
+<p>除了这些以外还有网络操作系统、分布式计算机系统、个人计算机操作系统等</p>
+</blockquote>
+<h3 id="3-分时系统的一个重要性能是系统的响应时间，对操作系统的（-）因素进行改进有利于改善系统的响应时间"><a href="#3-分时系统的一个重要性能是系统的响应时间，对操作系统的（-）因素进行改进有利于改善系统的响应时间" class="headerlink" title="3. 分时系统的一个重要性能是系统的响应时间，对操作系统的（    ）因素进行改进有利于改善系统的响应时间"></a>3. 分时系统的一个重要性能是系统的响应时间，对操作系统的（    ）因素进行改进有利于改善系统的响应时间</h3><p>A. 加大时间片</p>
+<p>B. 采用静态页式管理</p>
+<p>C. 优先级+非抢占式调度算法</p>
+<p>D. 代码可重入</p>
+<blockquote>
+<p>答案选C</p>
+<p>加大时间片会延迟系统的响应时间，代码可重入和静态页式管理与系统响应时间无关</p>
+</blockquote>
+<h3 id="4-在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对-错）"><a href="#4-在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对-错）" class="headerlink" title="4. 在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对/错）"></a>4. 在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对/错）</h3><blockquote>
+<p>答案是错</p>
+<p>通用操作系统采用时间片轮转调度算法，用户运行程序并不需要预定运行时间</p>
+</blockquote>
+<h3 id="5-（-）是操作系统必须提供的功能"><a href="#5-（-）是操作系统必须提供的功能" class="headerlink" title="5. （    ）是操作系统必须提供的功能"></a>5. （    ）是操作系统必须提供的功能</h3><p>A. GUI</p>
+<p>B. 为进程提供系统调用命令</p>
+<p>C. 中断处理</p>
+<p>D. 编译源程序</p>
+<blockquote>
+<p>答案选C</p>
+<p>计算机的各种错误都需要中断处理，用户态和核心态的切换也需要中断处理</p>
+</blockquote>
+<h3 id="6-下列操作系统的各个功能组成部分中，（-）可不需要硬件的支持"><a href="#6-下列操作系统的各个功能组成部分中，（-）可不需要硬件的支持" class="headerlink" title="6. 下列操作系统的各个功能组成部分中，（    ）可不需要硬件的支持"></a>6. 下列操作系统的各个功能组成部分中，（    ）可不需要硬件的支持</h3><p>A. 进程调度</p>
+<p>B. 时钟管理</p>
+<p>C. 地址映射</p>
+<p>D. 中断系统</p>
+<blockquote>
+<p>答案选A</p>
+<p>进程调度由调度算法决定CPU使用权，由操作系统实现，无需硬件支持；时钟管理和中断系统都依托于硬件；地址映射和中断指令中的重定位都离不开硬件支持</p>
+</blockquote>
+<h3 id="7-在中断发生后，进入中断处理的程序属于（-）"><a href="#7-在中断发生后，进入中断处理的程序属于（-）" class="headerlink" title="7. 在中断发生后，进入中断处理的程序属于（    ）"></a>7. 在中断发生后，进入中断处理的程序属于（    ）</h3><p>A. 用户程序</p>
+<p>B. 可能是应用程序，可能是操作系统程序</p>
+<p>C. 操作系统程序</p>
+<p>D. 既不是应用程序，也不是操作系统程序</p>
+<blockquote>
+<p>答案选C</p>
+<p>进入中断处理的程序在核心态执行，是操作系统程序</p>
+</blockquote>
+<h3 id="8-计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（-）完成的"><a href="#8-计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（-）完成的" class="headerlink" title="8. 计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（    ）完成的"></a>8. 计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（    ）完成的</h3><p>A. 硬件</p>
+<p>B. 核心态程序</p>
+<p>C. 用户程序</p>
+<p>D. 中断处理程序</p>
+<blockquote>
+<p>答案选A</p>
+<p>计算机通过硬件中断机制完成用户态到核心态的转换；D. 中断处理程序一般在核心态执行，故无法实现用户态到核心态的转换</p>
+</blockquote>
+<h3 id="9-下列选项中，在用户态执行的是（-）"><a href="#9-下列选项中，在用户态执行的是（-）" class="headerlink" title="9. 下列选项中，在用户态执行的是（    ）"></a>9. 下列选项中，在用户态执行的是（    ）</h3><p>A. 命令解释程序</p>
+<p>B. 缺页处理程序</p>
+<p>C. 进程调度程序</p>
+<p>D. 时钟中断处理程序</p>
+<blockquote>
+<p>答案选A</p>
+<p>命令解释程序属于命令接口，是面向用户的；缺页处理和时钟中断处理都是中断处理程序，在核心态执行；进程调度是操作系统内核进程，属于核心态</p>
+</blockquote>
+<h3 id="10-只能在核心态下运行的指令是（-）"><a href="#10-只能在核心态下运行的指令是（-）" class="headerlink" title="10. 只能在核心态下运行的指令是（  ）"></a>10. 只能在核心态下运行的指令是（  ）</h3><p>A. 读时钟指令</p>
+<p>B. 置时钟指令</p>
+<p>C. 取数指令</p>
+<p>D. 寄存器清零</p>
+<blockquote>
+<p>答案选B</p>
+<p>置时钟指令无法在用户态执行，如果一个程序反复置时钟，则会导致其他程序饥饿，显然不合理</p>
+</blockquote>
+<h3 id="11-在操作系统中，只能在核心态执行的指令是（-）"><a href="#11-在操作系统中，只能在核心态执行的指令是（-）" class="headerlink" title="11. 在操作系统中，只能在核心态执行的指令是（    ）"></a>11. 在操作系统中，只能在核心态执行的指令是（    ）</h3><p>A. 读时钟</p>
+<p>B. 取数</p>
+<p>C. 广义指令</p>
+<p>D. 寄存器清零</p>
+<blockquote>
+<p>答案选C</p>
+<p>广义指令就是系统调用命令，广义指令的调用在用户态，执行在核心态</p>
+</blockquote>
+<h3 id="12-只能在核心态执行的指令是（-）"><a href="#12-只能在核心态执行的指令是（-）" class="headerlink" title="12. 只能在核心态执行的指令是（   ）"></a>12. 只能在核心态执行的指令是（   ）</h3><p>A. 从内存中取数</p>
+<p>B. 将运算结果写入内存</p>
+<p>C. 算数运算</p>
+<p>D. 输入/输出</p>
+<blockquote>
+<p>答案选D</p>
+<p>因为输入输出涉及到中断操作</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjt4jz2ax000nf1l6jpw8jaem" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SE-Course-Info" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/05/SE-Course-Info/" class="article-date">
@@ -103,7 +228,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjt3te4kq0013l7l6628qly4i" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjt4jz2ba001cf1l64rp0sdmy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -167,7 +292,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjt3te4ko0011l7l6zn1r99tp" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjt4jz2b4000zf1l6b21lqk5j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -214,7 +339,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjt3te4kn000yl7l6zmz4htjc" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter3/" data-id="cjt4jz2b9001af1l6pj992u9s" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -273,7 +398,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjt3te4kl000tl7l6jgxcxkxp" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjt4jz2az000pf1l6g3habfzs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -368,7 +493,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjt3te4kk000ol7l6vvb0j0h9" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0304Review/" data-id="cjt4jz2av000lf1l692ekpdd9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -490,7 +615,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjt3te4kh000kl7l6opumhi64" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/MS-Tech-Lecture1/" data-id="cjt4jz2b2000uf1l6d1fuxfuc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li></ul>
@@ -531,7 +656,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Homework0311/" data-id="cjt3te4kd000dl7l65yfywwaf" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Homework0311/" data-id="cjt4jz2b1000sf1l6ajxd7g28" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -571,7 +696,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Course-Info/" data-id="cjt3te4kb000al7l6gul2zur4" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Course-Info/" data-id="cjt4jz2ak0006f1l69eicnkk6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -676,94 +801,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter3-1/" data-id="cjt3te4k70004l7l6yyuvn6qr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Compiler-Chapter2-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/Compiler-Chapter2-2/" class="article-date">
-  <time datetime="2019-03-04T16:27:43.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/Compiler-Chapter2-2/">Compiler Chapter2-2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chapter-2-cont"><a href="#Chapter-2-cont" class="headerlink" title="Chapter 2 (cont.)"></a>Chapter 2 (cont.)</h1><h2 id="2-4-From-an-NFA-to-a-DFA"><a href="#2-4-From-an-NFA-to-a-DFA" class="headerlink" title="2.4 From an NFA to a DFA"></a>2.4 From an NFA to a DFA</h2><h3 id="the-Subset-Construction"><a href="#the-Subset-Construction" class="headerlink" title="the Subset Construction"></a>the Subset Construction</h3><ol>
-<li>Compute the e-closure of the start state of M; this becomes the <em>start state</em>.</li>
-<li>穷举所有转移函数</li>
-<li>计算转移后的状态的e-closure</li>
-</ol>
-<ul>
-<li>double-circle: circles contain finish(accepting) state of M must be double-circle(?)</li>
-<li>多种转移函数时，在此课程中可以省略L-state</li>
-</ul>
-<h3 id="Minimizing-the-number-of-states-in-DFA"><a href="#Minimizing-the-number-of-states-in-DFA" class="headerlink" title="Minimizing the number of states in DFA"></a>Minimizing the number of states in DFA</h3><p>Algorithm:</p>
-<ol>
-<li>It begins with the most optimistic assumption possible: it creates two sets<ul>
-<li>One consisting of all the accepting states</li>
-<li>The other consisting of all the non-accepting states</li>
-</ul>
-</li>
-<li>Given this partition of the states of the states of the original DFA, consider the transitions on <em>each character</em> <strong>a</strong> of the alphabet.<ul>
-<li>If all accepting states have transitions on <strong>a</strong> to accepting states</li>
-<li>If all accepting states have transitions on <strong>a</strong> to non-accepting states</li>
-<li>If there are 2 accepting states s and t that have transitions on a that land in different sets</li>
-<li>If there are 2 accepting states s and t such that s has an a-transition to another accepting state, while t has no a-transition at all (i.e., an error transition)</li>
-<li>If any further sets are split, we must return and repeat the process form the beginning.</li>
-</ul>
-</li>
-</ol>
-<p>This process continues until</p>
-<ol>
-<li>all sets contain only one element (in which case, we have shown the original DFA to be minimal)</li>
-<li>until no further splitting of sets occurs.</li>
-</ol>
-<h2 id="Ext-TINY-language"><a href="#Ext-TINY-language" class="headerlink" title="Ext. TINY language"></a>Ext. TINY language</h2><h3 id="Reserved-Words"><a href="#Reserved-Words" class="headerlink" title="Reserved Words"></a>Reserved Words</h3><p>if, then, else, end, repeat, until, read, write</p>
-<h3 id="Special-Symbols"><a href="#Special-Symbols" class="headerlink" title="Special Symbols"></a>Special Symbols</h3><p>+, -, *, /, =, &lt;, (, ), ;, :=</p>
-<h3 id="Other"><a href="#Other" class="headerlink" title="Other"></a>Other</h3><p>numbers, identifier</p>
-<h2 id="2-5-Implementation-of-a-tiny-scanner"><a href="#2-5-Implementation-of-a-tiny-scanner" class="headerlink" title="2.5 Implementation of a tiny scanner"></a>2.5 Implementation of a tiny scanner</h2><p>see in slides Ch2</p>
-<h2 id="2-6-Use-of-Lex-to-generate-a-scanner-automatically"><a href="#2-6-Use-of-Lex-to-generate-a-scanner-automatically" class="headerlink" title="2.6 Use of Lex to generate a scanner automatically"></a>2.6 Use of Lex to generate a scanner automatically</h2><p>Input: a text file containing regular expressions, together with the actions to be taken when each expression is matched</p>
-<p>Output: contains C source code defining a procedure yylex that is a table-driven implementation of a DFA corresponding to the regular expressions of the input file, and that operates like a <strong>getToken</strong> procedure.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;definitions&#125;</span><br><span class="line">%%</span><br><span class="line">&#123;rules&#125;</span><br><span class="line">%%</span><br><span class="line">&#123;auxiliary routines&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="The-first-section-definitions"><a href="#The-first-section-definitions" class="headerlink" title="The first section: definitions"></a>The first section: definitions</h3><ul>
-<li>any C code that must be inserted external to any function should appear in this section between the delimiters %{ and %}, <strong><em>{Note the order of these characters!}</em></strong></li>
-<li>names for regular expressions must also be defined in this section</li>
-</ul>
-<h3 id="The-second-section-rules"><a href="#The-second-section-rules" class="headerlink" title="The second section: rules"></a>The second section: rules</h3><p>These consist of a sequence of regular expressions followed by the C code that is to be executed when the corresponding regular expression is matched.</p>
-<h3 id="The-third-section-auxiliary-routines"><a href="#The-third-section-auxiliary-routines" class="headerlink" title="The third section: auxiliary routines"></a>The third section: auxiliary routines</h3><p>Routines are called in the second section and not defined elsewhere.</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line">/* a Lex program that changes all numbers from decimal to hexadecimal notation,</span><br><span class="line">printing a summary statistic to stdeer</span><br><span class="line">*/</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">int count = 0;</span><br><span class="line">%&#125;</span><br><span class="line">digit [0-9]</span><br><span class="line">number &#123;digit&#125;+</span><br><span class="line">%%</span><br><span class="line">&#123; number &#125; &#123; int n = atoi (yytext);</span><br><span class="line">printf(“%x”, n);</span><br><span class="line">if (n &gt; 9) count ++; &#125;</span><br><span class="line">%%</span><br><span class="line">main( )</span><br><span class="line">&#123; yylex ( );</span><br><span class="line">fprintf(stdeer, “number of replacements = %d”, count);</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>yytext就是和number匹配的内容</li>
-<li>如果是数字则输出Hex，不是的话原样输出</li>
-<li>应用：程序美化器</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-2/" data-id="cjt3te4k60003l7l6el0jshds" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter3-1/" data-id="cjt4jz2ao000bf1l65mhc8dul" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -791,7 +829,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Summary/">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
     </div>
   </div>
 
@@ -801,7 +839,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 17.5px;">Software Engineering</a> <a href="/tags/Watermarking/" style="font-size: 12.5px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 15px;">研究生考试</a>
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 17.5px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 12.5px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 15px;">研究生考试</a>
     </div>
   </div>
 
@@ -823,6 +861,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/12/2019-03-12-Work-Summary/">2019/03/12 Work Summary</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
           </li>
         
@@ -836,10 +878,6 @@
         
           <li>
             <a href="/2019/03/07/Watermarking-Lecture2/">Watermarking-Lecture2</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/07/Watermarking-Lecture1/">Watermarking Lecture1</a>
           </li>
         
       </ul>
