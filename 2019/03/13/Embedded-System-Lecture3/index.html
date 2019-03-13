@@ -3,18 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Tag: Embedded System | BatInGotham&#39;s Blog</title>
+  <title>Embedded-System-Lecture3 | BatInGotham&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recording of my current work">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BatInGotham&#39;s Blog">
-<meta property="og:url" content="batingotham.github.io/tags/Embedded-System/index.html">
+  <meta name="description" content="Lecture 3: 认识CPU嵌入式CPU——MCUMCU：一定含有外设，且至少包含定时器和GPIO，一般还具有ADC、UART和PWM等。 CPU：只有指令译码部分，不含有任何外设，如x86 SoC：带有存储器及某个特定外设的MCU（如esp8266） 嵌入式CPU分类 8 bit vs 32 bit CISC vs RISC not ARM vs ARM without MMU vs wit">
+<meta name="keywords" content="Embedded System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Embedded-System-Lecture3">
+<meta property="og:url" content="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/index.html">
 <meta property="og:site_name" content="BatInGotham&#39;s Blog">
-<meta property="og:description" content="Recording of my current work">
+<meta property="og:description" content="Lecture 3: 认识CPU嵌入式CPU——MCUMCU：一定含有外设，且至少包含定时器和GPIO，一般还具有ADC、UART和PWM等。 CPU：只有指令译码部分，不含有任何外设，如x86 SoC：带有存储器及某个特定外设的MCU（如esp8266） 嵌入式CPU分类 8 bit vs 32 bit CISC vs RISC not ARM vs ARM without MMU vs wit">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-13T07:26:53.945Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BatInGotham&#39;s Blog">
-<meta name="twitter:description" content="Recording of my current work">
+<meta name="twitter:title" content="Embedded-System-Lecture3">
+<meta name="twitter:description" content="Lecture 3: 认识CPU嵌入式CPU——MCUMCU：一定含有外设，且至少包含定时器和GPIO，一般还具有ADC、UART和PWM等。 CPU：只有指令译码部分，不含有任何外设，如x86 SoC：带有存储器及某个特定外设的MCU（如esp8266） 嵌入式CPU分类 8 bit vs 32 bit CISC vs RISC not ARM vs ARM without MMU vs wit">
   
     <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
   
@@ -67,58 +69,79 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/13/Embedded-System-Lecture3/" class="archive-article-date">
-  <time datetime="2019-03-13T05:54:23.000Z" itemprop="datePublished">3月 13</time>
+        <section id="main"><article id="post-Embedded-System-Lecture3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/13/Embedded-System-Lecture3/" class="article-date">
+  <time datetime="2019-03-13T05:54:23.000Z" itemprop="datePublished">2019-03-13</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/13/Embedded-System-Lecture3/">Embedded-System-Lecture3</a>
+    <h1 class="article-title" itemprop="name">
+      Embedded-System-Lecture3
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/06/Embedded-System-Lecture2/" class="archive-article-date">
-  <time datetime="2019-03-06T06:05:40.000Z" itemprop="datePublished">3月 6</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/06/Embedded-System-Lecture2/">Embedded System Lecture2</a>
-    </h1>
-  
+        <h1 id="Lecture-3-认识CPU"><a href="#Lecture-3-认识CPU" class="headerlink" title="Lecture 3: 认识CPU"></a>Lecture 3: 认识CPU</h1><h2 id="嵌入式CPU——MCU"><a href="#嵌入式CPU——MCU" class="headerlink" title="嵌入式CPU——MCU"></a>嵌入式CPU——MCU</h2><p>MCU：一定含有外设，且至少包含定时器和GPIO，一般还具有ADC、UART和PWM等。</p>
+<p>CPU：只有指令译码部分，不含有任何外设，如x86</p>
+<p>SoC：带有存储器及某个特定外设的MCU（如esp8266）</p>
+<h2 id="嵌入式CPU分类"><a href="#嵌入式CPU分类" class="headerlink" title="嵌入式CPU分类"></a>嵌入式CPU分类</h2><ul>
+<li>8 bit vs 32 bit</li>
+<li>CISC vs RISC</li>
+<li>not ARM vs ARM</li>
+<li>without MMU vs with MMU</li>
+</ul>
+<h2 id="下载方式"><a href="#下载方式" class="headerlink" title="下载方式"></a>下载方式</h2><ul>
+<li>片上存储器</li>
+<li>外接存储器</li>
+</ul>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li>GPIO：数量、驱动能力</li>
+<li>UART：数量</li>
+<li>AD：分辨率、速度、数量</li>
+<li>定时器：数量、长度</li>
+<li>SPI：速度</li>
+<li>I2C：速度</li>
+<li>其他通信：CAN、USB</li>
+</ul>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><p>BGA：体积小、价格低、加工成本高</p>
+<p>QFN：手工焊接难</p>
+<p>QFP：加工成本低、适合手工焊接</p>
+<p>DIP：体积大、价格高</p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjt7blf8y000mw6l6dkc6b5e7" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/12/OS0312Review/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OS0312Review</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         

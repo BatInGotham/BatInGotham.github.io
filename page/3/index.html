@@ -69,6 +69,151 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Compiler-Course-Info" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/Compiler-Course-Info/" class="article-date">
+  <time datetime="2019-03-04T16:29:52.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/Compiler-Course-Info/">Compiler Course Info</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Course-Info"><a href="#Course-Info" class="headerlink" title="Course Info"></a>Course Info</h1><h2 id="Homework"><a href="#Homework" class="headerlink" title="Homework"></a>Homework</h2><p>in slides, hand-written, 2 notebooks should be prepared, in English.</p>
+<h2 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h2><p>hand-written, blank paper should be prepared</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Course-Info/" data-id="cjt7blf8b0005w6l6haun7nna" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Compiler-Chapter3-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/05/Compiler-Chapter3-1/" class="article-date">
+  <time datetime="2019-03-04T16:28:37.000Z" itemprop="datePublished">2019-03-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/05/Compiler-Chapter3-1/">Compiler Chapter3-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-3-Context-Free-Grammars-and-Parsing"><a href="#Chapter-3-Context-Free-Grammars-and-Parsing" class="headerlink" title="Chapter 3 Context-Free Grammars and Parsing"></a>Chapter 3 Context-Free Grammars and Parsing</h1><h2 id="the-parsing-process"><a href="#the-parsing-process" class="headerlink" title="the parsing process"></a>the parsing process</h2><p>The parser may be viewed as a <strong><em>function</em></strong> that takes as its input the sequence of tokens produced by the scanner and produces as its output the syntax tree.</p>
+<p>The structure of the syntax tree: 取决于语言的syntactic structure</p>
+<h3 id="How-to-treat-errors"><a href="#How-to-treat-errors" class="headerlink" title="How to treat errors?"></a>How to treat errors?</h3><ol>
+<li><p>Error in the scanner</p>
+<p>Generate an error token and consume the offending character.</p>
+</li>
+<li><p>Error in the parser</p>
+<ol>
+<li>Report an error message</li>
+<li>Recover from the error and continue parsing to find a many errors as possible为了一次性找出尽可能多的错误，可以减少Debug时间，有些Error是同一原因导致的</li>
+<li>Sometimes, a parser may perform <em>error repair</em>. 弥补缺失的部分，但是不准确，然而可以使得分析继续进行</li>
+</ol>
+</li>
+</ol>
+<h2 id="Context-free-grammars"><a href="#Context-free-grammars" class="headerlink" title="Context-free grammars"></a>Context-free grammars</h2><blockquote>
+<p>为何叫上下文无关？笛卡尔积左侧只有一个V，相反：context-relative grammar</p>
+</blockquote>
+<h3 id="A-Context-Free-Gramar-is-a-4-tuple"><a href="#A-Context-Free-Gramar-is-a-4-tuple" class="headerlink" title="A Context-Free Gramar is a 4-tuple"></a>A Context-Free Gramar is a 4-tuple</h3><ul>
+<li>V is a finite set of nonterminal symbols</li>
+<li>sigma is a finite set of terminal symbols</li>
+<li>S is a distinguished nonterminal, the start symbol</li>
+<li>→ is a finite relation, the productions</li>
+</ul>
+<h3 id="Derivations-and-the-language-defined-by-a-grammar"><a href="#Derivations-and-the-language-defined-by-a-grammar" class="headerlink" title="Derivations and the language defined by a grammar"></a>Derivations and the language defined by a grammar</h3><p>Let G = (V,sigma,S,→) be a CFG. The <strong><em>“directly derives”</em></strong> relation is defined as { (αAγ, αβγ) | A→β }</p>
+<blockquote>
+<p>Language: the set of strings</p>
+</blockquote>
+<p><strong><em>L(G) = { s | exp =&gt;</em> s }*</strong></p>
+<blockquote>
+<p>The set of all strings of token symbols obtained by derivations from the exp symbol is the language defined by the grammar of expressions.</p>
+</blockquote>
+<ul>
+<li><em>G</em> represents the expression grammar</li>
+<li><em>s</em> represents an arbitrary string of token symbols (sometimes called a <em>sentence</em>)</li>
+<li>The symble *s =&gt;** stands for a derivation consisting of a sequence of replacements as described earlier</li>
+<li>Grammar rules are sometimes called productions because they “produce” the strings in <em>L(G)</em> via derivations.</li>
+</ul>
+<p>Consider 2 rules</p>
+<ul>
+<li>A -&gt; A a | a 直接左递归 Left Recursive</li>
+<li>A -&gt; a A | a 直接右递归 Right Recursive</li>
+</ul>
+<p>两个表示的同一种Language: {a^n | n is an integer &gt;= 1}, regular expression (a+)，但是文法不一样，如下面的例子</p>
+<ul>
+<li>A -&gt; A a | b: b, ba, baaa, …</li>
+<li>A -&gt; a A | b: b, ab, aab, aaab, …</li>
+</ul>
+<p>语言的定义受制于文法的设计</p>
+<h2 id="Parse-Trees-and-Abstract-Syntax-Trees"><a href="#Parse-Trees-and-Abstract-Syntax-Trees" class="headerlink" title="Parse Trees and Abstract Syntax Trees"></a>Parse Trees and Abstract Syntax Trees</h2><h3 id="Parse-Trees"><a href="#Parse-Trees" class="headerlink" title="Parse Trees"></a>Parse Trees</h3><p>替换顺序可以最右推导/最左推导</p>
+<p><em>A parse tree</em> corresponding to a derivation is a labeled tree.</p>
+<p>用了parse tree以后，推导顺序不再重要了</p>
+<ul>
+<li>Leftmost/Rightmost derivation(self-study)</li>
+</ul>
+<p>parse tree怎么画，注意点：</p>
+<ol>
+<li>数字不要替换，只写number（对于语法分析来说不关心，都只是token，在语义环节才被考虑）</li>
+<li>不用标推导顺序</li>
+</ol>
+<h3 id="Abstract-Syntax-Trees"><a href="#Abstract-Syntax-Trees" class="headerlink" title="Abstract Syntax Trees"></a>Abstract Syntax Trees</h3><p>把具体的数字带入，标记在number下面，加括号()</p>
+<p>简化版本：抽象语法树，去掉所有的exp, number等，只保留树的结构以及数字、运算符</p>
+<ol>
+<li>Such trees represent abstractions of the actual source code token sequences, and the token sequences cannot be recovered from them (unlike parse trees). 不可逆！</li>
+<li>A parse tree is a representation for the structure of ordinary called <em>concrete syntax</em> when comparing it to <em>abstract syntax</em>.</li>
+<li><em>Abstract syntax</em> can be given a formal definition using a BNF-like notation, just like concrete syntax.</li>
+</ol>
+<p>树的形态取决于文法定义</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter3-1/" data-id="cjt7blf8a0004w6l6puf2l9hy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Compiler-Chapter2-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/05/Compiler-Chapter2-2/" class="article-date">
@@ -144,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-2/" data-id="cjt4jz2al0007f1l67g3bq1lz" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-2/" data-id="cjt7blf890003w6l6zoonuysd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -195,7 +340,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-1/" data-id="cjt4jz2ai0004f1l6rjwai4n9" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter2-1/" data-id="cjt7blf850001w6l6n5o5oog4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -259,7 +404,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter1/" data-id="cjt4jz2ah0003f1l65r2tmccr" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/Compiler-Chapter1/" data-id="cjt7blf8w000kw6l6r6gfenyu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -306,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/hello-world/" data-id="cjt4jz2b70016f1l6sxxg9qdn" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/hello-world/" data-id="cjt7blf9d001dw6l6wcrgs444" class="article-share-link">Share</a>
       
       
     </footer>
@@ -342,7 +487,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 10px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 17.5px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 12.5px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 15px;">研究生考试</a>
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 13.33px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 16.67px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 13.33px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16.67px;">研究生考试</a>
     </div>
   </div>
 
@@ -364,6 +509,14 @@
       <ul>
         
           <li>
+            <a href="/2019/03/13/Embedded-System-Lecture3/">Embedded-System-Lecture3</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/12/OS0312Review/">OS0312Review</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/12/2019-03-12-Work-Summary/">2019/03/12 Work Summary</a>
           </li>
         
@@ -373,14 +526,6 @@
         
           <li>
             <a href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/11/SE-Chapter22/">SE-Chapter22</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/07/Watermarking-Lecture2/">Watermarking-Lecture2</a>
           </li>
         
       </ul>
