@@ -3,18 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>Tag: Watermarking | BatInGotham&#39;s Blog</title>
+  <title>Watermarking-Lecture3 | BatInGotham&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Recording of my current work">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BatInGotham&#39;s Blog">
-<meta property="og:url" content="batingotham.github.io/tags/Watermarking/index.html">
+  <meta name="description" content="Lecture 3: Models of WatermarkingComponents of Communications Systems x is signal can be transmitted over the channel, but m is not. Source coder: draw symbols in some alphabet. Modulator: converts a">
+<meta name="keywords" content="Watermarking">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Watermarking-Lecture3">
+<meta property="og:url" content="batingotham.github.io/2019/03/14/Watermarking-Lecture3/index.html">
 <meta property="og:site_name" content="BatInGotham&#39;s Blog">
-<meta property="og:description" content="Recording of my current work">
+<meta property="og:description" content="Lecture 3: Models of WatermarkingComponents of Communications Systems x is signal can be transmitted over the channel, but m is not. Source coder: draw symbols in some alphabet. Modulator: converts a">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-14T07:17:47.907Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BatInGotham&#39;s Blog">
-<meta name="twitter:description" content="Recording of my current work">
+<meta name="twitter:title" content="Watermarking-Lecture3">
+<meta name="twitter:description" content="Lecture 3: Models of WatermarkingComponents of Communications Systems x is signal can be transmitted over the channel, but m is not. Source coder: draw symbols in some alphabet. Modulator: converts a">
   
     <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
   
@@ -67,77 +69,93 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/14/Watermarking-Lecture3/" class="archive-article-date">
-  <time datetime="2019-03-14T05:56:59.000Z" itemprop="datePublished">3月 14</time>
+        <section id="main"><article id="post-Watermarking-Lecture3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/14/Watermarking-Lecture3/" class="article-date">
+  <time datetime="2019-03-14T05:56:59.000Z" itemprop="datePublished">2019-03-14</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/14/Watermarking-Lecture3/">Watermarking-Lecture3</a>
+    <h1 class="article-title" itemprop="name">
+      Watermarking-Lecture3
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/07/Watermarking-Lecture2/" class="archive-article-date">
-  <time datetime="2019-03-07T06:04:10.000Z" itemprop="datePublished">3月 7</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/07/Watermarking-Lecture2/">Watermarking-Lecture2</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/03/07/Watermarking-Lecture1/" class="archive-article-date">
-  <time datetime="2019-03-07T05:07:51.000Z" itemprop="datePublished">3月 7</time>
-</a>
+        <h1 id="Lecture-3-Models-of-Watermarking"><a href="#Lecture-3-Models-of-Watermarking" class="headerlink" title="Lecture 3: Models of Watermarking"></a>Lecture 3: Models of Watermarking</h1><h2 id="Components-of-Communications-Systems"><a href="#Components-of-Communications-Systems" class="headerlink" title="Components of Communications Systems"></a>Components of Communications Systems</h2><ul>
+<li>x is signal can be transmitted over the channel, but m is not.<ul>
+<li>Source coder: draw symbols in some alphabet.</li>
+<li>Modulator: converts a sequence of symbols into a physical signal.</li>
+</ul>
+</li>
+<li>Transmission in channel add noise n.</li>
+</ul>
+<p>Input message —(m)–&gt; Channel encoder —x–&gt; (+Noise) —(y)–&gt; Channel decoder —(m_n)–&gt; Output message</p>
+<h3 id="Classes-of-Transmission-Channels"><a href="#Classes-of-Transmission-Channels" class="headerlink" title="Classes of Transmission Channels"></a>Classes of Transmission Channels</h3><p>According to the type of noise function</p>
+<ul>
+<li>Additive noise y=x+n</li>
+<li>Fading noise y=v[t]x+n</li>
+</ul>
+<h3 id="Secure-Transmission"><a href="#Secure-Transmission" class="headerlink" title="Secure Transmission"></a>Secure Transmission</h3><ul>
+<li><p>Message layer: cryptography, preventing unauthorized read/write</p>
+</li>
+<li><p>Transport layer: spread spectrum communication</p>
+<p>Frequency hopping</p>
+<p>Cannot monitor the transmission</p>
+<p>Huge cost/power to jam the transmission</p>
+</li>
+</ul>
+<h2 id="Communication"><a href="#Communication" class="headerlink" title="Communication"></a>Communication</h2><h3 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h3><p>Deliver the message from the embedder to decoder.</p>
+<ul>
+<li>Not suitable for authentication system.</li>
+</ul>
+<p>How to use cover work?</p>
+<ul>
+<li>As noise</li>
+<li>As side information</li>
+<li>The second message</li>
+</ul>
+<h3 id="Blind-Embedding-E-BLIND"><a href="#Blind-Embedding-E-BLIND" class="headerlink" title="Blind Embedding (E_BLIND)"></a>Blind Embedding (E_BLIND)</h3><p>One bit only message m = 0|1</p>
+<ul>
+<li>A reference pattern (key) wr.</li>
+<li>Encoding into to message pattern: wm=(2m-1)wr.</li>
+<li>Modulate to added pattern: wa=a*wm.</li>
+<li>Embedding: cw=co+wa.</li>
+</ul>
+<h3 id="Linear-Correlation-Decoder-D-LC"><a href="#Linear-Correlation-Decoder-D-LC" class="headerlink" title="Linear Correlation Decoder (D_LC)"></a>Linear Correlation Decoder (D_LC)</h3>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/03/07/Watermarking-Lecture1/">Watermarking Lecture1</a>
-    </h1>
-  
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjt8bk8nx001hmwl6poery1sr" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
 
-    </header>
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/13/Embedded-System-Lecture3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Embedded-System-Lecture3</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
