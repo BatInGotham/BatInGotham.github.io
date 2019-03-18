@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="BatInGotham&#39;s Blog">
 <meta property="og:description" content="Chapter 4 Top-Down ParsingRecursive-Descent ParsingThe idea of Recursive-Descent Parsing  The grammar rule for a non-terminal A as a definition for a procedure to recognize an A The right-hand side of">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T03:55:49.495Z">
+<meta property="og:updated_time" content="2019-03-18T02:43:03.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Compiler-Chapter4-1">
 <meta name="twitter:description" content="Chapter 4 Top-Down ParsingRecursive-Descent ParsingThe idea of Recursive-Descent Parsing  The grammar rule for a non-terminal A as a definition for a procedure to recognize an A The right-hand side of">
@@ -115,8 +115,10 @@
 </ol>
 <h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><blockquote>
 <p> Main idea: LL(1) Parsing uses an explicit stack rather than recursive calls to perform a parse.</p>
-<p>Want to decide which production to apply based on next symbol</p>
+<p> Want to decide which production to apply based on next symbol</p>
 </blockquote>
+<p>L: from Left to right</p>
+<p>L: production rule is Left-most derivation</p>
 <h3 id="The-two-actions"><a href="#The-two-actions" class="headerlink" title="The two actions:"></a>The two actions:</h3><ol>
 <li>Generate: replace a non-terminal A at the top of the stack by a string a(in reverse) using a grammar rule A -&gt; a</li>
 <li>Match: match a token on top of the stack with the next input token</li>
@@ -148,11 +150,39 @@
 <li>T is the set of terminals or tokens (including $)</li>
 <li>Any entrances remaining empty represent potential errors</li>
 </ul>
+<h3 id="Definition-of-LL-1-Grammar"><a href="#Definition-of-LL-1-Grammar" class="headerlink" title="Definition of LL(1) Grammar:"></a>Definition of LL(1) Grammar:</h3><ul>
+<li>A grammar is an LL(1) grammar if the associated LL(1) parsing table has at most one production in each table entry.</li>
+<li>An LL(1) grammar <u>cannot</u> be <em>ambiguous</em>.</li>
+</ul>
+<h3 id="Draw-LL-1-Parsing-Table"><a href="#Draw-LL-1-Parsing-Table" class="headerlink" title="Draw LL(1) Parsing Table"></a>Draw LL(1) Parsing Table</h3><h3 id="Algorithm-for-general-left-recursion-removal"><a href="#Algorithm-for-general-left-recursion-removal" class="headerlink" title="Algorithm for general left recursion removal:"></a>Algorithm for general left recursion removal:</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j:=<span class="number">1</span> <span class="keyword">to</span> i-<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">		<span class="comment">// replace each grammar rule choice of the form</span></span><br><span class="line">		<span class="comment">// A_i -&gt; A_j b by the rule</span></span><br><span class="line">			A_i -&gt; a_1 b|a_2 b|...</span><br><span class="line">		<span class="comment">// where A_j -&gt; a_1|a_2|... is the current rule for A_j</span></span><br><span class="line">		<span class="comment">// remove, if necessary, immediate left recursion involving A_i</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Left recursion removal does not change the language, but change the grammar and the parse tree.</strong></li>
+<li><strong>This change causes a complication for the parser.</strong></li>
+</ul>
+<h3 id="left-recursion-removal-and-left-factoring"><a href="#left-recursion-removal-and-left-factoring" class="headerlink" title="left recursion removal and left factoring"></a>left recursion removal and left factoring</h3><p>Left factoring is required when two or more grammar rule choices share a common prefix string.</p>
+<p>和提取公因式很像</p>
+<h3 id="Syntax-Tree-Construction-in-LL-1-Parsing"><a href="#Syntax-Tree-Construction-in-LL-1-Parsing" class="headerlink" title="Syntax Tree Construction in LL(1) Parsing"></a>Syntax Tree Construction in LL(1) Parsing</h3><p>It is more difficult for LL(1) to adapt to syntax tree construction.</p>
+<ul>
+<li>The structure of the syntax tree can be obscured by left factoring and left recursion removal</li>
+<li>The parsing tack represents only predicated structure, not structure that have been actually seen.</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>An extra stack is used to keep track of syntax tree nodes</li>
+<li>“Action” markers are placed in the parsing stack to indicated when and what actions on the tree stack should occur.</li>
+</ul>
+<p>How to compute the arithmetic value of the expression.</p>
+<ol>
+<li>Use a separate stack to store the intermediate values of the computation, called the value stack;</li>
+<li>Schedule two operations on that stack: A push of a number; The addition of two numbers.</li>
+<li>PUSH can be performed by the match procedure</li>
+<li>ADDITION should be scheduled on the stack, by pushing a special symbol (such as #) on the parsing stack.</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtdoeejm000c9el6n89ue8an" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtdtf670000e6wl6bwuqrjks" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -226,6 +256,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/18/Compiler-Chapter4-2/">Compiler-Chapter4-2</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/18/SE-Chapter7/">SE-Chapter7</a>
           </li>
         
@@ -239,10 +273,6 @@
         
           <li>
             <a href="/2019/03/14/Watermarking-Lecture3/">Watermarking-Lecture3</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/13/Embedded-System-Lecture3/">Embedded-System-Lecture3</a>
           </li>
         
       </ul>

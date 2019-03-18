@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  
+  <title>Compiler-Chapter4-2 | BatInGotham&#39;s Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Chapter 4 (cont.)First and Follow SetsFirst SetsDefinition: Let X be a grammar symbol (a terminal or non-terminal) or epsilon. Then First(X) is a set of terminals of epsilon, which is defined as follo">
+<meta name="keywords" content="Compiler">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler-Chapter4-2">
+<meta property="og:url" content="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/index.html">
+<meta property="og:site_name" content="BatInGotham&#39;s Blog">
+<meta property="og:description" content="Chapter 4 (cont.)First and Follow SetsFirst SetsDefinition: Let X be a grammar symbol (a terminal or non-terminal) or epsilon. Then First(X) is a set of terminals of epsilon, which is defined as follo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-18T03:49:17.316Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Compiler-Chapter4-2">
+<meta name="twitter:description" content="Chapter 4 (cont.)First and Follow SetsFirst SetsDefinition: Let X be a grammar symbol (a terminal or non-terminal) or epsilon. Then First(X) is a set of terminals of epsilon, which is defined as follo">
+  
+    <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">BatInGotham&#39;s Blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Coder, (Practising) Game Designer</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="batingotham.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Compiler-Chapter4-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/18/Compiler-Chapter4-2/" class="article-date">
+  <time datetime="2019-03-18T01:37:24.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Compiler-Chapter4-2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-4-cont"><a href="#Chapter-4-cont" class="headerlink" title="Chapter 4 (cont.)"></a>Chapter 4 (cont.)</h1><h2 id="First-and-Follow-Sets"><a href="#First-and-Follow-Sets" class="headerlink" title="First and Follow Sets"></a>First and Follow Sets</h2><h3 id="First-Sets"><a href="#First-Sets" class="headerlink" title="First Sets"></a>First Sets</h3><p>Definition:</p>
+<p>Let X be a grammar symbol (a terminal or non-terminal) or epsilon. Then First(X) is a set of terminals of epsilon, which is defined as follows:</p>
+<ol>
+<li>If X is a terminal or epsilon, then First(X) = {X};</li>
+<li>If X is a non-terminal, then for each production choice X -&gt; X1 X2 … Xn, First(X) contains First(X1) - {epsilon}.</li>
+</ol>
+<p>Let α = X1 X2 … Xn be a string of terminals and non-terminals,</p>
+<p>First(α) is defined as follows:</p>
+<ol>
+<li>First(α) contains First(X1) - {epsilon};</li>
+<li>For each i=2…n, if for all k=1,…,i-1, First(X_k) contains epsilon, then First(α) contains First(X_k) - {epsilon};</li>
+<li>If all the set First(X1)…First(Xn) contain epsilon, the First(α) contains epsilon.</li>
+</ol>
+<p>A non-terminal A is <strong>nullable</strong> if there exists a derivation A =&gt; *epsilon</p>
+<p>Theorem: A non-terminal A is nullable if and only if First(A) contains epsilon.</p>
+<h3 id="Follow-Sets"><a href="#Follow-Sets" class="headerlink" title="Follow Sets"></a>Follow Sets</h3><p>Definition:</p>
+<p>Given a non-terminal A, the set Follow(A) is defined as follows.</p>
+<ol>
+<li>If A is the start symbol, the $ is in the Follow(A).</li>
+<li>If there is a production B -&gt; αAγ, then First(γ) - {epsilon} is in Follow(A).</li>
+<li>If there is a production B -&gt; αAγ, such that epsilon in First(γ), then Follow(A) contains Follow(B).</li>
+</ol>
+<p>Notes:</p>
+<ol>
+<li>The symbol $ is used to mark the end of the input</li>
+<li>The empty “pseudo-token” epsilon is <strong>never</strong> an element of a follow set</li>
+<li>Follow sets are defined only for non-terminal</li>
+</ol>
+<ul>
+<li>Follow sets work “on the right” in production α</li>
+<li>First sets work “on the left” in the production.</li>
+<li>Given a grammar rule A -&gt; αB, Follow(B) will contain Follow(A),the opposite of the situation for first sets, if A -&gt; B α, First(A) contains First(B),except possibly for ε.</li>
+</ul>
+<h3 id="Use-First-and-Follow-Sets-Constructing-LL-1-Parsing-Tables"><a href="#Use-First-and-Follow-Sets-Constructing-LL-1-Parsing-Tables" class="headerlink" title="Use First and Follow Sets Constructing LL(1) Parsing Tables"></a>Use First and Follow Sets Constructing LL(1) Parsing Tables</h3><h2 id="Error-Recovery"><a href="#Error-Recovery" class="headerlink" title="Error Recovery"></a>Error Recovery</h2><h3 id="Different-levels-of-response-to-errors"><a href="#Different-levels-of-response-to-errors" class="headerlink" title="Different levels of response to errors."></a>Different levels of response to errors.</h3><p>Given a meaningful error message</p>
+<p>Determine as closely as possible the location where that error has occurred</p>
+<p>Some form of error correction (error repair)</p>
+<p>The parser attempts to infer a correct program from the incorrect one given</p>
+<h3 id="Most-of-the-techniques-for-error-recovery-are-ad-hoc-and-general-principles-are-hard-to-come-by"><a href="#Most-of-the-techniques-for-error-recovery-are-ad-hoc-and-general-principles-are-hard-to-come-by" class="headerlink" title="Most of the techniques for error recovery are ad hoc, and general principles are hard to come by."></a>Most of the techniques for error recovery are ad hoc, and general principles are hard to come by.</h3><h3 id="Some-important-considerations-that-apply-are-the-following"><a href="#Some-important-considerations-that-apply-are-the-following" class="headerlink" title="Some important considerations that apply are the following"></a>Some important considerations that apply are the following</h3><ol>
+<li>To determine that an error has occurred as soon as possible.</li>
+<li>After an error has occurred, pick a likely place to resume the parse try to parse as much of the code as possible</li>
+<li>To avoid the error cascade problem</li>
+<li>To avoid infinite loops on error</li>
+</ol>
+<h3 id="The-important-decisions-to-be-made-in-this-error-recovery-method"><a href="#The-important-decisions-to-be-made-in-this-error-recovery-method" class="headerlink" title="The important decisions to be made in this error recovery method"></a>The important decisions to be made in this error recovery method</h3><ol>
+<li>What tokens to add to the synchronizing set at each point in the parse?<br>Follow sets are important candidates</li>
+<li>First sets:<ul>
+<li>Prevent the error handler from skipping important tokens that begin major new constructs</li>
+<li>Detect errors early in the parse.</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">exp</span><span class="params">(synchset)</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function">	<span class="title">checkinput</span><span class="params">(<span class="comment">&#123;(,number&#125;</span>,synchset&#125;</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">if</span> <span class="keyword">not</span> (token <span class="keyword">in</span> synchset)</span> <span class="title">then</span></span></span><br><span class="line"><span class="function">		<span class="title">term</span><span class="params">(synchset)</span>;</span></span><br><span class="line">		<span class="keyword">while</span> token=+ <span class="keyword">or</span> token=- <span class="keyword">do</span></span><br><span class="line">			match(token);</span><br><span class="line">			term(synchset);</span><br><span class="line">		<span class="keyword">end</span> <span class="keyword">while</span></span><br><span class="line">		checkinput(synchset,<span class="comment">&#123;(,number&#125;</span>);</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> exp;</span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">factor</span><span class="params">(synchset)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	checkinput(<span class="comment">&#123;(,number&#125;</span>,synchset&#125;;</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> (token <span class="keyword">in</span> synchset) <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">case</span> token <span class="keyword">of</span></span><br><span class="line">        	( : match( ( );</span><br><span class="line">        		exp( <span class="comment">&#123; ) &#125;</span>);</span><br><span class="line">        		match());</span><br><span class="line">        	number:</span><br><span class="line">        		match(number);</span><br><span class="line">			<span class="keyword">else</span> error;</span><br><span class="line">		<span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line">		checkinput(synchset,<span class="comment">&#123; (,number&#125;</span>);</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> factor;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/" data-id="cjtdtf66z000c6wl68v3j4nxi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/03/18/SE-Chapter7/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SE-Chapter7</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Summary/">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 12px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 18px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 14px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16px;">研究生考试</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">三月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/03/18/Compiler-Chapter4-2/">Compiler-Chapter4-2</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/18/SE-Chapter7/">SE-Chapter7</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/18/SE-Chapter6/">SE-Chapter6</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/16/Compiler-Regular-Expression/">Compiler-Regular Expression</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/14/Watermarking-Lecture3/">Watermarking-Lecture3</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 Qian, Sun<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

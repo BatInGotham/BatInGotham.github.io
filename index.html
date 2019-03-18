@@ -69,6 +69,96 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Compiler-Chapter4-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/18/Compiler-Chapter4-2/" class="article-date">
+  <time datetime="2019-03-18T01:37:24.000Z" itemprop="datePublished">2019-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/18/Compiler-Chapter4-2/">Compiler-Chapter4-2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-4-cont"><a href="#Chapter-4-cont" class="headerlink" title="Chapter 4 (cont.)"></a>Chapter 4 (cont.)</h1><h2 id="First-and-Follow-Sets"><a href="#First-and-Follow-Sets" class="headerlink" title="First and Follow Sets"></a>First and Follow Sets</h2><h3 id="First-Sets"><a href="#First-Sets" class="headerlink" title="First Sets"></a>First Sets</h3><p>Definition:</p>
+<p>Let X be a grammar symbol (a terminal or non-terminal) or epsilon. Then First(X) is a set of terminals of epsilon, which is defined as follows:</p>
+<ol>
+<li>If X is a terminal or epsilon, then First(X) = {X};</li>
+<li>If X is a non-terminal, then for each production choice X -&gt; X1 X2 … Xn, First(X) contains First(X1) - {epsilon}.</li>
+</ol>
+<p>Let α = X1 X2 … Xn be a string of terminals and non-terminals,</p>
+<p>First(α) is defined as follows:</p>
+<ol>
+<li>First(α) contains First(X1) - {epsilon};</li>
+<li>For each i=2…n, if for all k=1,…,i-1, First(X_k) contains epsilon, then First(α) contains First(X_k) - {epsilon};</li>
+<li>If all the set First(X1)…First(Xn) contain epsilon, the First(α) contains epsilon.</li>
+</ol>
+<p>A non-terminal A is <strong>nullable</strong> if there exists a derivation A =&gt; *epsilon</p>
+<p>Theorem: A non-terminal A is nullable if and only if First(A) contains epsilon.</p>
+<h3 id="Follow-Sets"><a href="#Follow-Sets" class="headerlink" title="Follow Sets"></a>Follow Sets</h3><p>Definition:</p>
+<p>Given a non-terminal A, the set Follow(A) is defined as follows.</p>
+<ol>
+<li>If A is the start symbol, the $ is in the Follow(A).</li>
+<li>If there is a production B -&gt; αAγ, then First(γ) - {epsilon} is in Follow(A).</li>
+<li>If there is a production B -&gt; αAγ, such that epsilon in First(γ), then Follow(A) contains Follow(B).</li>
+</ol>
+<p>Notes:</p>
+<ol>
+<li>The symbol $ is used to mark the end of the input</li>
+<li>The empty “pseudo-token” epsilon is <strong>never</strong> an element of a follow set</li>
+<li>Follow sets are defined only for non-terminal</li>
+</ol>
+<ul>
+<li>Follow sets work “on the right” in production α</li>
+<li>First sets work “on the left” in the production.</li>
+<li>Given a grammar rule A -&gt; αB, Follow(B) will contain Follow(A),the opposite of the situation for first sets, if A -&gt; B α, First(A) contains First(B),except possibly for ε.</li>
+</ul>
+<h3 id="Use-First-and-Follow-Sets-Constructing-LL-1-Parsing-Tables"><a href="#Use-First-and-Follow-Sets-Constructing-LL-1-Parsing-Tables" class="headerlink" title="Use First and Follow Sets Constructing LL(1) Parsing Tables"></a>Use First and Follow Sets Constructing LL(1) Parsing Tables</h3><h2 id="Error-Recovery"><a href="#Error-Recovery" class="headerlink" title="Error Recovery"></a>Error Recovery</h2><h3 id="Different-levels-of-response-to-errors"><a href="#Different-levels-of-response-to-errors" class="headerlink" title="Different levels of response to errors."></a>Different levels of response to errors.</h3><p>Given a meaningful error message</p>
+<p>Determine as closely as possible the location where that error has occurred</p>
+<p>Some form of error correction (error repair)</p>
+<p>The parser attempts to infer a correct program from the incorrect one given</p>
+<h3 id="Most-of-the-techniques-for-error-recovery-are-ad-hoc-and-general-principles-are-hard-to-come-by"><a href="#Most-of-the-techniques-for-error-recovery-are-ad-hoc-and-general-principles-are-hard-to-come-by" class="headerlink" title="Most of the techniques for error recovery are ad hoc, and general principles are hard to come by."></a>Most of the techniques for error recovery are ad hoc, and general principles are hard to come by.</h3><h3 id="Some-important-considerations-that-apply-are-the-following"><a href="#Some-important-considerations-that-apply-are-the-following" class="headerlink" title="Some important considerations that apply are the following"></a>Some important considerations that apply are the following</h3><ol>
+<li>To determine that an error has occurred as soon as possible.</li>
+<li>After an error has occurred, pick a likely place to resume the parse try to parse as much of the code as possible</li>
+<li>To avoid the error cascade problem</li>
+<li>To avoid infinite loops on error</li>
+</ol>
+<h3 id="The-important-decisions-to-be-made-in-this-error-recovery-method"><a href="#The-important-decisions-to-be-made-in-this-error-recovery-method" class="headerlink" title="The important decisions to be made in this error recovery method"></a>The important decisions to be made in this error recovery method</h3><ol>
+<li>What tokens to add to the synchronizing set at each point in the parse?<br>Follow sets are important candidates</li>
+<li>First sets:<ul>
+<li>Prevent the error handler from skipping important tokens that begin major new constructs</li>
+<li>Detect errors early in the parse.</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">exp</span><span class="params">(synchset)</span></span></span><br><span class="line"><span class="function"><span class="title">begin</span></span></span><br><span class="line"><span class="function">	<span class="title">checkinput</span><span class="params">(<span class="comment">&#123;(,number&#125;</span>,synchset&#125;</span></span></span><br><span class="line"><span class="function"><span class="params">	<span class="keyword">if</span> <span class="keyword">not</span> (token <span class="keyword">in</span> synchset)</span> <span class="title">then</span></span></span><br><span class="line"><span class="function">		<span class="title">term</span><span class="params">(synchset)</span>;</span></span><br><span class="line">		<span class="keyword">while</span> token=+ <span class="keyword">or</span> token=- <span class="keyword">do</span></span><br><span class="line">			match(token);</span><br><span class="line">			term(synchset);</span><br><span class="line">		<span class="keyword">end</span> <span class="keyword">while</span></span><br><span class="line">		checkinput(synchset,<span class="comment">&#123;(,number&#125;</span>);</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> exp;</span><br><span class="line"><span class="function"><span class="keyword">procedure</span> <span class="title">factor</span><span class="params">(synchset)</span>;</span></span><br><span class="line"><span class="keyword">begin</span></span><br><span class="line">	checkinput(<span class="comment">&#123;(,number&#125;</span>,synchset&#125;;</span><br><span class="line">	<span class="keyword">if</span> <span class="keyword">not</span> (token <span class="keyword">in</span> synchset) <span class="keyword">then</span></span><br><span class="line">		<span class="keyword">case</span> token <span class="keyword">of</span></span><br><span class="line">        	( : match( ( );</span><br><span class="line">        		exp( <span class="comment">&#123; ) &#125;</span>);</span><br><span class="line">        		match());</span><br><span class="line">        	number:</span><br><span class="line">        		match(number);</span><br><span class="line">			<span class="keyword">else</span> error;</span><br><span class="line">		<span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line">		checkinput(synchset,<span class="comment">&#123; (,number&#125;</span>);</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> factor;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/" data-id="cjtdtf66z000c6wl68v3j4nxi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SE-Chapter7" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/18/SE-Chapter7/" class="article-date">
@@ -167,7 +257,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter7/" data-id="cjtdoeek500189el6ih1er980" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter7/" data-id="cjtdtf67i001f6wl6tyn9oi2w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -214,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter6/" data-id="cjtdoeek400169el6yvdbbstu" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter6/" data-id="cjtdtf67h001d6wl6vilv6owd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -262,7 +352,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/16/Compiler-Regular-Expression/" data-id="cjtdoeejo000e9el66odbmq72" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/16/Compiler-Regular-Expression/" data-id="cjtdtf673000j6wl6d11w8nl7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -340,7 +430,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjtdoeekb001n9el69jcoa2f9" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjtdtf67l001l6wl608dxanfs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -404,7 +494,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjtdoeejv000m9el6myqecjol" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjtdtf676000o6wl6fm79ari9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -511,7 +601,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/12/OS0312Review/" data-id="cjtdoeejz000s9el6tsbmlq42" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/12/OS0312Review/" data-id="cjtdtf67e00166wl6aaguyqo5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -554,7 +644,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/12/2019-03-12-Work-Summary/" data-id="cjtdoeejb00039el6ymq5wl4e" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/12/2019-03-12-Work-Summary/" data-id="cjtdtf66j00006wl68foada3c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Summary/">Summary</a></li></ul>
@@ -612,8 +702,10 @@
 </ol>
 <h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><blockquote>
 <p> Main idea: LL(1) Parsing uses an explicit stack rather than recursive calls to perform a parse.</p>
-<p>Want to decide which production to apply based on next symbol</p>
+<p> Want to decide which production to apply based on next symbol</p>
 </blockquote>
+<p>L: from Left to right</p>
+<p>L: production rule is Left-most derivation</p>
 <h3 id="The-two-actions"><a href="#The-two-actions" class="headerlink" title="The two actions:"></a>The two actions:</h3><ol>
 <li>Generate: replace a non-terminal A at the top of the stack by a string a(in reverse) using a grammar rule A -&gt; a</li>
 <li>Match: match a token on top of the stack with the next input token</li>
@@ -645,11 +737,39 @@
 <li>T is the set of terminals or tokens (including $)</li>
 <li>Any entrances remaining empty represent potential errors</li>
 </ul>
+<h3 id="Definition-of-LL-1-Grammar"><a href="#Definition-of-LL-1-Grammar" class="headerlink" title="Definition of LL(1) Grammar:"></a>Definition of LL(1) Grammar:</h3><ul>
+<li>A grammar is an LL(1) grammar if the associated LL(1) parsing table has at most one production in each table entry.</li>
+<li>An LL(1) grammar <u>cannot</u> be <em>ambiguous</em>.</li>
+</ul>
+<h3 id="Draw-LL-1-Parsing-Table"><a href="#Draw-LL-1-Parsing-Table" class="headerlink" title="Draw LL(1) Parsing Table"></a>Draw LL(1) Parsing Table</h3><h3 id="Algorithm-for-general-left-recursion-removal"><a href="#Algorithm-for-general-left-recursion-removal" class="headerlink" title="Algorithm for general left recursion removal:"></a>Algorithm for general left recursion removal:</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j:=<span class="number">1</span> <span class="keyword">to</span> i-<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">		<span class="comment">// replace each grammar rule choice of the form</span></span><br><span class="line">		<span class="comment">// A_i -&gt; A_j b by the rule</span></span><br><span class="line">			A_i -&gt; a_1 b|a_2 b|...</span><br><span class="line">		<span class="comment">// where A_j -&gt; a_1|a_2|... is the current rule for A_j</span></span><br><span class="line">		<span class="comment">// remove, if necessary, immediate left recursion involving A_i</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Left recursion removal does not change the language, but change the grammar and the parse tree.</strong></li>
+<li><strong>This change causes a complication for the parser.</strong></li>
+</ul>
+<h3 id="left-recursion-removal-and-left-factoring"><a href="#left-recursion-removal-and-left-factoring" class="headerlink" title="left recursion removal and left factoring"></a>left recursion removal and left factoring</h3><p>Left factoring is required when two or more grammar rule choices share a common prefix string.</p>
+<p>和提取公因式很像</p>
+<h3 id="Syntax-Tree-Construction-in-LL-1-Parsing"><a href="#Syntax-Tree-Construction-in-LL-1-Parsing" class="headerlink" title="Syntax Tree Construction in LL(1) Parsing"></a>Syntax Tree Construction in LL(1) Parsing</h3><p>It is more difficult for LL(1) to adapt to syntax tree construction.</p>
+<ul>
+<li>The structure of the syntax tree can be obscured by left factoring and left recursion removal</li>
+<li>The parsing tack represents only predicated structure, not structure that have been actually seen.</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>An extra stack is used to keep track of syntax tree nodes</li>
+<li>“Action” markers are placed in the parsing stack to indicated when and what actions on the tree stack should occur.</li>
+</ul>
+<p>How to compute the arithmetic value of the expression.</p>
+<ol>
+<li>Use a separate stack to store the intermediate values of the computation, called the value stack;</li>
+<li>Schedule two operations on that stack: A push of a number; The addition of two numbers.</li>
+<li>PUSH can be performed by the match procedure</li>
+<li>ADDITION should be scheduled on the stack, by pushing a special symbol (such as #) on the parsing stack.</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtdoeejm000c9el6n89ue8an" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtdtf670000e6wl6bwuqrjks" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -746,7 +866,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjtdoeejw000n9el6d6cqb52l" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjtdtf66u00056wl6fgfajpvz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -758,116 +878,10 @@
 
 
   
-    <article id="post-SE-Chapter22" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/11/SE-Chapter22/" class="article-date">
-  <time datetime="2019-03-11T00:21:12.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/SE-Chapter22/">SE-Chapter22</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Project-Management-Principle"><a href="#Project-Management-Principle" class="headerlink" title="Project Management Principle"></a>Project Management Principle</h1><h2 id="The-4-P’s"><a href="#The-4-P’s" class="headerlink" title="The 4 P’s"></a>The 4 P’s</h2><ul>
-<li>People — The most important element of a successful project</li>
-<li>Product — The software to be built</li>
-<li>Process — The set of framework activities and software engineering tasks to get the job done</li>
-<li>Project — All work required to make the product a reality</li>
-</ul>
-<h2 id="People"><a href="#People" class="headerlink" title="People"></a>People</h2><h3 id="The-Stakeholders"><a href="#The-Stakeholders" class="headerlink" title="The Stakeholders"></a>The Stakeholders</h3><ul>
-<li>Senior managers</li>
-<li>Project technical managers</li>
-<li>Practitioners</li>
-<li>Customers</li>
-<li>End-users</li>
-</ul>
-<h3 id="Team-Leader"><a href="#Team-Leader" class="headerlink" title="Team Leader"></a>Team Leader</h3><h4 id="MOI-Model"><a href="#MOI-Model" class="headerlink" title="MOI Model:"></a>MOI Model:</h4><ul>
-<li>Motivation</li>
-<li>Organization</li>
-<li>Ideas or Innovation</li>
-</ul>
-<h3 id="Software-Teams"><a href="#Software-Teams" class="headerlink" title="Software Teams"></a>Software Teams</h3><h4 id="factors"><a href="#factors" class="headerlink" title="factors"></a>factors</h4><ul>
-<li>The difficulty of the problem to be solved</li>
-<li>The size of the programs</li>
-<li>Team lifetime</li>
-<li>The degree to which the problem can be modularized</li>
-<li>The required quality and reliability</li>
-<li>The rigidity of the delivery date</li>
-<li>The degree of sociability required for the project</li>
-</ul>
-<h4 id="Organizational-Paradigms"><a href="#Organizational-Paradigms" class="headerlink" title="Organizational Paradigms"></a>Organizational Paradigms</h4><ul>
-<li>Closed paradigm</li>
-<li>Random paradigm</li>
-<li>Open paradigm</li>
-<li>Synchronous paradigm</li>
-</ul>
-<h4 id="Avoid-Team-“Toxicty”"><a href="#Avoid-Team-“Toxicty”" class="headerlink" title="Avoid Team “Toxicty”"></a>Avoid Team “Toxicty”</h4><ul>
-<li>work atmosphere</li>
-<li>frustration that cause friction among team members</li>
-<li>fragmented or poorly coordinated procedures</li>
-<li>unclear definition of roles</li>
-<li>continuous and repeated exposure to failure</li>
-</ul>
-<h3 id="Agile-Teams"><a href="#Agile-Teams" class="headerlink" title="Agile Teams"></a>Agile Teams</h3><ul>
-<li>Team members must have trust in one anothor</li>
-<li>The distribution of skills must be appropriate to the problem</li>
-<li>Mavericks may have to be excluded from the team, if team cohesiveness is to be maintained</li>
-<li>Team is “self-organizing”<ul>
-<li>An adaptive team structure</li>
-<li>Uses elements of Constantine’s random, open, and synchronous paradigms</li>
-<li>Significant autonomy</li>
-</ul>
-</li>
-</ul>
-<h3 id="Team-Coordination-amp-Communication"><a href="#Team-Coordination-amp-Communication" class="headerlink" title="Team Coordination &amp; Communication"></a>Team Coordination &amp; Communication</h3><h2 id="Product"><a href="#Product" class="headerlink" title="Product"></a>Product</h2><h3 id="Scope"><a href="#Scope" class="headerlink" title="Scope"></a>Scope</h3><ul>
-<li>Project Environment</li>
-<li>Information Objectives</li>
-<li>Function and performance</li>
-</ul>
-<h3 id="Problem-Decomposition"><a href="#Problem-Decomposition" class="headerlink" title="Problem Decomposition"></a>Problem Decomposition</h3><p>Core procedure in Demand Analysis</p>
-<h2 id="Process"><a href="#Process" class="headerlink" title="Process"></a>Process</h2><p>Combine product and process</p>
-<p>Decompose process </p>
-<h2 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h2><ol>
-<li>在正确的基础上开始工作</li>
-<li>保持动力</li>
-<li>跟踪进展</li>
-<li>做出英明的决策</li>
-<li>进行事后分析</li>
-</ol>
-<h2 id="W-5HH-Principle"><a href="#W-5HH-Principle" class="headerlink" title="W^5HH Principle"></a>W^5HH Principle</h2><p>Why; What; When; Who; Where; How; How much</p>
-<p>To get to the essence of a project</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/SE-Chapter22/" data-id="cjtdoeek2000z9el61mhpv2sz" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">__('next') &raquo;</a>
   </nav>
 </section>
         
@@ -912,6 +926,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/18/Compiler-Chapter4-2/">Compiler-Chapter4-2</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/18/SE-Chapter7/">SE-Chapter7</a>
           </li>
         
@@ -925,10 +943,6 @@
         
           <li>
             <a href="/2019/03/14/Watermarking-Lecture3/">Watermarking-Lecture3</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/13/Embedded-System-Lecture3/">Embedded-System-Lecture3</a>
           </li>
         
       </ul>
