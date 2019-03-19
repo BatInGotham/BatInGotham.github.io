@@ -69,6 +69,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Compiler-Chapter3-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/Compiler-Chapter3-2/" class="article-date">
+  <time datetime="2019-03-11T01:31:28.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-3-cont"><a href="#Chapter-3-cont" class="headerlink" title="Chapter 3 (cont.)"></a>Chapter 3 (cont.)</h1><h2 id="Ambiguity（歧义）"><a href="#Ambiguity（歧义）" class="headerlink" title="Ambiguity（歧义）"></a>Ambiguity（歧义）</h2><p>calculate priority lead to ambiguity.</p>
+<p>离root越远，运算优先级越高</p>
+<blockquote>
+<p>判断歧义文法：</p>
+<p>设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法</p>
+</blockquote>
+<p>An ambiguous grammar: a grammar that generates a string with two distinct parse trees is called an ambiguous grammar.</p>
+<p>Such a grammar represents a serious problem for a parser. It does not specify precisely the syntactic structure of a program.</p>
+<h3 id="Two-basic-methods"><a href="#Two-basic-methods" class="headerlink" title="Two basic methods"></a>Two basic methods</h3><ol>
+<li>A rule: that specifies in each ambiguous case which of the parse trees (or syntax trees) is the correct one. Such a rule is called a disambiguating rule.<ul>
+<li>The advantage: it corrects the ambiguity without<br>changing (and possibly complicating) the grammar.</li>
+<li>The disadvantage: the syntactic structure of the<br>language is no longer given by the grammar alone.</li>
+</ul>
+</li>
+<li>Change the grammar into a form that forces the construction of the correct parse tree.<ul>
+<li>Adv. and Disadv. are converted.</li>
+</ul>
+</li>
+</ol>
+<h3 id="Remove-the-ambiguity"><a href="#Remove-the-ambiguity" class="headerlink" title="Remove the ambiguity"></a>Remove the ambiguity</h3><ul>
+<li>State a disambiguating rule that established the relative precedences of the three operations represented.</li>
+<li>The associativity of each of the operations of addition, subtraction, and multiplication</li>
+</ul>
+<h3 id="Precedence-and-associativity"><a href="#Precedence-and-associativity" class="headerlink" title="Precedence and associativity"></a>Precedence and associativity</h3><p>both may cause ambiguity.</p>
+<p>precedence: 1+2*3</p>
+<p>ambiguity: 1-2-3</p>
+<p>The precedence cascades cause the parse trees to become much more complex. The syntax trees, however, are not affected.</p>
+<h3 id="The-dangling-else-problem"><a href="#The-dangling-else-problem" class="headerlink" title="The dangling else problem"></a>The dangling <em>else</em> problem</h3><p>An else-part should always be associated with the nearest if-statement that does not yet have an associated else-part.</p>
+<p>In C, we may use brackets.</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="number">1</span>/x)</span><br><span class="line">        ok = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> z = <span class="number">1</span>/x</span><br></pre></td></tr></table></figure>
+<p>也可以改造文法</p>
+<p>To design the syntax that the dangling <em>else</em> problem does not appear.</p>
+<ol>
+<li>Require the presence of the else-part, and this method has been used in LISP and other functional languages (where a value must also be returned).</li>
+<li>Use a bracketing keyword for the if-statement languages that use this solution include Algol68 and Ada</li>
+</ol>
+<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x /= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> y = <span class="number">1</span>/x <span class="keyword">then</span> ok := true;</span><br><span class="line">	<span class="keyword">else</span> z := <span class="number">1</span>/x;</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="Inessential-ambiguity"><a href="#Inessential-ambiguity" class="headerlink" title="Inessential ambiguity"></a>Inessential ambiguity</h3><p>Sometimes a grammar may be ambiguous and yet always produce unique <em>abstract syntax trees</em>.</p>
+<p><strong>Inessential ambiguity</strong>: the associated semantics do not depend on what disambiguating rule is used.</p>
+<h2 id="Extended-Notations-EBNF-and-syntax-diagrams"><a href="#Extended-Notations-EBNF-and-syntax-diagrams" class="headerlink" title="Extended Notations: EBNF and syntax diagrams"></a>Extended Notations: EBNF and syntax diagrams</h2><p>BNF notation is sometimes extended to include special notations for repetitive and optional constructs.</p>
+<p>A -&gt; b{a}</p>
+<p>A -&gt; {a}b</p>
+<p>Optional constructs in EBNF are indicated by surrounding them with square brackets […].</p>
+<h2 id="Formal-properties-of-context-free-language"><a href="#Formal-properties-of-context-free-language" class="headerlink" title="Formal properties of context-free language"></a>Formal properties of context-free language</h2><p>Definition : A context-free grammar consists of the following:</p>
+<ol>
+<li>A set T of terminals.</li>
+<li>A set N of nonterminals (disjoint from T).</li>
+<li>A set P of productions, or grammar rules, of the form A -&gt; a, where A is an element of N and a is an element of (T union N)* (a possibly empty sequence of terminals and nonterminals).</li>
+<li>A start symbol S from the set N.</li>
+</ol>
+<p>Let G be a grammar as defined above, G = (T, N, P, S).</p>
+<ul>
+<li>A derivation step over G is of the form a A y =&gt; a b y ,<br>where a and y are elements of (T union N)* and A -&gt; y is in P.</li>
+<li>The set of symbols: The union T</li>
+<li>N of the sets of terminals and nonterminals</li>
+<li>A sentential form: a string a in (T union N)*.</li>
+<li>a =&gt; *b if and only if there is a sequence of 0 or more derivation steps (n&gt;=0)</li>
+<li>A derivation over the grammar G is of the form S =&gt;<em> w, where w belongs to T</em></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjtf9ack4000caql6fh86411a" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SE-Chapter22" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/11/SE-Chapter22/" class="article-date">
@@ -163,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/SE-Chapter22/" data-id="cjtdtf67c00136wl6srmtgrky" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/SE-Chapter22/" data-id="cjtf9acko001baql6vpwfjupx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -329,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjtdtf67m001n6wl6gk86ujew" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjtf9acln001zaql6ev0laut9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -405,7 +502,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture1/" data-id="cjtdtf67l001j6wl6amcc1hvx" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture1/" data-id="cjtf9ackt001kaql61cvryebw" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -540,7 +637,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Net0307Review/" data-id="cjtdtf678000t6wl6ghhq3v96" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Net0307Review/" data-id="cjtf9acku001maql676mnk67k" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -583,7 +680,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjtdtf67o001r6wl687ryehho" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjtf9aclm001yaql6a4m24ww0" class="article-share-link">Share</a>
       
       
     </footer>
@@ -692,7 +789,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjtdtf675000m6wl6mfn561mi" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjtf9ackg000saql6kytcuylk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -780,7 +877,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjtdtf67b000y6wl6mfb588sa" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjtf9ack7000iaql6ct64lsbu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -905,7 +1002,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjtdtf67c00106wl6bxf54fly" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjtf9acki000xaql6p6h08j4w" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -951,71 +1048,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjtdtf67j001h6wl630isxoo3" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SE-Chapter4" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/SE-Chapter4/" class="article-date">
-  <time datetime="2019-03-04T16:35:06.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/SE-Chapter4/">SE Chapter4</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chapter-4"><a href="#Chapter-4" class="headerlink" title="Chapter 4"></a>Chapter 4</h1><h2 id="Process-Models-The-Waterfall-Model"><a href="#Process-Models-The-Waterfall-Model" class="headerlink" title="Process Models: The Waterfall Model"></a>Process Models: The Waterfall Model</h2><ul>
-<li>Communication (Project initiation; Requirements gathering)</li>
-<li>Planning (Estimating; Scheduling and tracking)</li>
-<li>Modeling (Analysis and design)</li>
-<li>Construction (Code and test)</li>
-<li>Deployment (Delivery; Support and feedback)</li>
-</ul>
-<p>Complete by step. From top to bottom.</p>
-<h4 id="Advantages"><a href="#Advantages" class="headerlink" title="Advantages"></a>Advantages</h4><ul>
-<li>checkpoints</li>
-<li>irreversible</li>
-</ul>
-<h4 id="Disadvantages"><a href="#Disadvantages" class="headerlink" title="Disadvantages"></a>Disadvantages</h4><ul>
-<li>adding demands</li>
-<li>cannot foresee results</li>
-</ul>
-<h3 id="Incremental-Process-Models"><a href="#Incremental-Process-Models" class="headerlink" title="Incremental Process Models"></a>Incremental Process Models</h3><p>RAD Model</p>
-<h3 id="Evolutionary-Process-Model"><a href="#Evolutionary-Process-Model" class="headerlink" title="Evolutionary Process Model"></a>Evolutionary Process Model</h3><ul>
-<li>Prototyping</li>
-<li>The Spiral Model</li>
-</ul>
-<h3 id="Concurrent-Development-Model"><a href="#Concurrent-Development-Model" class="headerlink" title="Concurrent Development Model"></a>Concurrent Development Model</h3><h2 id="Specialized-Process-Model"><a href="#Specialized-Process-Model" class="headerlink" title="Specialized Process Model"></a>Specialized Process Model</h2><ul>
-<li>Component-based development model</li>
-<li>Format methods model</li>
-<li>Aspect-oriented software development</li>
-</ul>
-<h2 id="The-Unified-Process"><a href="#The-Unified-Process" class="headerlink" title="The Unified Process"></a>The Unified Process</h2>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter4/" data-id="cjtdtf67g001b6wl62p34xnjr" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjtf9acks001haql6vjeh641e" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -1043,7 +1076,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Summary/">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PAT/">PAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Summary/">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
     </div>
   </div>
 
@@ -1053,7 +1086,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 12px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 18px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 14px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16px;">研究生考试</a>
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 12px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/PAT/" style="font-size: 10px;">PAT</a> <a href="/tags/Software-Engineering/" style="font-size: 18px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 14px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16px;">研究生考试</a>
     </div>
   </div>
 
@@ -1075,6 +1108,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/19/PAT-A1112-Solution/">PAT-A1112 Solution</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/18/Compiler-Chapter4-2/">Compiler-Chapter4-2</a>
           </li>
         
@@ -1088,10 +1125,6 @@
         
           <li>
             <a href="/2019/03/16/Compiler-Regular-Expression/">Compiler-Regular Expression</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/14/Watermarking-Lecture3/">Watermarking-Lecture3</a>
           </li>
         
       </ul>

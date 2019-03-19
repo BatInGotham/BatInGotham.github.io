@@ -69,6 +69,71 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-PAT-A1112-Solution" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/19/PAT-A1112-Solution/" class="article-date">
+  <time datetime="2019-03-19T03:32:17.000Z" itemprop="datePublished">2019-03-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/19/PAT-A1112-Solution/">PAT-A1112 Solution</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="PAT-A1112-Stuck-Keyboard"><a href="#PAT-A1112-Stuck-Keyboard" class="headerlink" title="PAT-A1112: Stuck Keyboard"></a>PAT-A1112: Stuck Keyboard</h1><h2 id="Problem-Description"><a href="#Problem-Description" class="headerlink" title="Problem Description"></a>Problem Description</h2><p>On a broken keyboard, some of the keys are always stuck. So when you type some sentences, the characters corresponding to those keys will appear repeatedly on screen for <em>k</em> times.</p>
+<p>Now given a resulting string on screen, you are supposed to list all the possible stuck keys, and the original string.</p>
+<p>Notice that there might be some characters that are typed repeatedly. The stuck key will always repeat output for a fixed <em>k</em> times whenever it is pressed. For example, when <em>k</em>=3, from the string <code>thiiis iiisss a teeeeeest</code> we know that the keys <code>i</code> and <code>e</code> might be stuck, but <code>s</code> is not even though it appears repeatedly sometimes. The original string could be <code>this isss a teest</code>.</p>
+<h2 id="Input-Specification"><a href="#Input-Specification" class="headerlink" title="Input Specification"></a>Input Specification</h2><p>Each input file contains one test case. For each case, the 1st line gives a positive integer <em>k</em> (1&lt;<em>k</em>≤100) which is the output repeating times of a stuck key. The 2nd line contains the resulting string on screen, which consists of no more than 1000 characters from {a-z}, {0-9} and <code>_</code>. It is guaranteed that the string is non-empty.</p>
+<h2 id="Output-Specification"><a href="#Output-Specification" class="headerlink" title="Output Specification"></a>Output Specification</h2><p>For each test case, print in one line the possible stuck keys, in the order of being detected. Make sure that each key is printed once only. Then in the next line print the original string. It is guaranteed that there is at least one stuck key.</p>
+<h2 id="Sample-Input"><a href="#Sample-Input" class="headerlink" title="Sample Input:"></a>Sample Input:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">caseee1__thiiis_iiisss_a_teeeeeest</span><br></pre></td></tr></table></figure>
+<h2 id="Sample-Output"><a href="#Sample-Output" class="headerlink" title="Sample Output:"></a>Sample Output:</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ei</span><br><span class="line">case1__this_isss_a_teest</span><br></pre></td></tr></table></figure>
+<h2 id="题意"><a href="#题意" class="headerlink" title="题意"></a>题意</h2><p>给定一个k，某些坏掉的按键按一下会输出k次，给定输出序列，按顺序打印最多情况下可能的坏键，并给出对应的输入序列。</p>
+<p>本题比较容易出问题的点有如下几种：</p>
+<ol>
+<li>序列<code>eee_e</code>，e一定是好键</li>
+<li>输出按键顺序是根据输入中的位置</li>
+</ol>
+<h2 id="较优解法"><a href="#较优解法" class="headerlink" title="较优解法"></a>较优解法</h2><p>思想：状态机</p>
+<p>开一个int数组，对应字符的ASCII码，初始化值为0。</p>
+<ul>
+<li>0：start state，表示未知好坏</li>
+<li>1：accept state，表示已知是好的</li>
+<li>2：normal state，表示可能是坏的</li>
+</ul>
+<blockquote>
+<p>在第二次遍历时额外引入状态3来表示有无被遍历过</p>
+</blockquote>
+<p>从头到尾遍历（第一次）输入序列，对每个一个输出字符，如果从该字符开始有连续k个相同输出，且字符状态不为1，则置该字符状态为2，迭代变量向后跳k个；如果没有连续k各相同输出，则置字符状态为1，且状态自此以后不变。</p>
+<p>第二次遍历，对所有的字符进行状态查询，如果为2，则输出。</p>
+<p>第三次遍历，对所有字符进行状态查询，如果为1，则输出一次并跳进k个单位，如果不为1，则输出一次并跳进1个单位。</p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PAT-A1112</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> keyboard[<span class="number">256</span>];</span><br><span class="line"><span class="keyword">int</span> k;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">dump</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> pos)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; k; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(s[pos] != s[pos+i])</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; k;</span><br><span class="line">    <span class="built_in">string</span> in;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; in;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">256</span>; i++) &#123;</span><br><span class="line">        keyboard[i] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; in.length()-k+<span class="number">1</span>; ) &#123;</span><br><span class="line">        <span class="keyword">if</span>(dump(in, i)) &#123;</span><br><span class="line">            <span class="keyword">if</span>(keyboard[in[i]] != <span class="number">1</span>)</span><br><span class="line">                keyboard[in[i]] = <span class="number">2</span>;</span><br><span class="line">            i += k;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            keyboard[in[i]] = <span class="number">1</span>;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> iter = in.begin(); iter != in.end(); iter++) &#123;</span><br><span class="line">        <span class="keyword">if</span>(keyboard[*iter] == <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; *iter;</span><br><span class="line">            keyboard[*iter] = <span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; in.length(); ) &#123;</span><br><span class="line">        <span class="keyword">if</span>(i &lt; in.length()-k+<span class="number">1</span> &amp;&amp; dump(in, i) &amp;&amp; (keyboard[in[i]] == <span class="number">2</span> || keyboard[in[i]] == <span class="number">3</span>)) &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;in[i];</span><br><span class="line">            i+=k;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;in[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/19/PAT-A1112-Solution/" data-id="cjtf9ackj000zaql62lyxykgn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PAT/">PAT</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Compiler-Chapter4-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/18/Compiler-Chapter4-2/" class="article-date">
@@ -147,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/" data-id="cjtdtf66z000c6wl68v3j4nxi" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/" data-id="cjtf9ackx001taql67s5kqhil" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -257,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter7/" data-id="cjtdtf67i001f6wl6tyn9oi2w" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter7/" data-id="cjtf9ackr001faql6quuvw3bv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -304,7 +369,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter6/" data-id="cjtdtf67h001d6wl6vilv6owd" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter6/" data-id="cjtf9ackp001caql6fbvgkph1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -352,7 +417,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/16/Compiler-Regular-Expression/" data-id="cjtdtf673000j6wl6d11w8nl7" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/16/Compiler-Regular-Expression/" data-id="cjtf9ack6000gaql6bexjecvx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -430,7 +495,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjtdtf67l001l6wl608dxanfs" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjtf9ackw001raql6c9yr7xmo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -494,7 +559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjtdtf676000o6wl6fm79ari9" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjtf9ackc000maql6dxwetxfz" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -601,7 +666,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/12/OS0312Review/" data-id="cjtdtf67e00166wl6aaguyqo5" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/12/OS0312Review/" data-id="cjtf9ackl0014aql6vfxntd84" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -644,7 +709,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/12/2019-03-12-Work-Summary/" data-id="cjtdtf66j00006wl68foada3c" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/12/2019-03-12-Work-Summary/" data-id="cjtf9acjs0003aql6oqsal7wi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Summary/">Summary</a></li></ul>
@@ -769,104 +834,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtdtf670000e6wl6bwuqrjks" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Compiler-Chapter3-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/11/Compiler-Chapter3-2/" class="article-date">
-  <time datetime="2019-03-11T01:31:28.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/Compiler-Chapter3-2/">Compiler-Chapter3-2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chapter-3-cont"><a href="#Chapter-3-cont" class="headerlink" title="Chapter 3 (cont.)"></a>Chapter 3 (cont.)</h1><h2 id="Ambiguity（歧义）"><a href="#Ambiguity（歧义）" class="headerlink" title="Ambiguity（歧义）"></a>Ambiguity（歧义）</h2><p>calculate priority lead to ambiguity.</p>
-<p>离root越远，运算优先级越高</p>
-<blockquote>
-<p>判断歧义文法：</p>
-<p>设计一个sentence，如果可以构造两个结构不同的syntax tree，则为歧义文法</p>
-</blockquote>
-<p>An ambiguous grammar: a grammar that generates a string with two distinct parse trees is called an ambiguous grammar.</p>
-<p>Such a grammar represents a serious problem for a parser. It does not specify precisely the syntactic structure of a program.</p>
-<h3 id="Two-basic-methods"><a href="#Two-basic-methods" class="headerlink" title="Two basic methods"></a>Two basic methods</h3><ol>
-<li>A rule: that specifies in each ambiguous case which of the parse trees (or syntax trees) is the correct one. Such a rule is called a disambiguating rule.<ul>
-<li>The advantage: it corrects the ambiguity without<br>changing (and possibly complicating) the grammar.</li>
-<li>The disadvantage: the syntactic structure of the<br>language is no longer given by the grammar alone.</li>
-</ul>
-</li>
-<li>Change the grammar into a form that forces the construction of the correct parse tree.<ul>
-<li>Adv. and Disadv. are converted.</li>
-</ul>
-</li>
-</ol>
-<h3 id="Remove-the-ambiguity"><a href="#Remove-the-ambiguity" class="headerlink" title="Remove the ambiguity"></a>Remove the ambiguity</h3><ul>
-<li>State a disambiguating rule that established the relative precedences of the three operations represented.</li>
-<li>The associativity of each of the operations of addition, subtraction, and multiplication</li>
-</ul>
-<h3 id="Precedence-and-associativity"><a href="#Precedence-and-associativity" class="headerlink" title="Precedence and associativity"></a>Precedence and associativity</h3><p>both may cause ambiguity.</p>
-<p>precedence: 1+2*3</p>
-<p>ambiguity: 1-2-3</p>
-<p>The precedence cascades cause the parse trees to become much more complex. The syntax trees, however, are not affected.</p>
-<h3 id="The-dangling-else-problem"><a href="#The-dangling-else-problem" class="headerlink" title="The dangling else problem"></a>The dangling <em>else</em> problem</h3><p>An else-part should always be associated with the nearest if-statement that does not yet have an associated else-part.</p>
-<p>In C, we may use brackets.</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(x != <span class="number">0</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (y == <span class="number">1</span>/x)</span><br><span class="line">        ok = <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span> z = <span class="number">1</span>/x</span><br></pre></td></tr></table></figure>
-<p>也可以改造文法</p>
-<p>To design the syntax that the dangling <em>else</em> problem does not appear.</p>
-<ol>
-<li>Require the presence of the else-part, and this method has been used in LISP and other functional languages (where a value must also be returned).</li>
-<li>Use a bracketing keyword for the if-statement languages that use this solution include Algol68 and Ada</li>
-</ol>
-<figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x /= <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">	<span class="keyword">if</span> y = <span class="number">1</span>/x <span class="keyword">then</span> ok := true;</span><br><span class="line">	<span class="keyword">else</span> z := <span class="number">1</span>/x;</span><br><span class="line">	<span class="keyword">end</span> <span class="keyword">if</span>;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">if</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="Inessential-ambiguity"><a href="#Inessential-ambiguity" class="headerlink" title="Inessential ambiguity"></a>Inessential ambiguity</h3><p>Sometimes a grammar may be ambiguous and yet always produce unique <em>abstract syntax trees</em>.</p>
-<p><strong>Inessential ambiguity</strong>: the associated semantics do not depend on what disambiguating rule is used.</p>
-<h2 id="Extended-Notations-EBNF-and-syntax-diagrams"><a href="#Extended-Notations-EBNF-and-syntax-diagrams" class="headerlink" title="Extended Notations: EBNF and syntax diagrams"></a>Extended Notations: EBNF and syntax diagrams</h2><p>BNF notation is sometimes extended to include special notations for repetitive and optional constructs.</p>
-<p>A -&gt; b{a}</p>
-<p>A -&gt; {a}b</p>
-<p>Optional constructs in EBNF are indicated by surrounding them with square brackets […].</p>
-<h2 id="Formal-properties-of-context-free-language"><a href="#Formal-properties-of-context-free-language" class="headerlink" title="Formal properties of context-free language"></a>Formal properties of context-free language</h2><p>Definition : A context-free grammar consists of the following:</p>
-<ol>
-<li>A set T of terminals.</li>
-<li>A set N of nonterminals (disjoint from T).</li>
-<li>A set P of productions, or grammar rules, of the form A -&gt; a, where A is an element of N and a is an element of (T union N)* (a possibly empty sequence of terminals and nonterminals).</li>
-<li>A start symbol S from the set N.</li>
-</ol>
-<p>Let G be a grammar as defined above, G = (T, N, P, S).</p>
-<ul>
-<li>A derivation step over G is of the form a A y =&gt; a b y ,<br>where a and y are elements of (T union N)* and A -&gt; y is in P.</li>
-<li>The set of symbols: The union T</li>
-<li>N of the sets of terminals and nonterminals</li>
-<li>A sentential form: a string a in (T union N)*.</li>
-<li>a =&gt; *b if and only if there is a sequence of 0 or more derivation steps (n&gt;=0)</li>
-<li>A derivation over the grammar G is of the form S =&gt;<em> w, where w belongs to T</em></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjtdtf66u00056wl6fgfajpvz" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtf9acka000kaql6jz14cvvs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -894,7 +862,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Summary/">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Compiler/">Compiler</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Massive-Storage/">Massive Storage</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PAT/">PAT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Summary/">Summary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Watermarking/">Watermarking</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
     </div>
   </div>
 
@@ -904,7 +872,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 12px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/Software-Engineering/" style="font-size: 18px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 14px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16px;">研究生考试</a>
+      <a href="/tags/Compiler/" style="font-size: 20px;">Compiler</a> <a href="/tags/Embedded-System/" style="font-size: 12px;">Embedded System</a> <a href="/tags/Massive-Storage/" style="font-size: 10px;">Massive Storage</a> <a href="/tags/PAT/" style="font-size: 10px;">PAT</a> <a href="/tags/Software-Engineering/" style="font-size: 18px;">Software Engineering</a> <a href="/tags/Summary/" style="font-size: 10px;">Summary</a> <a href="/tags/Watermarking/" style="font-size: 14px;">Watermarking</a> <a href="/tags/研究生考试/" style="font-size: 16px;">研究生考试</a>
     </div>
   </div>
 
@@ -926,6 +894,10 @@
       <ul>
         
           <li>
+            <a href="/2019/03/19/PAT-A1112-Solution/">PAT-A1112 Solution</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/18/Compiler-Chapter4-2/">Compiler-Chapter4-2</a>
           </li>
         
@@ -939,10 +911,6 @@
         
           <li>
             <a href="/2019/03/16/Compiler-Regular-Expression/">Compiler-Regular Expression</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/14/Watermarking-Lecture3/">Watermarking-Lecture3</a>
           </li>
         
       </ul>
