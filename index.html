@@ -69,6 +69,125 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Watermarking-Lecture4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/21/Watermarking-Lecture4/" class="article-date">
+  <time datetime="2019-03-21T06:08:22.000Z" itemprop="datePublished">2019-03-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/21/Watermarking-Lecture4/">Watermarking-Lecture4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="In-Class-Report-ROC-amp-False-Negative-Rate"><a href="#In-Class-Report-ROC-amp-False-Negative-Rate" class="headerlink" title="In-Class Report: ROC &amp; False Negative Rate"></a>In-Class Report: ROC &amp; False Negative Rate</h1><p>参数设定阈值，影响False Negative Rate和False Positive Rate相对关系</p>
+<hr>
+<h1 id="Quiz"><a href="#Quiz" class="headerlink" title="Quiz"></a>Quiz</h1><h1 id="Lecture-4-Chapter-3-Models-of-Watermarking-cnt"><a href="#Lecture-4-Chapter-3-Models-of-Watermarking-cnt" class="headerlink" title="Lecture 4: Chapter 3 Models of Watermarking(cnt.)"></a>Lecture 4: Chapter 3 Models of Watermarking(cnt.)</h1><h2 id="3-3-Communication-Based-Models-of-Watermarking"><a href="#3-3-Communication-Based-Models-of-Watermarking" class="headerlink" title="3.3 Communication-Based Models of Watermarking"></a>3.3 Communication-Based Models of Watermarking</h2><h3 id="Distributions-and-Regions"><a href="#Distributions-and-Regions" class="headerlink" title="Distributions and Regions"></a>Distributions and Regions</h3><p>N dimensional space for each work</p>
+<ul>
+<li>Monochrome images with N pixels: N</li>
+<li>24bit RGB images with N pixels: 24N</li>
+<li>N frames video clip: N*…</li>
+</ul>
+<h3 id="Marking-Spaces"><a href="#Marking-Spaces" class="headerlink" title="Marking Spaces"></a>Marking Spaces</h3><h2 id="3-4-Geometric-Models-of-Watermarking"><a href="#3-4-Geometric-Models-of-Watermarking" class="headerlink" title="3.4 Geometric Models of Watermarking"></a>3.4 Geometric Models of Watermarking</h2><h2 id="3-5-Modeling-Watermark-Detection-by-Correlation"><a href="#3-5-Modeling-Watermark-Detection-by-Correlation" class="headerlink" title="3.5 Modeling Watermark Detection by Correlation"></a>3.5 Modeling Watermark Detection by Correlation</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/21/Watermarking-Lecture4/" data-id="cjtibipxa001stkl66w72d6bz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Embedded-System-Lecture4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/20/Embedded-System-Lecture4/" class="article-date">
+  <time datetime="2019-03-20T06:00:26.000Z" itemprop="datePublished">2019-03-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/20/Embedded-System-Lecture4/">Embedded-System-Lecture4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Lecture-4-嵌入式程序设计"><a href="#Lecture-4-嵌入式程序设计" class="headerlink" title="Lecture 4: 嵌入式程序设计"></a>Lecture 4: 嵌入式程序设计</h1><h2 id="C-Compiling"><a href="#C-Compiling" class="headerlink" title="C Compiling"></a>C Compiling</h2><p>文法分析-高级优化-代码产生器-低级优化-汇编器-链接装载</p>
+<p>前两步是编译器无关的</p>
+<h3 id="ABI应用程序二进制接口"><a href="#ABI应用程序二进制接口" class="headerlink" title="ABI应用程序二进制接口"></a>ABI应用程序二进制接口</h3><ul>
+<li>定义让分别开发的函数可以工作到一起的规则</li>
+<li>ARM体系过程调用标准（哪些寄存器必须被保存和恢复；如何调用过程；如何从过程返回）</li>
+<li>C库ABI（C库函数）</li>
+<li>运行时刻ABI（Run-Time Assistant Function）</li>
+</ul>
+<h2 id="使用寄存器"><a href="#使用寄存器" class="headerlink" title="使用寄存器"></a>使用寄存器</h2><h3 id="AAPCS-寄存器器使用用协议"><a href="#AAPCS-寄存器器使用用协议" class="headerlink" title="AAPCS 寄存器器使用用协议"></a>AAPCS 寄存器器使用用协议</h3><ul>
+<li>易于建立模块化、相互隔离又能集成的代码</li>
+<li>对于cortex-M，有两类寄存器</li>
+<li>“调用者保存的寄存器”：不能指望被调子程序返回时还能保有原值的寄存器</li>
+<li>“被调者保存的寄存器”:这些受保护的（“变量”）寄存器,从被调子程序返回后还能继续保有原值</li>
+</ul>
+<p>R0 - R3：不需要被保存，可以用作参数、返回值或临时变量</p>
+<p>R4 - R11：必须由被调子程序保存和恢复，因为被调子程序可能会使用这些寄存器。调用子程序的地方可以期望它们会保存原值</p>
+<h2 id="内存需求"><a href="#内存需求" class="headerlink" title="内存需求"></a>内存需求</h2><p>强全局变量：被赋予初值的全局变量。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a, b; <span class="comment">// weak global variable</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> c=<span class="number">123</span>;</span><br><span class="line"><span class="keyword">int</span> d=<span class="number">31</span>; <span class="comment">// strong global variable</span></span><br><span class="line"><span class="comment">// variable c and d are saved in different position</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> e;</span><br><span class="line">    <span class="keyword">char</span> f[<span class="number">32</span>];</span><br><span class="line">    e = d + <span class="number">7</span>;</span><br><span class="line">    a = e + <span class="number">29999</span>;</span><br><span class="line">    <span class="built_in">strcpy</span>(f,“Hello!”);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="5-possible-types"><a href="#5-possible-types" class="headerlink" title="5 possible types"></a>5 possible types</h3><ul>
+<li>代码</li>
+<li>Read-only static data</li>
+<li>可写的静态数据（initialized, initialized-to-zero，not-initialized）</li>
+<li>heap</li>
+<li>stack</li>
+</ul>
+<h3 id="类型修饰符"><a href="#类型修饰符" class="headerlink" title="类型修饰符"></a>类型修饰符</h3><ul>
+<li>const：程序不会写，可以放在ROM中来节约RAM</li>
+<li>volatile：可以在程序流之外被修改（ISR、硬件寄存器）</li>
+<li>static：在函数中声明，函数每次调用时保持上次的值，访问受限于函数</li>
+</ul>
+<h3 id="C运行时刻启动模块"><a href="#C运行时刻启动模块" class="headerlink" title="C运行时刻启动模块"></a>C运行时刻启动模块</h3><p>重启之后，单片机必须：</p>
+<ul>
+<li>初始化硬件：外围部件、设置堆栈指针</li>
+<li>初始化C/C++的运行时刻环境：设置堆内存、初始化变量</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/20/Embedded-System-Lecture4/" data-id="cjtibipws000otkl6c03xmsm3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-PAT-A1112-Solution" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/19/PAT-A1112-Solution/" class="article-date">
@@ -122,7 +241,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/19/PAT-A1112-Solution/" data-id="cjtfh8adg000yppl6b07gnq4x" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/19/PAT-A1112-Solution/" data-id="cjtibipwy0011tkl67x8rdj91" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PAT/">PAT</a></li></ul>
@@ -212,7 +331,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/" data-id="cjtfh8ad3000appl6jc6r8pew" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/Compiler-Chapter4-2/" data-id="cjtibipx4001ftkl6x3l4ts3l" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -322,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter7/" data-id="cjtfh8adm001fppl6o19ly4u2" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter7/" data-id="cjtibipxc001wtkl6i7natsxv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -369,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter6/" data-id="cjtfh8adk001appl691dyqznm" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/18/SE-Chapter6/" data-id="cjtibipx7001ktkl6hkssmhlg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -417,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/16/Compiler-Regular-Expression/" data-id="cjtfh8ad6000fppl6qh8w9p8a" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/16/Compiler-Regular-Expression/" data-id="cjtibipwn000gtkl6axc52vuy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -495,7 +614,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjtfh8ads001pppl6qa7z6n1p" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/14/Watermarking-Lecture3/" data-id="cjtibipx9001ptkl6ptlh4h9v" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -559,7 +678,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjtfh8ada000jppl66ruuu2g2" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/13/Embedded-System-Lecture3/" data-id="cjtibipwr000mtkl60py20g3o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -666,178 +785,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/12/OS0312Review/" data-id="cjtfh8adi0015ppl6jfv8vtrv" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/12/OS0312Review/" data-id="cjtibipx10018tkl6fqum7ujy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-2019-03-12-Work-Summary" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/12/2019-03-12-Work-Summary/" class="article-date">
-  <time datetime="2019-03-11T16:05:56.000Z" itemprop="datePublished">2019-03-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/12/2019-03-12-Work-Summary/">2019/03/12 Work Summary</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        A summary of my current work
-        
-          <p class="article-more-link">
-            <a href="/2019/03/12/2019-03-12-Work-Summary/#more">Read More</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/12/2019-03-12-Work-Summary/" data-id="cjtfh8acw0001ppl6ftnveaa8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Summary/">Summary</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Compiler-Chapter4-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/11/Compiler-Chapter4-1/" class="article-date">
-  <time datetime="2019-03-11T02:50:47.000Z" itemprop="datePublished">2019-03-11</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Chapter-4-Top-Down-Parsing"><a href="#Chapter-4-Top-Down-Parsing" class="headerlink" title="Chapter 4 Top-Down Parsing"></a>Chapter 4 Top-Down Parsing</h1><h2 id="Recursive-Descent-Parsing"><a href="#Recursive-Descent-Parsing" class="headerlink" title="Recursive-Descent Parsing"></a>Recursive-Descent Parsing</h2><p>The idea of Recursive-Descent Parsing</p>
-<ul>
-<li>The grammar rule for a non-terminal A as a definition for a procedure to recognize an A</li>
-<li>The right-hand side of the grammar for A specifies the structure of the code for this procedure</li>
-</ul>
-<h3 id="The-Basic-Method-of-Recursive-Descent"><a href="#The-Basic-Method-of-Recursive-Descent" class="headerlink" title="The Basic Method of Recursive Descent"></a>The Basic Method of Recursive Descent</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">factor</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">    <span class="title">case</span> <span class="title">token</span> <span class="title">of</span></span></span><br><span class="line"><span class="function">    <span class="params">(:	match(()</span>;</span></span><br><span class="line">        expr;</span><br><span class="line">        match());</span><br><span class="line">    number:</span><br><span class="line">        match(number);</span><br><span class="line">    <span class="keyword">else</span> error;</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line"><span class="keyword">END</span> factor</span><br></pre></td></tr></table></figure>
-<ul>
-<li>Writing recursive-decent procedure for the remaining rules in the expression grammar is not as easy for factor.</li>
-<li>It requires the use of EBNF.</li>
-</ul>
-<h3 id="Repetition-and-Choice-Using-EBNF"><a href="#Repetition-and-Choice-Using-EBNF" class="headerlink" title="Repetition and Choice: Using EBNF"></a>Repetition and Choice: Using EBNF</h3><p>Example: <em>expr -&gt; expr addop term|term</em></p>
-<p>this would lead to an immediate <u>infinite recursive loop</u></p>
-<p>the solution is use the EBNF rule: <em>expr -&gt; term {addop term}</em></p>
-<p>The recursive-descent method is quite powerful and adequate to<br>construct a complete parse. But we need more formal methods<br>to deal with complex situation.</p>
-<h3 id="Further-Decision-Problems"><a href="#Further-Decision-Problems" class="headerlink" title="Further Decision Problems"></a>Further Decision Problems</h3><p>The recursive-descent method is quite powerful and adequate to construct a complete parse.</p>
-<p>But we need more formal methods to deal with complex situation.</p>
-<ol>
-<li>It may be difficult to convert a grammar in BNF into EBNF form.</li>
-<li>It is difficult to decide when to use the choice A -&gt; a and the choice A -&gt; b; if both a and b begin with non-terminals (<u>First Sets</u>)</li>
-<li>It may be necessary to know what token legally coming from the non-terminal A, A-&gt;e (<u>Follow Sets</u>)</li>
-<li>It requires computing the <u>First and Follow</u> sets in order to detect the errors as early as possible</li>
-</ol>
-<h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><blockquote>
-<p> Main idea: LL(1) Parsing uses an explicit stack rather than recursive calls to perform a parse.</p>
-<p> Want to decide which production to apply based on next symbol</p>
-</blockquote>
-<p>L: from Left to right</p>
-<p>L: production rule is Left-most derivation</p>
-<h3 id="The-two-actions"><a href="#The-two-actions" class="headerlink" title="The two actions:"></a>The two actions:</h3><ol>
-<li>Generate: replace a non-terminal A at the top of the stack by a string a(in reverse) using a grammar rule A -&gt; a</li>
-<li>Match: match a token on top of the stack with the next input token</li>
-</ol>
-<p>Top-Down Parsing == Generate &amp; Match Parsing</p>
-<p>Constructing a parse tree:<br>Adding node construction actions as each non-terminal or terminal is push onto the stack.</p>
-<h3 id="LL-1-Parsing-table"><a href="#LL-1-Parsing-table" class="headerlink" title="LL(1) Parsing table"></a>LL(1) Parsing table</h3><p>S -&gt; (S) S | e</p>
-<table>
-<thead>
-<tr>
-<th>M[N, T]</th>
-<th>(</th>
-<th>)</th>
-<th>$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>S</td>
-<td>S-&gt;(S)S</td>
-<td>S-&gt;e</td>
-<td>S-&gt;e</td>
-</tr>
-</tbody>
-</table>
-<p>The general LL(1) Parsing table definition: The table is a two-dimensional array indexed by non-terminals<br>and terminals The table contains production choices to use at the appropriate parsing step, which called M[N,T].</p>
-<ul>
-<li>N is the set of non-terminals of the grammar</li>
-<li>T is the set of terminals or tokens (including $)</li>
-<li>Any entrances remaining empty represent potential errors</li>
-</ul>
-<h3 id="Definition-of-LL-1-Grammar"><a href="#Definition-of-LL-1-Grammar" class="headerlink" title="Definition of LL(1) Grammar:"></a>Definition of LL(1) Grammar:</h3><ul>
-<li>A grammar is an LL(1) grammar if the associated LL(1) parsing table has at most one production in each table entry.</li>
-<li>An LL(1) grammar <u>cannot</u> be <em>ambiguous</em>.</li>
-</ul>
-<h3 id="Draw-LL-1-Parsing-Table"><a href="#Draw-LL-1-Parsing-Table" class="headerlink" title="Draw LL(1) Parsing Table"></a>Draw LL(1) Parsing Table</h3><h3 id="Algorithm-for-general-left-recursion-removal"><a href="#Algorithm-for-general-left-recursion-removal" class="headerlink" title="Algorithm for general left recursion removal:"></a>Algorithm for general left recursion removal:</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j:=<span class="number">1</span> <span class="keyword">to</span> i-<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">		<span class="comment">// replace each grammar rule choice of the form</span></span><br><span class="line">		<span class="comment">// A_i -&gt; A_j b by the rule</span></span><br><span class="line">			A_i -&gt; a_1 b|a_2 b|...</span><br><span class="line">		<span class="comment">// where A_j -&gt; a_1|a_2|... is the current rule for A_j</span></span><br><span class="line">		<span class="comment">// remove, if necessary, immediate left recursion involving A_i</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li><strong>Left recursion removal does not change the language, but change the grammar and the parse tree.</strong></li>
-<li><strong>This change causes a complication for the parser.</strong></li>
-</ul>
-<h3 id="left-recursion-removal-and-left-factoring"><a href="#left-recursion-removal-and-left-factoring" class="headerlink" title="left recursion removal and left factoring"></a>left recursion removal and left factoring</h3><p>Left factoring is required when two or more grammar rule choices share a common prefix string.</p>
-<p>和提取公因式很像</p>
-<h3 id="Syntax-Tree-Construction-in-LL-1-Parsing"><a href="#Syntax-Tree-Construction-in-LL-1-Parsing" class="headerlink" title="Syntax Tree Construction in LL(1) Parsing"></a>Syntax Tree Construction in LL(1) Parsing</h3><p>It is more difficult for LL(1) to adapt to syntax tree construction.</p>
-<ul>
-<li>The structure of the syntax tree can be obscured by left factoring and left recursion removal</li>
-<li>The parsing tack represents only predicated structure, not structure that have been actually seen.</li>
-</ul>
-<p>Solution:</p>
-<ul>
-<li>An extra stack is used to keep track of syntax tree nodes</li>
-<li>“Action” markers are placed in the parsing stack to indicated when and what actions on the tree stack should occur.</li>
-</ul>
-<p>How to compute the arithmetic value of the expression.</p>
-<ol>
-<li>Use a separate stack to store the intermediate values of the computation, called the value stack;</li>
-<li>Schedule two operations on that stack: A push of a number; The addition of two numbers.</li>
-<li>PUSH can be performed by the match procedure</li>
-<li>ADDITION should be scheduled on the stack, by pushing a special symbol (such as #) on the parsing stack.</li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtfh8ad10005ppl6apq8lk5r" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
 
     </footer>
   </div>
@@ -894,6 +845,14 @@
       <ul>
         
           <li>
+            <a href="/2019/03/21/Watermarking-Lecture4/">Watermarking-Lecture4</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/20/Embedded-System-Lecture4/">Embedded-System-Lecture4</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/19/PAT-A1112-Solution/">PAT-A1112 Solution</a>
           </li>
         
@@ -903,14 +862,6 @@
         
           <li>
             <a href="/2019/03/18/SE-Chapter7/">SE-Chapter7</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/18/SE-Chapter6/">SE-Chapter6</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/16/Compiler-Regular-Expression/">Compiler-Regular Expression</a>
           </li>
         
       </ul>

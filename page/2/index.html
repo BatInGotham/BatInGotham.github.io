@@ -69,6 +69,174 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-2019-03-12-Work-Summary" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/12/2019-03-12-Work-Summary/" class="article-date">
+  <time datetime="2019-03-11T16:05:56.000Z" itemprop="datePublished">2019-03-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/12/2019-03-12-Work-Summary/">2019/03/12 Work Summary</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        A summary of my current work
+        
+          <p class="article-more-link">
+            <a href="/2019/03/12/2019-03-12-Work-Summary/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/12/2019-03-12-Work-Summary/" data-id="cjtibipw70003tkl6sic6l19z" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Summary/">Summary</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Compiler-Chapter4-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/11/Compiler-Chapter4-1/" class="article-date">
+  <time datetime="2019-03-11T02:50:47.000Z" itemprop="datePublished">2019-03-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/11/Compiler-Chapter4-1/">Compiler-Chapter4-1</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Chapter-4-Top-Down-Parsing"><a href="#Chapter-4-Top-Down-Parsing" class="headerlink" title="Chapter 4 Top-Down Parsing"></a>Chapter 4 Top-Down Parsing</h1><h2 id="Recursive-Descent-Parsing"><a href="#Recursive-Descent-Parsing" class="headerlink" title="Recursive-Descent Parsing"></a>Recursive-Descent Parsing</h2><p>The idea of Recursive-Descent Parsing</p>
+<ul>
+<li>The grammar rule for a non-terminal A as a definition for a procedure to recognize an A</li>
+<li>The right-hand side of the grammar for A specifies the structure of the code for this procedure</li>
+</ul>
+<h3 id="The-Basic-Method-of-Recursive-Descent"><a href="#The-Basic-Method-of-Recursive-Descent" class="headerlink" title="The Basic Method of Recursive Descent"></a>The Basic Method of Recursive Descent</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">Procedure</span> <span class="title">factor</span></span></span><br><span class="line"><span class="function"><span class="title">BEGIN</span></span></span><br><span class="line"><span class="function">    <span class="title">case</span> <span class="title">token</span> <span class="title">of</span></span></span><br><span class="line"><span class="function">    <span class="params">(:	match(()</span>;</span></span><br><span class="line">        expr;</span><br><span class="line">        match());</span><br><span class="line">    number:</span><br><span class="line">        match(number);</span><br><span class="line">    <span class="keyword">else</span> error;</span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">case</span>;</span><br><span class="line"><span class="keyword">END</span> factor</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Writing recursive-decent procedure for the remaining rules in the expression grammar is not as easy for factor.</li>
+<li>It requires the use of EBNF.</li>
+</ul>
+<h3 id="Repetition-and-Choice-Using-EBNF"><a href="#Repetition-and-Choice-Using-EBNF" class="headerlink" title="Repetition and Choice: Using EBNF"></a>Repetition and Choice: Using EBNF</h3><p>Example: <em>expr -&gt; expr addop term|term</em></p>
+<p>this would lead to an immediate <u>infinite recursive loop</u></p>
+<p>the solution is use the EBNF rule: <em>expr -&gt; term {addop term}</em></p>
+<p>The recursive-descent method is quite powerful and adequate to<br>construct a complete parse. But we need more formal methods<br>to deal with complex situation.</p>
+<h3 id="Further-Decision-Problems"><a href="#Further-Decision-Problems" class="headerlink" title="Further Decision Problems"></a>Further Decision Problems</h3><p>The recursive-descent method is quite powerful and adequate to construct a complete parse.</p>
+<p>But we need more formal methods to deal with complex situation.</p>
+<ol>
+<li>It may be difficult to convert a grammar in BNF into EBNF form.</li>
+<li>It is difficult to decide when to use the choice A -&gt; a and the choice A -&gt; b; if both a and b begin with non-terminals (<u>First Sets</u>)</li>
+<li>It may be necessary to know what token legally coming from the non-terminal A, A-&gt;e (<u>Follow Sets</u>)</li>
+<li>It requires computing the <u>First and Follow</u> sets in order to detect the errors as early as possible</li>
+</ol>
+<h2 id="LL-1-Parsing"><a href="#LL-1-Parsing" class="headerlink" title="LL(1) Parsing"></a>LL(1) Parsing</h2><blockquote>
+<p> Main idea: LL(1) Parsing uses an explicit stack rather than recursive calls to perform a parse.</p>
+<p> Want to decide which production to apply based on next symbol</p>
+</blockquote>
+<p>L: from Left to right</p>
+<p>L: production rule is Left-most derivation</p>
+<h3 id="The-two-actions"><a href="#The-two-actions" class="headerlink" title="The two actions:"></a>The two actions:</h3><ol>
+<li>Generate: replace a non-terminal A at the top of the stack by a string a(in reverse) using a grammar rule A -&gt; a</li>
+<li>Match: match a token on top of the stack with the next input token</li>
+</ol>
+<p>Top-Down Parsing == Generate &amp; Match Parsing</p>
+<p>Constructing a parse tree:<br>Adding node construction actions as each non-terminal or terminal is push onto the stack.</p>
+<h3 id="LL-1-Parsing-table"><a href="#LL-1-Parsing-table" class="headerlink" title="LL(1) Parsing table"></a>LL(1) Parsing table</h3><p>S -&gt; (S) S | e</p>
+<table>
+<thead>
+<tr>
+<th>M[N, T]</th>
+<th>(</th>
+<th>)</th>
+<th>$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S</td>
+<td>S-&gt;(S)S</td>
+<td>S-&gt;e</td>
+<td>S-&gt;e</td>
+</tr>
+</tbody>
+</table>
+<p>The general LL(1) Parsing table definition: The table is a two-dimensional array indexed by non-terminals<br>and terminals The table contains production choices to use at the appropriate parsing step, which called M[N,T].</p>
+<ul>
+<li>N is the set of non-terminals of the grammar</li>
+<li>T is the set of terminals or tokens (including $)</li>
+<li>Any entrances remaining empty represent potential errors</li>
+</ul>
+<h3 id="Definition-of-LL-1-Grammar"><a href="#Definition-of-LL-1-Grammar" class="headerlink" title="Definition of LL(1) Grammar:"></a>Definition of LL(1) Grammar:</h3><ul>
+<li>A grammar is an LL(1) grammar if the associated LL(1) parsing table has at most one production in each table entry.</li>
+<li>An LL(1) grammar <u>cannot</u> be <em>ambiguous</em>.</li>
+</ul>
+<h3 id="Draw-LL-1-Parsing-Table"><a href="#Draw-LL-1-Parsing-Table" class="headerlink" title="Draw LL(1) Parsing Table"></a>Draw LL(1) Parsing Table</h3><h3 id="Algorithm-for-general-left-recursion-removal"><a href="#Algorithm-for-general-left-recursion-removal" class="headerlink" title="Algorithm for general left recursion removal:"></a>Algorithm for general left recursion removal:</h3><figure class="highlight pascal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i:=<span class="number">1</span> <span class="keyword">to</span> m <span class="keyword">do</span></span><br><span class="line">	<span class="keyword">for</span> j:=<span class="number">1</span> <span class="keyword">to</span> i-<span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">		<span class="comment">// replace each grammar rule choice of the form</span></span><br><span class="line">		<span class="comment">// A_i -&gt; A_j b by the rule</span></span><br><span class="line">			A_i -&gt; a_1 b|a_2 b|...</span><br><span class="line">		<span class="comment">// where A_j -&gt; a_1|a_2|... is the current rule for A_j</span></span><br><span class="line">		<span class="comment">// remove, if necessary, immediate left recursion involving A_i</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Left recursion removal does not change the language, but change the grammar and the parse tree.</strong></li>
+<li><strong>This change causes a complication for the parser.</strong></li>
+</ul>
+<h3 id="left-recursion-removal-and-left-factoring"><a href="#left-recursion-removal-and-left-factoring" class="headerlink" title="left recursion removal and left factoring"></a>left recursion removal and left factoring</h3><p>Left factoring is required when two or more grammar rule choices share a common prefix string.</p>
+<p>和提取公因式很像</p>
+<h3 id="Syntax-Tree-Construction-in-LL-1-Parsing"><a href="#Syntax-Tree-Construction-in-LL-1-Parsing" class="headerlink" title="Syntax Tree Construction in LL(1) Parsing"></a>Syntax Tree Construction in LL(1) Parsing</h3><p>It is more difficult for LL(1) to adapt to syntax tree construction.</p>
+<ul>
+<li>The structure of the syntax tree can be obscured by left factoring and left recursion removal</li>
+<li>The parsing tack represents only predicated structure, not structure that have been actually seen.</li>
+</ul>
+<p>Solution:</p>
+<ul>
+<li>An extra stack is used to keep track of syntax tree nodes</li>
+<li>“Action” markers are placed in the parsing stack to indicated when and what actions on the tree stack should occur.</li>
+</ul>
+<p>How to compute the arithmetic value of the expression.</p>
+<ol>
+<li>Use a separate stack to store the intermediate values of the computation, called the value stack;</li>
+<li>Schedule two operations on that stack: A push of a number; The addition of two numbers.</li>
+<li>PUSH can be performed by the match procedure</li>
+<li>ADDITION should be scheduled on the stack, by pushing a special symbol (such as #) on the parsing stack.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter4-1/" data-id="cjtibipwp000ktkl60u4f1alv" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Compiler-Chapter3-2" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/03/11/Compiler-Chapter3-2/" class="article-date">
@@ -154,7 +322,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjtfh8ad00004ppl6spxcs7za" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/Compiler-Chapter3-2/" data-id="cjtibipwd0008tkl6jq56qn4h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
@@ -260,7 +428,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/11/SE-Chapter22/" data-id="cjtfh8adi0013ppl64l3e5wbx" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/11/SE-Chapter22/" data-id="cjtibipx00016tkl69aevom4f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
@@ -426,7 +594,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjtfh8adp001mppl6ade6wvfh" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture2/" data-id="cjtibipx8001ntkl68q28gugq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -502,7 +670,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture1/" data-id="cjtfh8ado001kppl6su438ejf" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Watermarking-Lecture1/" data-id="cjtibipxn0026tkl6mntqviam" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Watermarking/">Watermarking</a></li></ul>
@@ -637,7 +805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/Net0307Review/" data-id="cjtfh8adc000oppl6ksg2qmk9" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/Net0307Review/" data-id="cjtibipwx000ytkl6p5l06g78" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
@@ -680,7 +848,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjtfh8adt001rppl6vno9pqem" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/07/test-password/" data-id="cjtibipxm0024tkl6k569e37x" class="article-share-link">Share</a>
       
       
     </footer>
@@ -789,7 +957,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjtfh8adf000vppl6c4b510k1" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/06/Embedded-System-Lecture2/" data-id="cjtibipwv000utkl69c0gwrze" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Embedded-System/">Embedded System</a></li></ul>
@@ -877,181 +1045,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjtfh8ad8000hppl6onbqaw2t" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/03/05/DS0305Review/" data-id="cjtibipwn000itkl617y2016i" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-OS0305Review" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/OS0305Review/" class="article-date">
-  <time datetime="2019-03-05T15:11:25.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/OS0305Review/">OS0305Review</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2019-03-05-Operating-System"><a href="#2019-03-05-Operating-System" class="headerlink" title="2019/03/05 Operating System"></a>2019/03/05 Operating System</h1><h3 id="1-下列关于批处理系统的叙述中，正确的是（-）"><a href="#1-下列关于批处理系统的叙述中，正确的是（-）" class="headerlink" title="1. 下列关于批处理系统的叙述中，正确的是（    ）"></a>1. 下列关于批处理系统的叙述中，正确的是（    ）</h3><p>A. 批处理系统允许多个用户与计算机直接交互</p>
-<p>B. 批处理系统分为单道批处理系统和多道批处理系统</p>
-<p>C. 中断技术使得多道批处理系统的I/O设备可与CPU并行工作</p>
-<blockquote>
-<p>答案选B和C</p>
-<p>批处理系统不允许用户与计算机直接交互，A错误。多道批处理系统中CPU和I/O并行工作依托于中断机制，C正确。</p>
-</blockquote>
-<h3 id="2-操作系统的基本类型有（-）"><a href="#2-操作系统的基本类型有（-）" class="headerlink" title="2. 操作系统的基本类型有（    ）"></a>2. 操作系统的基本类型有（    ）</h3><blockquote>
-<p>答案是批处理系统、分时操作系统、实时操作系统</p>
-<p>除了这些以外还有网络操作系统、分布式计算机系统、个人计算机操作系统等</p>
-</blockquote>
-<h3 id="3-分时系统的一个重要性能是系统的响应时间，对操作系统的（-）因素进行改进有利于改善系统的响应时间"><a href="#3-分时系统的一个重要性能是系统的响应时间，对操作系统的（-）因素进行改进有利于改善系统的响应时间" class="headerlink" title="3. 分时系统的一个重要性能是系统的响应时间，对操作系统的（    ）因素进行改进有利于改善系统的响应时间"></a>3. 分时系统的一个重要性能是系统的响应时间，对操作系统的（    ）因素进行改进有利于改善系统的响应时间</h3><p>A. 加大时间片</p>
-<p>B. 采用静态页式管理</p>
-<p>C. 优先级+非抢占式调度算法</p>
-<p>D. 代码可重入</p>
-<blockquote>
-<p>答案选C</p>
-<p>加大时间片会延迟系统的响应时间，代码可重入和静态页式管理与系统响应时间无关</p>
-</blockquote>
-<h3 id="4-在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对-错）"><a href="#4-在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对-错）" class="headerlink" title="4. 在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对/错）"></a>4. 在通用操作系统管理下的计算机上允许程序，需要向操作系统预定运行时间（对/错）</h3><blockquote>
-<p>答案是错</p>
-<p>通用操作系统采用时间片轮转调度算法，用户运行程序并不需要预定运行时间</p>
-</blockquote>
-<h3 id="5-（-）是操作系统必须提供的功能"><a href="#5-（-）是操作系统必须提供的功能" class="headerlink" title="5. （    ）是操作系统必须提供的功能"></a>5. （    ）是操作系统必须提供的功能</h3><p>A. GUI</p>
-<p>B. 为进程提供系统调用命令</p>
-<p>C. 中断处理</p>
-<p>D. 编译源程序</p>
-<blockquote>
-<p>答案选C</p>
-<p>计算机的各种错误都需要中断处理，用户态和核心态的切换也需要中断处理</p>
-</blockquote>
-<h3 id="6-下列操作系统的各个功能组成部分中，（-）可不需要硬件的支持"><a href="#6-下列操作系统的各个功能组成部分中，（-）可不需要硬件的支持" class="headerlink" title="6. 下列操作系统的各个功能组成部分中，（    ）可不需要硬件的支持"></a>6. 下列操作系统的各个功能组成部分中，（    ）可不需要硬件的支持</h3><p>A. 进程调度</p>
-<p>B. 时钟管理</p>
-<p>C. 地址映射</p>
-<p>D. 中断系统</p>
-<blockquote>
-<p>答案选A</p>
-<p>进程调度由调度算法决定CPU使用权，由操作系统实现，无需硬件支持；时钟管理和中断系统都依托于硬件；地址映射和中断指令中的重定位都离不开硬件支持</p>
-</blockquote>
-<h3 id="7-在中断发生后，进入中断处理的程序属于（-）"><a href="#7-在中断发生后，进入中断处理的程序属于（-）" class="headerlink" title="7. 在中断发生后，进入中断处理的程序属于（    ）"></a>7. 在中断发生后，进入中断处理的程序属于（    ）</h3><p>A. 用户程序</p>
-<p>B. 可能是应用程序，可能是操作系统程序</p>
-<p>C. 操作系统程序</p>
-<p>D. 既不是应用程序，也不是操作系统程序</p>
-<blockquote>
-<p>答案选C</p>
-<p>进入中断处理的程序在核心态执行，是操作系统程序</p>
-</blockquote>
-<h3 id="8-计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（-）完成的"><a href="#8-计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（-）完成的" class="headerlink" title="8. 计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（    ）完成的"></a>8. 计算机区分核心态与用户态指令后，从核心态到用户态的转换是由操作系统程序执行后完成的，而用户态到核心态的转换则是由（    ）完成的</h3><p>A. 硬件</p>
-<p>B. 核心态程序</p>
-<p>C. 用户程序</p>
-<p>D. 中断处理程序</p>
-<blockquote>
-<p>答案选A</p>
-<p>计算机通过硬件中断机制完成用户态到核心态的转换；D. 中断处理程序一般在核心态执行，故无法实现用户态到核心态的转换</p>
-</blockquote>
-<h3 id="9-下列选项中，在用户态执行的是（-）"><a href="#9-下列选项中，在用户态执行的是（-）" class="headerlink" title="9. 下列选项中，在用户态执行的是（    ）"></a>9. 下列选项中，在用户态执行的是（    ）</h3><p>A. 命令解释程序</p>
-<p>B. 缺页处理程序</p>
-<p>C. 进程调度程序</p>
-<p>D. 时钟中断处理程序</p>
-<blockquote>
-<p>答案选A</p>
-<p>命令解释程序属于命令接口，是面向用户的；缺页处理和时钟中断处理都是中断处理程序，在核心态执行；进程调度是操作系统内核进程，属于核心态</p>
-</blockquote>
-<h3 id="10-只能在核心态下运行的指令是（-）"><a href="#10-只能在核心态下运行的指令是（-）" class="headerlink" title="10. 只能在核心态下运行的指令是（  ）"></a>10. 只能在核心态下运行的指令是（  ）</h3><p>A. 读时钟指令</p>
-<p>B. 置时钟指令</p>
-<p>C. 取数指令</p>
-<p>D. 寄存器清零</p>
-<blockquote>
-<p>答案选B</p>
-<p>置时钟指令无法在用户态执行，如果一个程序反复置时钟，则会导致其他程序饥饿，显然不合理</p>
-</blockquote>
-<h3 id="11-在操作系统中，只能在核心态执行的指令是（-）"><a href="#11-在操作系统中，只能在核心态执行的指令是（-）" class="headerlink" title="11. 在操作系统中，只能在核心态执行的指令是（    ）"></a>11. 在操作系统中，只能在核心态执行的指令是（    ）</h3><p>A. 读时钟</p>
-<p>B. 取数</p>
-<p>C. 广义指令</p>
-<p>D. 寄存器清零</p>
-<blockquote>
-<p>答案选C</p>
-<p>广义指令就是系统调用命令，广义指令的调用在用户态，执行在核心态</p>
-</blockquote>
-<h3 id="12-只能在核心态执行的指令是（-）"><a href="#12-只能在核心态执行的指令是（-）" class="headerlink" title="12. 只能在核心态执行的指令是（   ）"></a>12. 只能在核心态执行的指令是（   ）</h3><p>A. 从内存中取数</p>
-<p>B. 将运算结果写入内存</p>
-<p>C. 算数运算</p>
-<p>D. 输入/输出</p>
-<blockquote>
-<p>答案选D</p>
-<p>因为输入输出涉及到中断操作</p>
-</blockquote>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/OS0305Review/" data-id="cjtfh8ade000tppl64h4c5rla" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/研究生考试/">研究生考试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-SE-Course-Info" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/03/05/SE-Course-Info/" class="article-date">
-  <time datetime="2019-03-04T16:35:47.000Z" itemprop="datePublished">2019-03-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/05/SE-Course-Info/">SE Course Info</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Course-Info"><a href="#Course-Info" class="headerlink" title="Course Info"></a>Course Info</h1><h2 id="TA"><a href="#TA" class="headerlink" title="TA"></a>TA</h2><p>QQ: 371593486</p>
-<p>Cell Phone: 188-2923-7019</p>
-<p>E-mail: <a href="mailto:371593486@qq.com" target="_blank" rel="noopener">371593486@qq.com</a></p>
-<h2 id="Course-Source"><a href="#Course-Source" class="headerlink" title="Course Source"></a>Course Source</h2><p>website: <a href="http://www.cs.zju.edu.cn/se/?switch=1" target="_blank" rel="noopener">http://www.cs.zju.edu.cn/se/?switch=1</a></p>
-<p>website includes course slides, video, schedule, tests, forum, etc.</p>
-<h2 id="Reference-Book"><a href="#Reference-Book" class="headerlink" title="Reference Book"></a>Reference Book</h2><ul>
-<li>Software Engineering - A Practitioner’s Approach (Version 8) Roger S. Pressman</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Course-Info/" data-id="cjtfh8adn001hppl6f3v9212h" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
 
     </footer>
   </div>
@@ -1108,6 +1105,14 @@
       <ul>
         
           <li>
+            <a href="/2019/03/21/Watermarking-Lecture4/">Watermarking-Lecture4</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/20/Embedded-System-Lecture4/">Embedded-System-Lecture4</a>
+          </li>
+        
+          <li>
             <a href="/2019/03/19/PAT-A1112-Solution/">PAT-A1112 Solution</a>
           </li>
         
@@ -1117,14 +1122,6 @@
         
           <li>
             <a href="/2019/03/18/SE-Chapter7/">SE-Chapter7</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/18/SE-Chapter6/">SE-Chapter6</a>
-          </li>
-        
-          <li>
-            <a href="/2019/03/16/Compiler-Regular-Expression/">Compiler-Regular Expression</a>
           </li>
         
       </ul>
