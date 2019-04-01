@@ -3,20 +3,20 @@
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="utf-8">
   
-  <title>SE Chapter2 | BatInGotham&#39;s Blog</title>
+  <title>Compiler-Chapter5 | BatInGotham&#39;s Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Chapter 2Software Process Generic Process Framework Communication (customer collaboration and requirement gathering) Planning (establishes engineering work plan, describes technical risks, lists resou">
-<meta name="keywords" content="Software Engineering">
+  <meta name="description" content="Chapter 5 Bottom-up ParsingLR(0) Parsingmore expressive than LL, more powerful. Shift-reduce parsers. SLR(1) ParsingDefinitionThe SLR(1) parsing algorithm.  If state s contains any item of form A → α·">
+<meta name="keywords" content="Compiler">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SE Chapter2">
-<meta property="og:url" content="batingotham.github.io/2019/03/05/SE-Chapter2/index.html">
+<meta property="og:title" content="Compiler-Chapter5">
+<meta property="og:url" content="batingotham.github.io/2019/04/01/Compiler-Chapter5/index.html">
 <meta property="og:site_name" content="BatInGotham&#39;s Blog">
-<meta property="og:description" content="Chapter 2Software Process Generic Process Framework Communication (customer collaboration and requirement gathering) Planning (establishes engineering work plan, describes technical risks, lists resou">
+<meta property="og:description" content="Chapter 5 Bottom-up ParsingLR(0) Parsingmore expressive than LL, more powerful. Shift-reduce parsers. SLR(1) ParsingDefinitionThe SLR(1) parsing algorithm.  If state s contains any item of form A → α·">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-04T16:34:33.844Z">
+<meta property="og:updated_time" content="2019-04-01T02:54:19.034Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SE Chapter2">
-<meta name="twitter:description" content="Chapter 2Software Process Generic Process Framework Communication (customer collaboration and requirement gathering) Planning (establishes engineering work plan, describes technical risks, lists resou">
+<meta name="twitter:title" content="Compiler-Chapter5">
+<meta name="twitter:description" content="Chapter 5 Bottom-up ParsingLR(0) Parsingmore expressive than LL, more powerful. Shift-reduce parsers. SLR(1) ParsingDefinitionThe SLR(1) parsing algorithm.  If state s contains any item of form A → α·">
   
     <link rel="alternate" href="/atom.xml" title="BatInGotham&#39;s Blog" type="application/atom+xml">
   
@@ -69,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-SE-Chapter2" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Compiler-Chapter5" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/05/SE-Chapter2/" class="article-date">
-  <time datetime="2019-03-04T16:34:13.000Z" itemprop="datePublished">2019-03-05</time>
+    <a href="/2019/04/01/Compiler-Chapter5/" class="article-date">
+  <time datetime="2019-04-01T01:42:14.000Z" itemprop="datePublished">2019-04-01</time>
 </a>
     
   </div>
@@ -83,7 +83,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      SE Chapter2
+      Compiler-Chapter5
     </h1>
   
 
@@ -91,35 +91,36 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h1><h2 id="Software-Process"><a href="#Software-Process" class="headerlink" title="Software Process"></a>Software Process</h2><ul>
-<li>Generic Process Framework<ol>
-<li>Communication (customer collaboration and requirement gathering)</li>
-<li>Planning (establishes engineering work plan, describes technical risks, lists resource requirements, work products produced, and defines work schedule)</li>
-<li>Modeling (creation of models to help developers and customers understand the requires and software design)</li>
-<li>Construction (code generation and testing)</li>
-<li>Deployment</li>
-</ol>
-</li>
-<li>Process Adaptation</li>
-</ul>
-<h2 id="Software-Engineering-Practice"><a href="#Software-Engineering-Practice" class="headerlink" title="Software Engineering Practice"></a>Software Engineering Practice</h2><p>Fundamental principles:</p>
+        <h1 id="Chapter-5-Bottom-up-Parsing"><a href="#Chapter-5-Bottom-up-Parsing" class="headerlink" title="Chapter 5 Bottom-up Parsing"></a>Chapter 5 Bottom-up Parsing</h1><h2 id="LR-0-Parsing"><a href="#LR-0-Parsing" class="headerlink" title="LR(0) Parsing"></a>LR(0) Parsing</h2><p>more expressive than LL, more powerful.</p>
+<p>Shift-reduce parsers.</p>
+<h2 id="SLR-1-Parsing"><a href="#SLR-1-Parsing" class="headerlink" title="SLR(1) Parsing"></a>SLR(1) Parsing</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>The SLR(1) parsing algorithm.</p>
 <ol>
-<li>The reason it all exists — Provide <strong>value</strong> to users</li>
-<li><strong>KISS</strong> — Keep it Simple, Stupid</li>
-<li>Maintain the <strong>Vision</strong></li>
-<li>What you produce, others will consume</li>
-<li>Be open to the future</li>
-<li>Plan ahead of reuse</li>
-<li>Think!</li>
+<li>If state s contains any item of form A → α·Xβ, then the action is to shift the current input token onto the stack, and the new state to be pushed on the stack is the state containing the item A → αX·β.</li>
+<li>If state s contains the complete item A → γ*, and the next token in the input string is in Follow(A), then the action is to reduce by the rule A → γ.</li>
+<li>If the next input token is such that neither of the above two cases applies, an error is declared.</li>
+</ol>
+<h3 id="Judge-if-a-grammar-is-a-SLR-1-grammar"><a href="#Judge-if-a-grammar-is-a-SLR-1-grammar" class="headerlink" title="Judge if a grammar is a SLR(1) grammar"></a>Judge if a grammar is a SLR(1) grammar</h3><ul>
+<li>A grammar is an SLR(1) grammar: the SLR(1) parsing rules results in no ambiguity.</li>
+<li>A grammar is SLR(1) if and only if, for any state s, the following 2 conditions are satisfied:<ul>
+<li>For any item A → α·Xβ in s with X a terminal, there is no complete item B → γ. in s with X in Follow(B).</li>
+<li>For any two complete items A → α· and B →β· in s, Follow(A) ∩ Follow(B) is empty.</li>
+</ul>
+</li>
+</ul>
+<h2 id="LALR-1-Parsing"><a href="#LALR-1-Parsing" class="headerlink" title="LALR(1) Parsing"></a>LALR(1) Parsing</h2><h3 id="LR-1"><a href="#LR-1" class="headerlink" title="LR(1)"></a>LR(1)</h3><h4 id="The-general-LR-1-parsing-algorithm"><a href="#The-general-LR-1-parsing-algorithm" class="headerlink" title="The general LR(1) parsing algorithm:"></a>The general LR(1) parsing algorithm:</h4><p>Let s be the current state (a the top of the parsing stack). Then<br>actions are defined as follows:</p>
+<ol>
+<li>If state s: any LR(1) item of the form [A→α·Xβ ,a], X is a terminal, and X is the next token in the input string</li>
+<li>If state s : the complete LR(1) item [A→α· ,a] , the next token: in the input string is a</li>
+<li>If the next input token is such that neither of the above two cases applies, an error is declared.</li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="batingotham.github.io/2019/03/05/SE-Chapter2/" data-id="cjtxtmtm60016vrl6xs9aw8cd" class="article-share-link">Share</a>
+      <a data-url="batingotham.github.io/2019/04/01/Compiler-Chapter5/" data-id="cjtxtmtlo000avrl6atwavgus" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/">Software Engineering</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Compiler/">Compiler</a></li></ul>
 
     </footer>
   </div>
@@ -127,19 +128,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2019/03/05/SE-Chapter3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          SE Chapter3
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/03/05/OS0304Review/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/03/28/Watermarking-Lecture5/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">OS0304Review</div>
+      <div class="article-nav-title">Watermarking-Lecture5</div>
     </a>
   
 </nav>
